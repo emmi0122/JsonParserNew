@@ -1,417 +1,274 @@
-TestSequence {
-  name='Test Sequence',
-  testCases=[
-  TestCase {
-    name='Run linked test sequence 'StartApplication.json'',
-    steps=[    ]
-  },
+  name = Test Sequence
+    name = Run linked test sequence 'StartApplication.json'
 
-  TestCase {
-    name='Run linked test sequence 'StartPitchControl.json'',
-    steps=[    ]
-  },
+    name = Run linked test sequence 'StartPitchControl.json'
 
-  TestCase {
-    name='Run linked test sequence 'StartSpeedFeedback.json'',
-    steps=[    ]
-  },
+    name = Run linked test sequence 'StartSpeedFeedback.json'
 
-  TestCase {
-    name='Initial Condition',
-    steps=[
-  TestStep {
-}    cmdTypeName='get',
-    action='', 
-    inOutId='null', 
-    value=null
-    },
+    name = Initial Condition
+    cmdTypeName = get
+    action =  
+    inOutId = null 
+    value = null
 
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='HydraulicPressureOk', 
-    value=1
-    },
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = HydraulicPressureOk 
+    value = 1
 
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='ShutdownMe1', 
-    value=0
-    },
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = ShutdownMe1 
+    value = 0
 
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='Overload', 
-    value=0
-    },
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = Overload 
+    value = 0
 
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='ParallelSystemPower', 
-    value=1
-    },
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = ParallelSystemPower 
+    value = 1
 
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='Slowdown', 
-    value=0
-    },
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = Slowdown 
+    value = 0
 
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='MeGovernorHealthy', 
-    value=1
-    },
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = MeGovernorHealthy 
+    value = 1
 
-  TestStep {
-}    cmdTypeName='subscribe',
-    action='SelectButton', 
-    inOutId='null', 
-    value=null
-    },
+    cmdTypeName = subscribe
+    action = SelectButton 
+    inOutId = null 
+    value = null
 
-  TestStep {
-}    cmdTypeName='set',
-    action='Button', 
-    inOutId='Enter', 
-    value=1
-    },
+    cmdTypeName = set
+    action = Button 
+    inOutId = Enter 
+    value = 1
 
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='Ackn', 
-    value=1
-    },
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = Ackn 
+    value = 1
 
-  TestStep {
-}    cmdTypeName='set',
-    action='Button', 
-    inOutId='TakeOver', 
-    value=1
-    },
+    cmdTypeName = set
+    action = Button 
+    inOutId = TakeOver 
+    value = 1
 
-  TestStep {
-}    cmdTypeName='get',
-    action='DigOutPort', 
-    inOutId='CtrlPosBm1', 
-    value=null
-    },
+    cmdTypeName = get
+    action = DigOutPort 
+    inOutId = CtrlPosBm1 
+    value = null
 
-  TestStep {
-}    cmdTypeName='get',
-    action='DigOutPort', 
-    inOutId='CtrlPosEcr', 
-    value=null
-    },
+    cmdTypeName = get
+    action = DigOutPort 
+    inOutId = CtrlPosEcr 
+    value = null
 
-  TestStep {
-}    cmdTypeName='subscribe',
-    action='SelectButton', 
-    inOutId='null', 
-    value=null
-    },
+    cmdTypeName = subscribe
+    action = SelectButton 
+    inOutId = null 
+    value = null
 
-  TestStep {
-}    cmdTypeName='set',
-    action='Button', 
-    inOutId='Enter', 
-    value=1
-    },
+    cmdTypeName = set
+    action = Button 
+    inOutId = Enter 
+    value = 1
 
-  TestStep {
-}    cmdTypeName='get',
-    action='DigOutPort', 
-    inOutId='MainClutchIn', 
-    value=null
-    },
+    cmdTypeName = get
+    action = DigOutPort 
+    inOutId = MainClutchIn 
+    value = null
 
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='MainClutchEngaged', 
-    value=1
-    },
-    ]
-  },
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = MainClutchEngaged 
+    value = 1
 
-  TestCase {
-    name='Move BM1 Lever to full ahead',
-    steps=[
-  TestStep {
-}    cmdTypeName='set',
-    action='AnalogInput', 
-    inOutId='PitchLever', 
-    value=3500
-    },
 
-  TestStep {
-}    cmdTypeName='get',
-    action='AnalogInput', 
-    inOutId='PitchFeedback', 
-    value=null
-    },
-    ]
-  },
+    name = Move BM1 Lever to full ahead
+    cmdTypeName = set
+    action = AnalogInput 
+    inOutId = PitchLever 
+    value = 3500
 
-  TestCase {
-    name='Activate SLOWDOWN',
-    steps=[
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='Slowdown', 
-    value=1
-    },
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
 
-  TestStep {
-}    cmdTypeName='get',
-    action='AnalogInput', 
-    inOutId='PitchFeedback', 
-    value=null
-    },
-    ]
-  },
 
-  TestCase {
-    name='Press OVERRIDE (activate)',
-    steps=[
-  TestStep {
-}    cmdTypeName='subscribe',
-    action='SelectButton', 
-    inOutId='null', 
-    value=null
-    },
+    name = Activate SLOWDOWN
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = Slowdown 
+    value = 1
 
-  TestStep {
-}    cmdTypeName='set',
-    action='Button', 
-    inOutId='Enter', 
-    value=1
-    },
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
 
-  TestStep {
-}    cmdTypeName='set',
-    action='Button', 
-    inOutId='Enter', 
-    value=1
-    },
 
-  TestStep {
-}    cmdTypeName='get',
-    action='AnalogInput', 
-    inOutId='PitchFeedback', 
-    value=null
-    },
-    ]
-  },
+    name = Press OVERRIDE (activate)
+    cmdTypeName = subscribe
+    action = SelectButton 
+    inOutId = null 
+    value = null
 
-  TestCase {
-    name='Press OVERRIDE (de-activate)',
-    steps=[
-  TestStep {
-}    cmdTypeName='subscribe',
-    action='SelectButton', 
-    inOutId='null', 
-    value=null
-    },
+    cmdTypeName = set
+    action = Button 
+    inOutId = Enter 
+    value = 1
 
-  TestStep {
-}    cmdTypeName='set',
-    action='Button', 
-    inOutId='Enter', 
-    value=1
-    },
+    cmdTypeName = set
+    action = Button 
+    inOutId = Enter 
+    value = 1
 
-  TestStep {
-}    cmdTypeName='get',
-    action='AnalogInput', 
-    inOutId='PitchFeedback', 
-    value=null
-    },
-    ]
-  },
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
 
-  TestCase {
-    name='Release SLOWDOWN',
-    steps=[
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='Slowdown', 
-    value=0
-    },
 
-  TestStep {
-}    cmdTypeName='get',
-    action='AnalogInput', 
-    inOutId='PitchFeedback', 
-    value=null
-    },
-    ]
-  },
+    name = Press OVERRIDE (de-activate)
+    cmdTypeName = subscribe
+    action = SelectButton 
+    inOutId = null 
+    value = null
 
-  TestCase {
-    name='Activate OVERLOAD',
-    steps=[
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='Overload', 
-    value=1
-    },
+    cmdTypeName = set
+    action = Button 
+    inOutId = Enter 
+    value = 1
 
-  TestStep {
-}    cmdTypeName='get',
-    action='AnalogInput', 
-    inOutId='PitchFeedback', 
-    value=null
-    },
-    ]
-  },
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
 
-  TestCase {
-    name='Release OVERLOAD',
-    steps=[
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='Overload', 
-    value=0
-    },
 
-  TestStep {
-}    cmdTypeName='get',
-    action='AnalogInput', 
-    inOutId='PitchFeedback', 
-    value=null
-    },
-    ]
-  },
+    name = Release SLOWDOWN
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = Slowdown 
+    value = 0
 
-  TestCase {
-    name='Activate SHUTDOWN',
-    steps=[
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='ShutdownMe1', 
-    value=1
-    },
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
 
-  TestStep {
-}    cmdTypeName='get',
-    action='DigOutPort', 
-    inOutId='MainClutchOut', 
-    value=null
-    },
 
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='MainClutchEngaged', 
-    value=0
-    },
+    name = Activate OVERLOAD
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = Overload 
+    value = 1
 
-  TestStep {
-}    cmdTypeName='get',
-    action='AnalogInput', 
-    inOutId='PitchFeedback', 
-    value=null
-    },
-    ]
-  },
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
 
-  TestCase {
-    name='Release SHUTDOWN',
-    steps=[
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='ShutdownMe1', 
-    value=0
-    },
 
-  TestStep {
-}    cmdTypeName='get',
-    action='AnalogInput', 
-    inOutId='PitchFeedback', 
-    value=null
-    },
-    ]
-  },
+    name = Release OVERLOAD
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = Overload 
+    value = 0
 
-  TestCase {
-    name='ME Governor Healthy',
-    steps=[
-  TestStep {
-}    cmdTypeName='set',
-    action='AnalogInput', 
-    inOutId='PitchLever', 
-    value=1940
-    },
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
 
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='ShutdownMe1', 
-    value=1
-    },
 
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='MeGovernorHealthy', 
-    value=0
-    },
+    name = Activate SHUTDOWN
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = ShutdownMe1 
+    value = 1
 
-  TestStep {
-}    cmdTypeName='get',
-    action='PWM', 
-    inOutId='SpeedDemand', 
-    value=null
-    },
+    cmdTypeName = get
+    action = DigOutPort 
+    inOutId = MainClutchOut 
+    value = null
 
-  TestStep {
-}    cmdTypeName='set',
-    action='DigInPort', 
-    inOutId='ShutdownMe1', 
-    value=0
-    },
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = MainClutchEngaged 
+    value = 0
 
-  TestStep {
-}    cmdTypeName='get',
-    action='PWM', 
-    inOutId='SpeedDemand', 
-    value=null
-    },
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
 
-  TestStep {
-}    cmdTypeName='get',
-    action='TextIndicatorColor', 
-    inOutId='null', 
-    value=null
-    },
 
-  TestStep {
-}    cmdTypeName='set',
-    action='Button', 
-    inOutId='Enter', 
-    value=1
-    },
+    name = Release SHUTDOWN
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = ShutdownMe1 
+    value = 0
 
-  TestStep {
-}    cmdTypeName='get',
-    action='TextIndicatorColor', 
-    inOutId='null', 
-    value=null
-    },
-    ]
-  },
-  ]
-}
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
+
+
+    name = ME Governor Healthy
+    cmdTypeName = set
+    action = AnalogInput 
+    inOutId = PitchLever 
+    value = 1940
+
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = ShutdownMe1 
+    value = 1
+
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = MeGovernorHealthy 
+    value = 0
+
+    cmdTypeName = get
+    action = PWM 
+    inOutId = SpeedDemand 
+    value = null
+
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = ShutdownMe1 
+    value = 0
+
+    cmdTypeName = get
+    action = PWM 
+    inOutId = SpeedDemand 
+    value = null
+
+    cmdTypeName = get
+    action = TextIndicatorColor 
+    inOutId = null 
+    value = null
+
+    cmdTypeName = set
+    action = Button 
+    inOutId = Enter 
+    value = 1
+
+    cmdTypeName = get
+    action = TextIndicatorColor 
+    inOutId = null 
+    value = null
+
+

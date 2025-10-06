@@ -32,12 +32,12 @@ public class TestStep {
 
     @Override
     public String toString() {
-        return "\n  TestStep {\n}" +
-               "    cmdTypeName='" + cmdTypeName + "',\n" +
-               "    action='" + action + "', \n" +
-               "    inOutId='" + inOutId + "', \n" +
-               "    value=" + value + "\n" + 
-               "    }";
+        return //"\n  TestStep {\n}" +
+               "    cmdTypeName = " + cmdTypeName + "\n" +
+               "    action = " + action + " \n" +
+               "    inOutId = " + inOutId + " \n" +
+               "    value = " + value + "\n";
+               //"    }";
     }
 
 
