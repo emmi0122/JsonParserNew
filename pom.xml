@@ -13,4 +13,28 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
+    <dependencies>
+                <!-- org.json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20250517</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- run with: mvn -q exec:java -Dexec.mainClass=com.example.App -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.1</version>
+
+                <configuration>
+                    <mainClass>se.berg.Main</mainClass> <!-- Your main class FQN -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
