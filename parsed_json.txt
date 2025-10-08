@@ -1,0 +1,323 @@
+  name = Test Sequence
+    name = Run linked test sequence 'StartApplication.json'
+
+    name = Run linked test sequence 'StartPitchControl.json'
+
+    name = Run linked test sequence 'StartSpeedFeedback.json'
+
+    name = Initial Condition
+    cmdTypeName = get
+    action =  
+    inOutId = null 
+    value = null
+    target_address = Unknown (null)
+
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = HydraulicPressureOk 
+    value = 1
+    target_address = Central Unit (15)
+
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = ShutdownMe1 
+    value = 0
+    target_address = Central Unit (15)
+
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = Overload 
+    value = 0
+    target_address = Central Unit (15)
+
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = ParallelSystemPower 
+    value = 1
+    target_address = Central Unit (15)
+
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = Slowdown 
+    value = 0
+    target_address = Central Unit (15)
+
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = MeGovernorHealthy 
+    value = 1
+    target_address = Central Unit (15)
+
+    cmdTypeName = subscribe
+    action = SelectButton 
+    inOutId = null 
+    value = null
+    target_address = ECR (0)
+
+    cmdTypeName = set
+    action = Button 
+    inOutId = Enter 
+    value = 1
+    target_address = ECR (0)
+
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = Ackn 
+    value = 1
+    target_address = ECR (0)
+
+    cmdTypeName = set
+    action = Button 
+    inOutId = TakeOver 
+    value = 1
+    target_address = Bridge Panel 1 (1)
+
+    cmdTypeName = get
+    action = DigOutPort 
+    inOutId = CtrlPosBm1 
+    value = null
+    target_address = Central Unit (15)
+
+    cmdTypeName = get
+    action = DigOutPort 
+    inOutId = CtrlPosEcr 
+    value = null
+    target_address = Central Unit (15)
+
+    cmdTypeName = subscribe
+    action = SelectButton 
+    inOutId = null 
+    value = null
+    target_address = Bridge Panel 1 (1)
+
+    cmdTypeName = set
+    action = Button 
+    inOutId = Enter 
+    value = 1
+    target_address = Bridge Panel 1 (1)
+
+    cmdTypeName = get
+    action = DigOutPort 
+    inOutId = MainClutchIn 
+    value = null
+    target_address = Central Unit (15)
+
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = MainClutchEngaged 
+    value = 1
+    target_address = Central Unit (15)
+
+
+    name = Move BM1 Lever to full ahead
+    cmdTypeName = set
+    action = AnalogInput 
+    inOutId = PitchLever 
+    value = 3500
+    target_address = Bridge Panel 1 (1)
+
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
+    target_address = Central Unit (15)
+
+
+    name = Activate SLOWDOWN
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = Slowdown 
+    value = 1
+    target_address = Central Unit (15)
+
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
+    target_address = Central Unit (15)
+
+
+    name = Press OVERRIDE (activate)
+    cmdTypeName = subscribe
+    action = SelectButton 
+    inOutId = null 
+    value = null
+    target_address = Bridge Panel 1 (1)
+
+    cmdTypeName = set
+    action = Button 
+    inOutId = Enter 
+    value = 1
+    target_address = Bridge Panel 1 (1)
+
+    cmdTypeName = set
+    action = Button 
+    inOutId = Enter 
+    value = 1
+    target_address = Bridge Panel 1 (1)
+
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
+    target_address = Central Unit (15)
+
+
+    name = Press OVERRIDE (de-activate)
+    cmdTypeName = subscribe
+    action = SelectButton 
+    inOutId = null 
+    value = null
+    target_address = Bridge Panel 1 (1)
+
+    cmdTypeName = set
+    action = Button 
+    inOutId = Enter 
+    value = 1
+    target_address = Bridge Panel 1 (1)
+
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
+    target_address = Central Unit (15)
+
+
+    name = Release SLOWDOWN
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = Slowdown 
+    value = 0
+    target_address = Central Unit (15)
+
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
+    target_address = Central Unit (15)
+
+
+    name = Activate OVERLOAD
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = Overload 
+    value = 1
+    target_address = Central Unit (15)
+
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
+    target_address = Central Unit (15)
+
+
+    name = Release OVERLOAD
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = Overload 
+    value = 0
+    target_address = Central Unit (15)
+
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
+    target_address = Central Unit (15)
+
+
+    name = Activate SHUTDOWN
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = ShutdownMe1 
+    value = 1
+    target_address = Central Unit (15)
+
+    cmdTypeName = get
+    action = DigOutPort 
+    inOutId = MainClutchOut 
+    value = null
+    target_address = Central Unit (15)
+
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = MainClutchEngaged 
+    value = 0
+    target_address = Central Unit (15)
+
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
+    target_address = Central Unit (15)
+
+
+    name = Release SHUTDOWN
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = ShutdownMe1 
+    value = 0
+    target_address = Central Unit (15)
+
+    cmdTypeName = get
+    action = AnalogInput 
+    inOutId = PitchFeedback 
+    value = null
+    target_address = Central Unit (15)
+
+
+    name = ME Governor Healthy
+    cmdTypeName = set
+    action = AnalogInput 
+    inOutId = PitchLever 
+    value = 1940
+    target_address = Bridge Panel 1 (1)
+
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = ShutdownMe1 
+    value = 1
+    target_address = Central Unit (15)
+
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = MeGovernorHealthy 
+    value = 0
+    target_address = Central Unit (15)
+
+    cmdTypeName = get
+    action = PWM 
+    inOutId = SpeedDemand 
+    value = null
+    target_address = Central Unit (15)
+
+    cmdTypeName = set
+    action = DigInPort 
+    inOutId = ShutdownMe1 
+    value = 0
+    target_address = Central Unit (15)
+
+    cmdTypeName = get
+    action = PWM 
+    inOutId = SpeedDemand 
+    value = null
+    target_address = Central Unit (15)
+
+    cmdTypeName = get
+    action = TextIndicatorColor 
+    inOutId = null 
+    value = null
+    target_address = Bridge Panel 1 (1)
+
+    cmdTypeName = set
+    action = Button 
+    inOutId = Enter 
+    value = 1
+    target_address = Bridge Panel 1 (1)
+
+    cmdTypeName = get
+    action = TextIndicatorColor 
+    inOutId = null 
+    value = null
+    target_address = ECR (0)
+
+

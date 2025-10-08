@@ -1,7 +1,9 @@
 package se.berg.domain;
 
+import se.berg.util.TargetAddressMapper;
+
 public class TestStep {
-    //private String type;
+    // private String type;
     private String cmdTypeName;
     private String action;
     private String inOutId;
@@ -36,14 +38,18 @@ public class TestStep {
         return targetAddress;
     }
 
+    public String getTargetAddressName() {
+        return TargetAddressMapper.mapTargetAddress(targetAddress);
+    }
+
     @Override
     public String toString() {
-        return //"\n  TestStep {\n}" +
-               "    cmdTypeName = " + cmdTypeName + "\n" +
-               "    action = " + action + " \n" +
-               "    inOutId = " + inOutId + " \n" +
-               "    value = " + value + "\n" +
-               "    target_address = " + targetAddress + "\n";
-               //"    }";
+        return // "\n TestStep {\n}" +
+        "    cmdTypeName = " + cmdTypeName + "\n" +
+                "    action = " + action + " \n" +
+                "    inOutId = " + inOutId + " \n" +
+                "    value = " + value + "\n" +
+                "    target_address = " + getTargetAddressName() + " (" + targetAddress + ")\n";
+        // " }";
     }
 }
