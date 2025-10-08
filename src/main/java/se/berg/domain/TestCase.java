@@ -39,14 +39,10 @@ public class TestCase {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        //sb.append("\n  TestCase {\n");
-        sb.append("    name = ").append(name).append("\n");
-        //sb.append("    steps=[");
+        sb.append(name).append("\n");
         for (TestStep step : steps) {
-            sb.append(step.toString()).append("\n");
+            sb.append("    ").append(step.toString()).append("\n");
         }
-        //sb.append("    ]\n");
-        //sb.append("  }");
         return sb.toString();
     }
 }

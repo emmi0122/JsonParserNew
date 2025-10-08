@@ -39,14 +39,10 @@ public class TestSequence {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        //sb.append("TestSequence {\n");
-        sb.append("  name = ").append(name).append("\n");
-        //sb.append("  testCases=[");
+        sb.append(name).append("\n");
         for (TestCase testCase : testCases) {
-            sb.append(testCase.toString()).append("\n");
+            sb.append("    ").append(testCase.toString()).append("\n");
         }
-        //sb.append("  ]\n");
-        //sb.append("}");
         return sb.toString();
 
     }

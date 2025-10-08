@@ -1,323 +1,127 @@
-  name = Test Sequence
-    name = Run linked test sequence 'StartApplication.json'
+Test Sequence
+    Run linked test sequence 'StartApplication.json'
 
-    name = Run linked test sequence 'StartPitchControl.json'
+    Run linked test sequence 'StartPitchControl.json'
 
-    name = Run linked test sequence 'StartSpeedFeedback.json'
+    Run linked test sequence 'StartSpeedFeedback.json'
 
-    name = Initial Condition
-    cmdTypeName = get
-    action =  
-    inOutId = null 
-    value = null
-    target_address = Unknown (null)
+    Initial Condition
+    Observe 
 
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = HydraulicPressureOk 
-    value = 1
-    target_address = Central Unit (15)
+    Set DigInPort Hydraulic Pressure Ok = 1 at Central Unit
 
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = ShutdownMe1 
-    value = 0
-    target_address = Central Unit (15)
+    Set DigInPort Shutdown Me1 = 0 at Central Unit
 
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = Overload 
-    value = 0
-    target_address = Central Unit (15)
+    Set DigInPort Overload = 0 at Central Unit
 
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = ParallelSystemPower 
-    value = 1
-    target_address = Central Unit (15)
+    Set DigInPort Parallel System Power = 1 at Central Unit
 
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = Slowdown 
-    value = 0
-    target_address = Central Unit (15)
+    Set DigInPort Slowdown = 0 at Central Unit
 
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = MeGovernorHealthy 
-    value = 1
-    target_address = Central Unit (15)
+    Set DigInPort Me Governor Healthy = 1 at Central Unit
 
-    cmdTypeName = subscribe
-    action = SelectButton 
-    inOutId = null 
-    value = null
-    target_address = ECR (0)
+    Subscribe SelectButton at ECR
 
-    cmdTypeName = set
-    action = Button 
-    inOutId = Enter 
-    value = 1
-    target_address = ECR (0)
+    Set Button Enter = 1 at ECR
 
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = Ackn 
-    value = 1
-    target_address = ECR (0)
+    Set DigInPort Ackn = 1 at ECR
 
-    cmdTypeName = set
-    action = Button 
-    inOutId = TakeOver 
-    value = 1
-    target_address = Bridge Panel 1 (1)
+    Set Button Take Over = 1 at Bridge Panel 1
 
-    cmdTypeName = get
-    action = DigOutPort 
-    inOutId = CtrlPosBm1 
-    value = null
-    target_address = Central Unit (15)
+    Observe DigOutPort Ctrl Pos Bm1 at Central Unit
 
-    cmdTypeName = get
-    action = DigOutPort 
-    inOutId = CtrlPosEcr 
-    value = null
-    target_address = Central Unit (15)
+    Observe DigOutPort Ctrl Pos Ecr at Central Unit
 
-    cmdTypeName = subscribe
-    action = SelectButton 
-    inOutId = null 
-    value = null
-    target_address = Bridge Panel 1 (1)
+    Subscribe SelectButton at Bridge Panel 1
 
-    cmdTypeName = set
-    action = Button 
-    inOutId = Enter 
-    value = 1
-    target_address = Bridge Panel 1 (1)
+    Set Button Enter = 1 at Bridge Panel 1
 
-    cmdTypeName = get
-    action = DigOutPort 
-    inOutId = MainClutchIn 
-    value = null
-    target_address = Central Unit (15)
+    Observe DigOutPort Main Clutch In at Central Unit
 
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = MainClutchEngaged 
-    value = 1
-    target_address = Central Unit (15)
+    Set DigInPort Main Clutch Engaged = 1 at Central Unit
 
 
-    name = Move BM1 Lever to full ahead
-    cmdTypeName = set
-    action = AnalogInput 
-    inOutId = PitchLever 
-    value = 3500
-    target_address = Bridge Panel 1 (1)
+    Move BM1 Lever to full ahead
+    Set AnalogInput Pitch Lever = 3500 at Bridge Panel 1
 
-    cmdTypeName = get
-    action = AnalogInput 
-    inOutId = PitchFeedback 
-    value = null
-    target_address = Central Unit (15)
+    Observe AnalogInput Pitch Feedback at Central Unit
 
 
-    name = Activate SLOWDOWN
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = Slowdown 
-    value = 1
-    target_address = Central Unit (15)
+    Activate SLOWDOWN
+    Set DigInPort Slowdown = 1 at Central Unit
 
-    cmdTypeName = get
-    action = AnalogInput 
-    inOutId = PitchFeedback 
-    value = null
-    target_address = Central Unit (15)
+    Observe AnalogInput Pitch Feedback at Central Unit
 
 
-    name = Press OVERRIDE (activate)
-    cmdTypeName = subscribe
-    action = SelectButton 
-    inOutId = null 
-    value = null
-    target_address = Bridge Panel 1 (1)
+    Press OVERRIDE (activate)
+    Subscribe SelectButton at Bridge Panel 1
 
-    cmdTypeName = set
-    action = Button 
-    inOutId = Enter 
-    value = 1
-    target_address = Bridge Panel 1 (1)
+    Set Button Enter = 1 at Bridge Panel 1
 
-    cmdTypeName = set
-    action = Button 
-    inOutId = Enter 
-    value = 1
-    target_address = Bridge Panel 1 (1)
+    Set Button Enter = 1 at Bridge Panel 1
 
-    cmdTypeName = get
-    action = AnalogInput 
-    inOutId = PitchFeedback 
-    value = null
-    target_address = Central Unit (15)
+    Observe AnalogInput Pitch Feedback at Central Unit
 
 
-    name = Press OVERRIDE (de-activate)
-    cmdTypeName = subscribe
-    action = SelectButton 
-    inOutId = null 
-    value = null
-    target_address = Bridge Panel 1 (1)
+    Press OVERRIDE (de-activate)
+    Subscribe SelectButton at Bridge Panel 1
 
-    cmdTypeName = set
-    action = Button 
-    inOutId = Enter 
-    value = 1
-    target_address = Bridge Panel 1 (1)
+    Set Button Enter = 1 at Bridge Panel 1
 
-    cmdTypeName = get
-    action = AnalogInput 
-    inOutId = PitchFeedback 
-    value = null
-    target_address = Central Unit (15)
+    Observe AnalogInput Pitch Feedback at Central Unit
 
 
-    name = Release SLOWDOWN
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = Slowdown 
-    value = 0
-    target_address = Central Unit (15)
+    Release SLOWDOWN
+    Set DigInPort Slowdown = 0 at Central Unit
 
-    cmdTypeName = get
-    action = AnalogInput 
-    inOutId = PitchFeedback 
-    value = null
-    target_address = Central Unit (15)
+    Observe AnalogInput Pitch Feedback at Central Unit
 
 
-    name = Activate OVERLOAD
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = Overload 
-    value = 1
-    target_address = Central Unit (15)
+    Activate OVERLOAD
+    Set DigInPort Overload = 1 at Central Unit
 
-    cmdTypeName = get
-    action = AnalogInput 
-    inOutId = PitchFeedback 
-    value = null
-    target_address = Central Unit (15)
+    Observe AnalogInput Pitch Feedback at Central Unit
 
 
-    name = Release OVERLOAD
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = Overload 
-    value = 0
-    target_address = Central Unit (15)
+    Release OVERLOAD
+    Set DigInPort Overload = 0 at Central Unit
 
-    cmdTypeName = get
-    action = AnalogInput 
-    inOutId = PitchFeedback 
-    value = null
-    target_address = Central Unit (15)
+    Observe AnalogInput Pitch Feedback at Central Unit
 
 
-    name = Activate SHUTDOWN
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = ShutdownMe1 
-    value = 1
-    target_address = Central Unit (15)
+    Activate SHUTDOWN
+    Set DigInPort Shutdown Me1 = 1 at Central Unit
 
-    cmdTypeName = get
-    action = DigOutPort 
-    inOutId = MainClutchOut 
-    value = null
-    target_address = Central Unit (15)
+    Observe DigOutPort Main Clutch Out at Central Unit
 
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = MainClutchEngaged 
-    value = 0
-    target_address = Central Unit (15)
+    Set DigInPort Main Clutch Engaged = 0 at Central Unit
 
-    cmdTypeName = get
-    action = AnalogInput 
-    inOutId = PitchFeedback 
-    value = null
-    target_address = Central Unit (15)
+    Observe AnalogInput Pitch Feedback at Central Unit
 
 
-    name = Release SHUTDOWN
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = ShutdownMe1 
-    value = 0
-    target_address = Central Unit (15)
+    Release SHUTDOWN
+    Set DigInPort Shutdown Me1 = 0 at Central Unit
 
-    cmdTypeName = get
-    action = AnalogInput 
-    inOutId = PitchFeedback 
-    value = null
-    target_address = Central Unit (15)
+    Observe AnalogInput Pitch Feedback at Central Unit
 
 
-    name = ME Governor Healthy
-    cmdTypeName = set
-    action = AnalogInput 
-    inOutId = PitchLever 
-    value = 1940
-    target_address = Bridge Panel 1 (1)
+    ME Governor Healthy
+    Set AnalogInput Pitch Lever = 1940 at Bridge Panel 1
 
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = ShutdownMe1 
-    value = 1
-    target_address = Central Unit (15)
+    Set DigInPort Shutdown Me1 = 1 at Central Unit
 
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = MeGovernorHealthy 
-    value = 0
-    target_address = Central Unit (15)
+    Set DigInPort Me Governor Healthy = 0 at Central Unit
 
-    cmdTypeName = get
-    action = PWM 
-    inOutId = SpeedDemand 
-    value = null
-    target_address = Central Unit (15)
+    Observe PWM Speed Demand at Central Unit
 
-    cmdTypeName = set
-    action = DigInPort 
-    inOutId = ShutdownMe1 
-    value = 0
-    target_address = Central Unit (15)
+    Set DigInPort Shutdown Me1 = 0 at Central Unit
 
-    cmdTypeName = get
-    action = PWM 
-    inOutId = SpeedDemand 
-    value = null
-    target_address = Central Unit (15)
+    Observe PWM Speed Demand at Central Unit
 
-    cmdTypeName = get
-    action = TextIndicatorColor 
-    inOutId = null 
-    value = null
-    target_address = Bridge Panel 1 (1)
+    Observe TextIndicatorColor at Bridge Panel 1
 
-    cmdTypeName = set
-    action = Button 
-    inOutId = Enter 
-    value = 1
-    target_address = Bridge Panel 1 (1)
+    Set Button Enter = 1 at Bridge Panel 1
 
-    cmdTypeName = get
-    action = TextIndicatorColor 
-    inOutId = null 
-    value = null
-    target_address = ECR (0)
+    Observe TextIndicatorColor at ECR
 
 
