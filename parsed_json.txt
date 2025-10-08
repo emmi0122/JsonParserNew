@@ -7,72 +7,72 @@ Test Sequence
 
     Initial Condition
         Check 
-        Set DigInPort Hydraulic Pressure Ok = 1 at Central Unit
-        Set DigInPort Shutdown Me1 = 0 at Central Unit
-        Set DigInPort Overload = 0 at Central Unit
-        Set DigInPort Parallel System Power = 1 at Central Unit
-        Set DigInPort Slowdown = 0 at Central Unit
-        Set DigInPort Me Governor Healthy = 1 at Central Unit
-        Subscribe SelectButton at ECR
-        Set Button Enter = 1 at ECR
-        Set DigInPort Ackn = 1 at ECR
-        Set Button Take Over = 1 at Bridge Panel 1
-        Check DigOutPort Ctrl Pos Bm1 at Central Unit
-        Check DigOutPort Ctrl Pos Ecr at Central Unit
-        Subscribe SelectButton at Bridge Panel 1
-        Set Button Enter = 1 at Bridge Panel 1
-        Check DigOutPort Main Clutch In at Central Unit
-        Set DigInPort Main Clutch Engaged = 1 at Central Unit
+        Put Dig In PortDigInPort Hydraulic Pressure Ok = 1 at Central Unit
+        Put Dig In PortDigInPort Shutdown Me1 = 0 at Central Unit
+        Put Dig In PortDigInPort Overload = 0 at Central Unit
+        Put Dig In PortDigInPort Parallel System Power = 1 at Central Unit
+        Put Dig In PortDigInPort Slowdown = 0 at Central Unit
+        Put Dig In PortDigInPort Me Governor Healthy = 1 at Central Unit
+        subscribe Select ButtonSelectButton at ECR
+        Put ButtonButton Enter = 1 at ECR
+        Put Dig In PortDigInPort Ackn = 1 at ECR
+        Put ButtonButton Take Over = 1 at Bridge Panel 1
+        Check Dig Out PortDigOutPort Ctrl Pos Bm1 at Central Unit
+        Check Dig Out PortDigOutPort Ctrl Pos Ecr at Central Unit
+        subscribe Select ButtonSelectButton at Bridge Panel 1
+        Put ButtonButton Enter = 1 at Bridge Panel 1
+        Check Dig Out PortDigOutPort Main Clutch In at Central Unit
+        Put Dig In PortDigInPort Main Clutch Engaged = 1 at Central Unit
 
     Move BM1 Lever to full ahead
-        Set AnalogInput Pitch Lever = 3500 at Bridge Panel 1
-        Check AnalogInput Pitch Feedback at Central Unit
+        Put Analog InputAnalogInput Pitch Lever = 3500 at Bridge Panel 1
+        Check Analog InputAnalogInput Pitch Feedback at Central Unit
 
     Activate SLOWDOWN
-        Set DigInPort Slowdown = 1 at Central Unit
-        Check AnalogInput Pitch Feedback at Central Unit
+        Put Dig In PortDigInPort Slowdown = 1 at Central Unit
+        Check Analog InputAnalogInput Pitch Feedback at Central Unit
 
     Press OVERRIDE (activate)
-        Subscribe SelectButton at Bridge Panel 1
-        Set Button Enter = 1 at Bridge Panel 1
-        Set Button Enter = 1 at Bridge Panel 1
-        Check AnalogInput Pitch Feedback at Central Unit
+        subscribe Select ButtonSelectButton at Bridge Panel 1
+        Put ButtonButton Enter = 1 at Bridge Panel 1
+        Put ButtonButton Enter = 1 at Bridge Panel 1
+        Check Analog InputAnalogInput Pitch Feedback at Central Unit
 
     Press OVERRIDE (de-activate)
-        Subscribe SelectButton at Bridge Panel 1
-        Set Button Enter = 1 at Bridge Panel 1
-        Check AnalogInput Pitch Feedback at Central Unit
+        subscribe Select ButtonSelectButton at Bridge Panel 1
+        Put ButtonButton Enter = 1 at Bridge Panel 1
+        Check Analog InputAnalogInput Pitch Feedback at Central Unit
 
     Release SLOWDOWN
-        Set DigInPort Slowdown = 0 at Central Unit
-        Check AnalogInput Pitch Feedback at Central Unit
+        Put Dig In PortDigInPort Slowdown = 0 at Central Unit
+        Check Analog InputAnalogInput Pitch Feedback at Central Unit
 
     Activate OVERLOAD
-        Set DigInPort Overload = 1 at Central Unit
-        Check AnalogInput Pitch Feedback at Central Unit
+        Put Dig In PortDigInPort Overload = 1 at Central Unit
+        Check Analog InputAnalogInput Pitch Feedback at Central Unit
 
     Release OVERLOAD
-        Set DigInPort Overload = 0 at Central Unit
-        Check AnalogInput Pitch Feedback at Central Unit
+        Put Dig In PortDigInPort Overload = 0 at Central Unit
+        Check Analog InputAnalogInput Pitch Feedback at Central Unit
 
     Activate SHUTDOWN
-        Set DigInPort Shutdown Me1 = 1 at Central Unit
-        Check DigOutPort Main Clutch Out at Central Unit
-        Set DigInPort Main Clutch Engaged = 0 at Central Unit
-        Check AnalogInput Pitch Feedback at Central Unit
+        Put Dig In PortDigInPort Shutdown Me1 = 1 at Central Unit
+        Check Dig Out PortDigOutPort Main Clutch Out at Central Unit
+        Put Dig In PortDigInPort Main Clutch Engaged = 0 at Central Unit
+        Check Analog InputAnalogInput Pitch Feedback at Central Unit
 
     Release SHUTDOWN
-        Set DigInPort Shutdown Me1 = 0 at Central Unit
-        Check AnalogInput Pitch Feedback at Central Unit
+        Put Dig In PortDigInPort Shutdown Me1 = 0 at Central Unit
+        Check Analog InputAnalogInput Pitch Feedback at Central Unit
 
     ME Governor Healthy
-        Set AnalogInput Pitch Lever = 1940 at Bridge Panel 1
-        Set DigInPort Shutdown Me1 = 1 at Central Unit
-        Set DigInPort Me Governor Healthy = 0 at Central Unit
-        Check PWM Speed Demand at Central Unit
-        Set DigInPort Shutdown Me1 = 0 at Central Unit
-        Check PWM Speed Demand at Central Unit
-        Check TextIndicatorColor at Bridge Panel 1
-        Set Button Enter = 1 at Bridge Panel 1
-        Check TextIndicatorColor at ECR
+        Put Analog InputAnalogInput Pitch Lever = 1940 at Bridge Panel 1
+        Put Dig In PortDigInPort Shutdown Me1 = 1 at Central Unit
+        Put Dig In PortDigInPort Me Governor Healthy = 0 at Central Unit
+        Check PWMPWM Speed Demand at Central Unit
+        Put Dig In PortDigInPort Shutdown Me1 = 0 at Central Unit
+        Check PWMPWM Speed Demand at Central Unit
+        Check Text Indicator ColorTextIndicatorColor at Bridge Panel 1
+        Put ButtonButton Enter = 1 at Bridge Panel 1
+        Check Text Indicator ColorTextIndicatorColor at ECR
 

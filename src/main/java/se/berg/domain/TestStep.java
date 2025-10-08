@@ -38,6 +38,10 @@ public class TestStep {
         return targetAddress;
     }
 
+    public String getFormattedAction() {
+        return MapperClass.mapAction(action);
+    }
+
     public String getFormattedInOutId() {
         if (inOutId == null || inOutId.isEmpty()) {
             return "";
@@ -55,16 +59,16 @@ public class TestStep {
         return inOutId.replaceAll("([a-z])([A-Z])", "$1 $2");
     }
 
+    public String getSplitCamelCase() {
+        return MapperClass.splitCamelCase(action);
+    }
+
     public String getTargetAddressName() {
         return MapperClass.mapTargetAddress(targetAddress);
     }
 
     public String getCmdTypeDescription() {
         return MapperClass.mapCmdType(cmdTypeName);
-    }
-
-    public String getmapAction() {
-        return MapperClass.mapAction(action);
     }
 
     @Override
@@ -74,7 +78,7 @@ public class TestStep {
         sb.append(getCmdTypeDescription()).append(" ");
 
         if (action != null && !action.isEmpty()) {
-            sb.append(action).append(" ");
+            sb.append(getSplitCamelCase()).append(getFormattedAction()).append(" ");
         }
 
         if (inOutId != null) {

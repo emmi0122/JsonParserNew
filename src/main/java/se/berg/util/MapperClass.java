@@ -22,11 +22,18 @@ public class MapperClass {
         }
 
         return switch (cmdTypeName.toLowerCase()) {
-            case "set" -> "Set";
+            case "set" -> "Put";
             case "get" -> "Check";
-            case "subscribe" -> "Subscribe";
             default -> cmdTypeName;
         };
+    }
+
+    public static String splitCamelCase(String text) {
+        if (text == null || text.isEmpty()) {
+            return "";
+        }
+
+        return text.replaceAll("([a-z])([A-Z])", "$1 $2");
     }
 
     public static String mapAction(String action) {
@@ -35,12 +42,11 @@ public class MapperClass {
         }
 
         return switch (action.toLowerCase()) {
-            case "DigInPort" -> "Digital Input";
+            case "DigInPort" -> "Digital Input Port";
             case "AnalogInput" -> "Analog Input";
             case "TextIndicatorColor" -> "Text Indicator Color";
-            case "PWM" -> "?";
-            case "SelectButton" -> "Select Button";
-            case "DigOutPort" -> "Digital output";
+            case "SelectButton" -> "Press Button";
+            case "DigOutPort" -> "Digital output Port";
             default -> action;
         };
     }
