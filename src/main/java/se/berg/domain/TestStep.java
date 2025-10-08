@@ -63,6 +63,10 @@ public class TestStep {
         return MapperClass.mapCmdType(cmdTypeName);
     }
 
+    public String getmapAction() {
+        return MapperClass.mapAction(action);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

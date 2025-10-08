@@ -41,7 +41,7 @@ public class TestCase {
         StringBuilder sb = new StringBuilder();
         sb.append(name).append("\n");
         for (TestStep step : steps) {
-            sb.append("    ").append(step.toString()).append("\n");
+            sb.append("    ").append("    ").append(step.toString());//.append("\n");
         }
         return sb.toString();
     }

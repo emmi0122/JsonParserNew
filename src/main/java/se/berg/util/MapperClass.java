@@ -23,22 +23,25 @@ public class MapperClass {
 
         return switch (cmdTypeName.toLowerCase()) {
             case "set" -> "Set";
-            case "get" -> "Observe";
+            case "get" -> "Check";
             case "subscribe" -> "Subscribe";
             default -> cmdTypeName;
         };
     }
 
-    public static String mapCmdTypeDescription(String cmdTypeName) {
-        if (cmdTypeName == null) {
-            return "Unknown operation";
+    public static String mapAction(String action) {
+        if (action == null) {
+            return "Unknown";
         }
 
-        return switch (cmdTypeName.toLowerCase()) {
-            case "set" -> "The user should perform an action";
-            case "get" -> "The user should observe that something has happened";
-            case "subscribe" -> "Subscribe to changes";
-            default -> cmdTypeName;
+        return switch (action.toLowerCase()) {
+            case "DigInPort" -> "Digital Input";
+            case "AnalogInput" -> "Analog Input";
+            case "TextIndicatorColor" -> "Text Indicator Color";
+            case "PWM" -> "?";
+            case "SelectButton" -> "Select Button";
+            case "DigOutPort" -> "Digital output";
+            default -> action;
         };
     }
 }
