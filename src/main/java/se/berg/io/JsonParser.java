@@ -17,15 +17,15 @@ public class JsonParser {
         String content = new String(Files.readAllBytes(Paths.get(filePath)));
         JSONObject obj = new JSONObject(content);
 
-        // String seqName = obj.getString("name");
         JSONArray testCasesJson = obj.getJSONArray("test_cases");
-
         List<TestCase> testCases = new ArrayList<>();
 
         // Go through all test cases in the json file
         for (int i = 0; i < testCasesJson.length(); i++) {
             JSONObject testCase = testCasesJson.getJSONObject(i);
+            //Get the name of the test sequence
             String testName = testCase.getString("name");
+            //Look through the array of test sequences
             JSONArray steps = testCase.getJSONArray("steps");
 
             List<TestStep> testSteps = new ArrayList<>();
@@ -38,12 +38,13 @@ public class JsonParser {
                 JSONObject cmdType = cmd.getJSONObject("cmd_type");
                 JSONObject params = cmd.getJSONObject("params");
 
-                String cmdTypeName = cmdType.getString("name");
-                String action = cmd.getString("action");
-                String inOutId = params.optString("InOutId", null);
-                Integer value = params.has("Value") ? params.getInt("Value") : null;
+                String cmdTypeName = cmdType.getString("name"); //Får antingen set eller get, måste skrivas om och hitta mönster
+                String action = cmd.getString("action"); //Säger just nu inte så mycket, konfigureras senare från config filen
+                String inOutId = params.optString("InOutId", null); //Säger just nu inte så mycket, konfigureras senare från config filen 
+                Integer value = params.has("Value") ? params.getInt("Value") : null; //Säger hur man ska flytta på lever, ska ändras till procent värden tillslut
+                Integer targetAdress = cmd.has("target_address") ? cmd.getInt("target_address") : null; //Lagt till
                 
-                testSteps.add(new TestStep(cmdTypeName, action, inOutId, value));
+                testSteps.add(new TestStep(cmdTypeName, action, inOutId, value, targetAdress));
             }
 
             testCases.add(new TestCase(testName, testSteps));
