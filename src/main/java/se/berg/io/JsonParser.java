@@ -42,9 +42,13 @@ public class JsonParser {
                 String action = cmd.getString("action"); //Säger just nu inte så mycket, konfigureras senare från config filen
                 String inOutId = params.optString("InOutId", null); //Säger just nu inte så mycket, konfigureras senare från config filen 
                 Integer value = params.has("Value") ? params.getInt("Value") : null; //Säger hur man ska flytta på lever, ska ändras till procent värden tillslut
-                Integer targetAdress = cmd.has("target_address") ? cmd.getInt("target_address") : null; //Lagt till
+
+                Integer targetAddress = null; //Checks if its null
+                if (cmd.has("target_address") && !cmd.isNull("target_address")) {
+                    targetAddress = cmd.getInt("target_address");
+                }
                 
-                testSteps.add(new TestStep(cmdTypeName, action, inOutId, value, targetAdress));
+                testSteps.add(new TestStep(cmdTypeName, action, inOutId, value, targetAddress));
             }
 
             testCases.add(new TestCase(testName, testSteps));
