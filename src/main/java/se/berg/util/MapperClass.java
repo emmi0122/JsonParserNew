@@ -24,6 +24,7 @@ public class MapperClass {
         return switch (cmdTypeName.toLowerCase()) {
             case "set" -> "Put";
             case "get" -> "Check";
+            case "subscribe" -> "";
             default -> cmdTypeName;
         };
     }
@@ -41,13 +42,13 @@ public class MapperClass {
             return "Unknown";
         }
 
-        return switch (action.toLowerCase()) {
+        return switch (action) {
             case "DigInPort" -> "Digital Input Port";
+            case "DigOutPort" -> "Digital Output Port";
             case "AnalogInput" -> "Analog Input";
             case "TextIndicatorColor" -> "Text Indicator Color";
             case "SelectButton" -> "Press Button";
-            case "DigOutPort" -> "Digital output Port";
-            default -> action;
+            default -> splitCamelCase(action);
         };
     }
 }

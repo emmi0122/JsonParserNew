@@ -3,7 +3,6 @@ package se.berg.domain;
 import se.berg.util.MapperClass;
 
 public class TestStep {
-    // private String type;
     private String cmdTypeName;
     private String action;
     private String inOutId;
@@ -47,20 +46,8 @@ public class TestStep {
             return "";
         }
 
-        String[] knownPrefixes = { "DigInPort", "AnalogInput", "Button", "TextIndicatorColor", "PWM", "SelectButton", "DigOutPort" };
-        for (String prefix : knownPrefixes) {
-            if (inOutId.startsWith(prefix)) {
-                String rest = inOutId.substring(prefix.length());
-                rest = rest.replaceAll("([a-z])([A-Z])", "$1 $2");
-                return prefix + (rest.isEmpty() ? "" : " " + rest.trim());
-            }
-        }
-
-        return inOutId.replaceAll("([a-z])([A-Z])", "$1 $2");
-    }
-
-    public String getSplitCamelCase() {
-        return MapperClass.splitCamelCase(action);
+        String result = inOutId.replaceAll("([a-z])([A-Z])", "$1 $2");
+        return result;
     }
 
     public String getTargetAddressName() {
@@ -75,13 +62,16 @@ public class TestStep {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(getCmdTypeDescription()).append(" ");
-
-        if (action != null && !action.isEmpty()) {
-            sb.append(getSplitCamelCase()).append(getFormattedAction()).append(" ");
+        String cmdDesc = getCmdTypeDescription();
+        if (!cmdDesc.isEmpty()) {
+            sb.append(cmdDesc).append(" ");
         }
 
-        if (inOutId != null) {
+        if (action != null && !action.isEmpty()) {
+            sb.append(getFormattedAction()).append(" ");
+        }
+
+        if (inOutId != null && !inOutId.isEmpty()) {
             sb.append(getFormattedInOutId()).append(" ");
         }
 
