@@ -12,9 +12,12 @@ public class TestStep {
     private String frameLabel;
     private String constantName;
     private Integer constantValue;
+    private String indicatorLabel;
+    private String expectedResultName;
 
-    public TestStep(String cmdTypeName, String action, String inOutId, Integer value, Integer targetAddress, 
-                    String buttonLabel, String frameLabel, String constantname, Integer constantValue) {
+    public TestStep(String cmdTypeName, String action, String inOutId, Integer value, Integer targetAddress,
+            String buttonLabel, String frameLabel, String constantname, Integer constantValue,
+            String indicatorLabel, String expectedResultName) {
         this.cmdTypeName = cmdTypeName;
         this.action = action;
         this.inOutId = inOutId;
@@ -24,6 +27,8 @@ public class TestStep {
         this.frameLabel = frameLabel;
         this.constantName = constantname;
         this.constantValue = constantValue;
+        this.indicatorLabel = indicatorLabel;
+        this.expectedResultName = expectedResultName;
     }
 
     public String getCmdTypeName() {
@@ -54,12 +59,20 @@ public class TestStep {
         return frameLabel;
     }
 
-    public String getConstantname() {
+    public String getConstantName() {
         return constantName;
     }
 
     public Integer getConstantValue() {
         return constantValue;
+    }
+
+    public String getIndicatorLabel() {
+        return indicatorLabel;
+    }
+
+    public String getExpectedResultName() {
+        return expectedResultName;
     }
 
     public String getFormattedAction() {
@@ -92,6 +105,16 @@ public class TestStep {
             if (buttonLabel != null && !buttonLabel.isEmpty()) sb.append(" ").append(buttonLabel);
             if (frameLabel != null && !frameLabel.isEmpty()) sb.append(" in frame ").append(frameLabel);
             if (targetAddress != null) sb.append(" at ").append(getTargetAddressName());
+            return sb.append("\n").toString();
+        }
+
+        if ("TextIndicatorColor".equals(action)) {
+            sb.append("Check that text indicator ");
+            if (indicatorLabel != null && !indicatorLabel.isEmpty()) sb.append(indicatorLabel).append(" ");
+            if (frameLabel != null && !frameLabel.isEmpty()) sb.append("in frame ").append(frameLabel).append(" ");
+            sb.append("is ");
+            if (expectedResultName != null && !expectedResultName.isEmpty()) sb.append(expectedResultName).append(" ");
+            if (targetAddress != null) sb.append("at ").append(getTargetAddressName());
             return sb.append("\n").toString();
         }
 

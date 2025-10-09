@@ -44,6 +44,8 @@ public class JsonParser {
             Integer value = (params != null && params.has("Value")) ? params.optInt("Value") : null;
             String buttonLabel = params != null ? params.optString("ButtonLabel", null) : null;
             String frameLabel = params != null ? params.optString("FrameLabel", null) : null;
+            String indicatorLabel = params != null ? params.optString("IndicatorLabel", null) : null;
+
             Integer targetAddress = cmd.has("target_address") && !cmd.isNull("target_address")
                                     ? cmd.getInt("target_address")
                                     : null;
@@ -51,6 +53,16 @@ public class JsonParser {
             Integer constantValue = stepObj.has("value") && !stepObj.isNull("value")
                                     ? stepObj.getInt("value")
                                     : null;
+
+            String expectedResultName = null;
+            if (stepObj.has("expected_result") && !stepObj.isNull("expected_result")) {
+                Object expectedResult = stepObj.get("expected_result");
+
+                if (expectedResult instanceof JSONObject) {
+                    JSONObject expectedResultObj = (JSONObject) expectedResult;
+                    expectedResultName = expectedResultObj.optString("name", null);
+                }
+            }
 
             steps.add(new TestStep(                    
                 cmdTypeName,
@@ -61,7 +73,9 @@ public class JsonParser {
                 buttonLabel,
                 frameLabel,
                 constantName,
-                constantValue
+                constantValue, 
+                indicatorLabel, 
+                expectedResultName
             ));
         }
 
