@@ -2,6 +2,12 @@ package se.berg.domain;
 
 import se.berg.util.MapperClass;
 
+/**
+ * Represents a single step in a test case.
+ * A {@code TestStep} defines a specific action or validation to perform,
+ * including command type, parameters, and excpected results.
+ */
+
 public class TestStep {
     private String cmdTypeName;
     private String action;
@@ -14,6 +20,22 @@ public class TestStep {
     private Integer constantValue;
     private String indicatorLabel;
     private String expectedResultName;
+    
+    /**
+     * Creates a new {@code TestStep} with the specified parameters.
+     * 
+     * @param cmdTypeName the command type name
+     * @param action the action to perform
+     * @param inOutId the input/output identifier
+     * @param value the value to be used in the command
+     * @param targetAddress the target address for the command
+     * @param buttonLabel the label of a button, if applicable
+     * @param frameLabel the label of a frame, if applicable
+     * @param constantname the name of a constant, if applicable
+     * @param constantValue the value of a constant, if applicable
+     * @param indicatorLabel the label of an indicator, if applicable
+     * @param expectedResultName the expected result name, if any
+     */
 
     public TestStep(String cmdTypeName, String action, String inOutId, Integer value, Integer targetAddress,
             String buttonLabel, String frameLabel, String constantname, Integer constantValue,
@@ -31,53 +53,35 @@ public class TestStep {
         this.expectedResultName = expectedResultName;
     }
 
-    public String getCmdTypeName() {
-        return cmdTypeName;
-    }
+    //Getters with concise docs
 
-    public String getAction() {
-        return action;
-    }
+    /** @return the command type name */ public String getCmdTypeName() { return cmdTypeName; }
+    /** @return the action to perform */ public String getAction() { return action; }
+    /** @return the input/output identifier */ public String getInOutId() { return inOutId; }
+    /** @return the command value */ public Integer getValue() { return value; }
+    /** @return the target address */ public Integer getTargetAddress() { return targetAddress; }
+    /** @return the button label */ public String getButtonLabel() { return buttonLabel; }
+    /** @return the frame label */ public String getFrameLabel() { return frameLabel; }
+    /** @return the constant name */ public String getConstantName() { return constantName; }
+    /** @return the constant value */ public Integer getConstantValue() { return constantValue; }
+    /** @return the indicator label */ public String getIndicatorLabel() { return indicatorLabel; }
+    /** @return the expected result name */ public String getExpectedResultName() { return expectedResultName; }
 
-    public String getInOutId() {
-        return inOutId;
-    }
-
-    public Integer getValue() {
-        return value;
-    }
-
-    public Integer getTargetAddress() {
-        return targetAddress;
-    }
-
-    public String getButtonLabel() {
-        return buttonLabel;
-    }
-
-    public String getFrameLabel() {
-        return frameLabel;
-    }
-
-    public String getConstantName() {
-        return constantName;
-    }
-
-    public Integer getConstantValue() {
-        return constantValue;
-    }
-
-    public String getIndicatorLabel() {
-        return indicatorLabel;
-    }
-
-    public String getExpectedResultName() {
-        return expectedResultName;
-    }
+    /**
+     * Returns a human-readable version of the action using {@link MapperClass#mapAction(String)}
+     * 
+     * @return a formatted action name
+     */
 
     public String getFormattedAction() {
         return MapperClass.mapAction(action);
     }
+
+    /**
+     * Returns a formatted version of the I/O identifier, splitting camel case
+     * 
+     * @return a formatted InOutId string
+     */
 
     public String getFormattedInOutId() {
         if (inOutId == null || inOutId.isEmpty()) {
@@ -88,13 +92,31 @@ public class TestStep {
         return result;
     }
 
+    /**
+     * Returns a readable name for the target address using {@link MapperClass#mapTargetAddress(Integer)}
+     * 
+     * @return a mapped target address name
+     */
+
     public String getTargetAddressName() {
         return MapperClass.mapTargetAddress(targetAddress);
     }
 
+    /**
+     * Returns a human-readable description of the command type using {@link MapperClass#mapCmdType(String)}
+     * 
+     * @return a mapped command type description
+     */
+
     public String getCmdTypeDescription() {
         return MapperClass.mapCmdType(cmdTypeName);
     }
+
+    /**
+     * Returns a formatted string representation describing this test step and its parameters.
+     * 
+     * @return a human-readable representation of the test step
+     */
 
     @Override
     public String toString() {

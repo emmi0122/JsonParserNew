@@ -7,6 +7,34 @@ import se.berg.domain.*;
 import java.nio.file.*;
 import java.util.*;
 
+/**
+ * Utility class for parsing JSOn files {@link TestSequence} objects
+ * <p>
+ * The expected JSON structure:
+ * <pre>
+ * {
+ *    "test_cases": [
+ *      {
+ *        "name": "Example Test",
+ *        "steps": [
+ *          {
+ *            "command": {
+ *              "cmd_type": {"name": "Set"};
+ *              "action": "DigInPort",
+ *              "params": {...},
+ *              "target_address": 1
+ *            };
+ *            "constantname"_ "CONST_NAME",
+ *            "value": 123,
+ *            "expected_result": {"name": "OK"}
+ *          }
+ *        ]
+ *      }
+ *    ]
+ * }
+ * </pre>
+ */
+
 public class JsonParser {
     public static TestSequence parseTestSequence(String filePath) throws Exception {
         String content = Files.readString(Paths.get(filePath));
