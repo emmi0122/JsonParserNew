@@ -47,6 +47,10 @@ public class JsonParser {
             Integer targetAddress = cmd.has("target_address") && !cmd.isNull("target_address")
                                     ? cmd.getInt("target_address")
                                     : null;
+            String constantName = stepObj.optString("constantname", null);
+            Integer constantValue = stepObj.has("value") && !stepObj.isNull("value")
+                                    ? stepObj.getInt("value")
+                                    : null;
 
             steps.add(new TestStep(                    
                 cmdTypeName,
@@ -55,10 +59,12 @@ public class JsonParser {
                 value,
                 targetAddress,
                 buttonLabel,
-                frameLabel
+                frameLabel,
+                constantName,
+                constantValue
             ));
         }
-        
+
         return steps;
     }
 }

@@ -10,9 +10,11 @@ public class TestStep {
     private Integer targetAddress;
     private String buttonLabel;
     private String frameLabel;
+    private String constantName;
+    private Integer constantValue;
 
-    public TestStep(String cmdTypeName, String action, String inOutId, Integer value, 
-                    Integer targetAddress, String buttonLabel, String frameLabel) {
+    public TestStep(String cmdTypeName, String action, String inOutId, Integer value, Integer targetAddress, 
+                    String buttonLabel, String frameLabel, String constantname, Integer constantValue) {
         this.cmdTypeName = cmdTypeName;
         this.action = action;
         this.inOutId = inOutId;
@@ -20,6 +22,8 @@ public class TestStep {
         this.targetAddress = targetAddress;
         this.buttonLabel = buttonLabel;
         this.frameLabel = frameLabel;
+        this.constantName = constantname;
+        this.constantValue = constantValue;
     }
 
     public String getCmdTypeName() {
@@ -50,6 +54,14 @@ public class TestStep {
         return frameLabel;
     }
 
+    public String getConstantname() {
+        return constantName;
+    }
+
+    public Integer getConstantValue() {
+        return constantValue;
+    }
+
     public String getFormattedAction() {
         return MapperClass.mapAction(action);
     }
@@ -76,13 +88,15 @@ public class TestStep {
         StringBuilder sb = new StringBuilder();
 
         if ("SelectButton".equals(action)) {
-            sb.append("Press button");
+            sb.append("Select GUI button");
             if (buttonLabel != null && !buttonLabel.isEmpty()) sb.append(" ").append(buttonLabel);
             if (frameLabel != null && !frameLabel.isEmpty()) sb.append(" in frame ").append(frameLabel);
             if (targetAddress != null) sb.append(" at ").append(getTargetAddressName());
             return sb.append("\n").toString();
         }
 
+        if (constantName != null) sb.append("Set Constant ").append(constantName).append(" ");
+        if (constantValue != null) sb.append("== ").append(constantValue).append(" ");
         if (getCmdTypeDescription() != null) sb.append(getCmdTypeDescription()).append(" ");
         if (action != null && !action.isEmpty()) sb.append(getFormattedAction()).append(" ");
         if (inOutId != null && !inOutId.isEmpty()) sb.append(getFormattedInOutId()).append(" ");

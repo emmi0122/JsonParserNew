@@ -21,7 +21,7 @@ public class MapperClass {
 
         return switch (cmdTypeName.toLowerCase()) {
             case "set" -> "Put";
-            case "get" -> "Check";
+            case "get" -> "Check that";
             default -> splitCamelCase(cmdTypeName);
         };
     }
