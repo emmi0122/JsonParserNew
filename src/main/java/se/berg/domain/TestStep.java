@@ -8,13 +8,17 @@ public class TestStep {
     private String inOutId;
     private Integer value;
     private Integer targetAddress;
+    private String buttonLabel;
+    private String frameLabel;
 
-    public TestStep(String cmdTypeName, String action, String inOutId, Integer value, Integer targetAddress) {
+    public TestStep(String cmdTypeName, String action, String inOutId, Integer value, Integer targetAddress, String buttonLabel, String frameLabel) {
         this.cmdTypeName = cmdTypeName;
         this.action = action;
         this.inOutId = inOutId;
         this.value = value;
         this.targetAddress = targetAddress;
+        this.buttonLabel = buttonLabel;
+        this.frameLabel = frameLabel;
     }
 
     public String getCmdTypeName() {
@@ -35,6 +39,14 @@ public class TestStep {
 
     public Integer getTargetAddress() {
         return targetAddress;
+    }
+
+        public String getButtonLabel() {
+        return buttonLabel;
+    }
+
+    public String getFrameLabel() {
+        return frameLabel;
     }
 
     public String getFormattedAction() {

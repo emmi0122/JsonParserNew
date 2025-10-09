@@ -43,12 +43,15 @@ public class JsonParser {
                 String inOutId = params.optString("InOutId", null); //Säger just nu inte så mycket, konfigureras senare från config filen 
                 Integer value = params.has("Value") ? params.getInt("Value") : null; //Säger hur man ska flytta på lever, ska ändras till procent värden tillslut
 
+                String buttonLabel = params.getString("ButtonLabel");
+                String frameLabel = params.getString("FrameLabel");
+
                 Integer targetAddress = null; //Checks if its null
                 if (cmd.has("target_address") && !cmd.isNull("target_address")) {
                     targetAddress = cmd.getInt("target_address");
                 }
                 
-                testSteps.add(new TestStep(cmdTypeName, action, inOutId, value, targetAddress));
+                testSteps.add(new TestStep(cmdTypeName, action, inOutId, value, targetAddress, buttonLabel, frameLabel));
             }
 
             testCases.add(new TestCase(testName, testSteps));
