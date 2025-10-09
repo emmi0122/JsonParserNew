@@ -1,63 +1,64 @@
 package se.berg.io;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.*;
 
-import se.berg.domain.TestCase;
-import se.berg.domain.TestSequence;
-import se.berg.domain.TestStep;
+import se.berg.domain.*;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.*;
+import java.util.*;
 
 public class JsonParser {
     public static TestSequence parseTestSequence(String filePath) throws Exception {
-        String content = new String(Files.readAllBytes(Paths.get(filePath)));
-        JSONObject obj = new JSONObject(content);
+        String content = Files.readString(Paths.get(filePath));
+        JSONObject rootObj = new JSONObject(content);
 
-        JSONArray testCasesJson = obj.getJSONArray("test_cases");
+        JSONArray testCasesJson = rootObj.getJSONArray("test_cases");
         List<TestCase> testCases = new ArrayList<>();
 
-        // Go through all test cases in the json file
         for (int i = 0; i < testCasesJson.length(); i++) {
-            JSONObject testCase = testCasesJson.getJSONObject(i);
-            //Get the name of the test sequence
-            String testName = testCase.getString("name");
-            //Look through the array of test sequences
-            JSONArray steps = testCase.getJSONArray("steps");
+            JSONObject testCaseObj = testCasesJson.getJSONObject(i);
+            String testName = testCaseObj.getString("name");
+            JSONArray stepsJson = testCaseObj.getJSONArray("steps");
+            List<TestStep> steps = parseStepsArray(stepsJson);
 
-            List<TestStep> testSteps = new ArrayList<>();
-
-            // Get all steps and loop through each one
-            for (int j = 0; j < steps.length(); j++) {
-                JSONObject step = steps.getJSONObject(j);
-
-                JSONObject cmd = step.getJSONObject("command");
-                JSONObject cmdType = cmd.getJSONObject("cmd_type");
-                JSONObject params = cmd.getJSONObject("params");
-
-                String cmdTypeName = cmdType.getString("name");
-                String action = cmd.getString("action");
-                String inOutId = params.optString("InOutId", null);
-                Integer value = params.has("Value") ? params.getInt("Value") : null;
-
-                String buttonLabel = params.optString("ButtonLabel", null);
-                String frameLabel = params.optString("FrameLabel", null);
-
-                Integer targetAddress = null;
-                if (cmd.has("target_address") && !cmd.isNull("target_address")) {
-                    targetAddress = cmd.getInt("target_address");
-                }
-                
-                testSteps.add(new TestStep(cmdTypeName, action, inOutId, value, targetAddress, buttonLabel, frameLabel));
-            }
-
-            testCases.add(new TestCase(testName, testSteps));
+            testCases.add(new TestCase(testName, steps));
         }
 
-        // Return a test sequence with all test cases
         return new TestSequence(testCases);
+    }
+
+    private static List<TestStep> parseStepsArray(JSONArray stepsJson) {
+        List<TestStep> steps = new ArrayList<>();
+        if (stepsJson == null) return steps;
+
+        for (int j = 0; j < stepsJson.length(); j++) {
+            JSONObject stepObj = stepsJson.getJSONObject(j);
+
+            JSONObject cmd = stepObj.getJSONObject("command");
+            JSONObject cmdType = cmd.getJSONObject("cmd_type");
+            JSONObject params = cmd.optJSONObject("params");
+
+            String cmdTypeName = cmdType.optString("name", "");
+            String action = cmd.optString("action", "");
+            String inOutId = params != null ? params.optString("InOutId", null) : null;
+            Integer value = (params != null && params.has("Value")) ? params.optInt("Value") : null;
+            String buttonLabel = params != null ? params.optString("ButtonLabel", null) : null;
+            String frameLabel = params != null ? params.optString("FrameLabel", null) : null;
+            Integer targetAddress = cmd.has("target_address") && !cmd.isNull("target_address")
+                                    ? cmd.getInt("target_address")
+                                    : null;
+
+            steps.add(new TestStep(                    
+                cmdTypeName,
+                action,
+                inOutId,
+                value,
+                targetAddress,
+                buttonLabel,
+                frameLabel
+            ));
+        }
+        
+        return steps;
     }
 }

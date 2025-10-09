@@ -1,11 +1,10 @@
 package se.berg.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class TestCase {
     private String name;
-    private List<TestStep> steps;
+    private final List<TestStep> steps;
 
     public TestCase(String name, List<TestStep> steps) {
         this.name = name;
@@ -21,11 +20,14 @@ public class TestCase {
     }
 
     public List<TestStep> getSteps() {
-        return new ArrayList<>(steps);
+        return Collections.unmodifiableList(steps);
     }
 
     public void setSteps(List<TestStep> steps) {
-        this.steps = steps != null ? new ArrayList<>(steps) : new ArrayList<>();
+        this.steps.clear();
+        if (steps != null) {
+            this.steps.addAll(steps);
+        }
     }
 
     public void addStep(TestStep step) {
@@ -38,11 +40,11 @@ public class TestCase {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name).append("\n");
+        StringBuilder sb = new StringBuilder(name).append("\n");
         for (TestStep step : steps) {
-            sb.append("    ").append("    ").append(step.toString());//.append("\n");
+            sb.append("   ").append("   ").append(step);
         }
+        
         return sb.toString();
     }
 }

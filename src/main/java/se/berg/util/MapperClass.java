@@ -2,9 +2,7 @@ package se.berg.util;
 
 public class MapperClass {
         public static String mapTargetAddress(Integer targetAddress) {
-        if (targetAddress == null) {
-            return "Unknown";
-        }
+        if (targetAddress == null) return "Unknown";
 
         return switch (targetAddress) {
             case 0 -> "ECR";
@@ -17,27 +15,25 @@ public class MapperClass {
     }
 
     public static String mapCmdType(String cmdTypeName) {
-        if (cmdTypeName == null) {
+        if (cmdTypeName == null || cmdTypeName.isBlank()) {
             return "Unknown";
         }
 
         return switch (cmdTypeName.toLowerCase()) {
             case "set" -> "Put";
             case "get" -> "Check";
-            default -> cmdTypeName;
+            default -> splitCamelCase(cmdTypeName);
         };
     }
 
     public static String splitCamelCase(String text) {
-        if (text == null || text.isEmpty()) {
-            return "";
-        }
-
-        return text.replaceAll("([a-z])([A-Z])", "$1 $2");
+        return (text == null || text.isEmpty())
+                ? ""
+                : text.replaceAll("([a-z])([A-Z])", "$1 $2");
     }
 
     public static String mapAction(String action) {
-        if (action == null) {
+        if (action == null || action.isBlank()) {
             return "Unknown";
         }
 

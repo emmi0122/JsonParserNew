@@ -1,27 +1,22 @@
 package se.berg.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class TestSequence {
     private String name;
-    private List<TestCase> testCases;
+    private final List<TestCase> testCases;
 
-    // Konstruktor med namn och testfall
     public TestSequence(String name, List<TestCase> testCases) {
         this.name = name;
         this.testCases = testCases != null ? new ArrayList<>(testCases) : new ArrayList<>();
     }
 
-    // Konstruktor med bara testfall (sätter default-namn)
     public TestSequence(List<TestCase> testCases) {
         this("Test Sequence", testCases);
     }
 
-    // Konstruktor med bara namn
     public TestSequence(String name) {
-        this.name = name;
-        this.testCases = new ArrayList<>();
+        this(name, null);
     }
 
     public String getName() {
@@ -29,7 +24,7 @@ public class TestSequence {
     }
 
     public List<TestCase> getTestCases() {
-        return new ArrayList<>(testCases);
+        return Collections.unmodifiableList(testCases);
     }
 
     public void addTestCase(TestCase testCase) {
@@ -38,12 +33,11 @@ public class TestSequence {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name).append("\n");
+        StringBuilder sb = new StringBuilder(name).append("\n");
         for (TestCase testCase : testCases) {
-            sb.append("    ").append(testCase.toString()).append("\n");
+            sb.append("   ").append(testCase).append("\n");
         }
+        
         return sb.toString();
-
     }
 }

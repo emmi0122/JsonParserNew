@@ -11,8 +11,8 @@ public class TestStep {
     private String buttonLabel;
     private String frameLabel;
 
-    public TestStep(String cmdTypeName, String action, String inOutId, Integer value, Integer targetAddress,
-            String buttonLabel, String frameLabel) {
+    public TestStep(String cmdTypeName, String action, String inOutId, Integer value, 
+                    Integer targetAddress, String buttonLabel, String frameLabel) {
         this.cmdTypeName = cmdTypeName;
         this.action = action;
         this.inOutId = inOutId;
@@ -76,46 +76,18 @@ public class TestStep {
         StringBuilder sb = new StringBuilder();
 
         if ("SelectButton".equals(action)) {
-            sb.append("Press Button");
-
-            if (buttonLabel != null && !buttonLabel.isEmpty()) {
-                sb.append(" ").append(buttonLabel);
-            }
-
-            if (frameLabel != null && !frameLabel.isEmpty()) {
-                sb.append(" in frame ").append(frameLabel);
-            }
-
-            if (targetAddress != null) {
-                sb.append(" at ").append(getTargetAddressName());
-            }
-
-            sb.append("\n");
-            return sb.toString();
+            sb.append("Press button");
+            if (buttonLabel != null && !buttonLabel.isEmpty()) sb.append(" ").append(buttonLabel);
+            if (frameLabel != null && !frameLabel.isEmpty()) sb.append(" in frame ").append(frameLabel);
+            if (targetAddress != null) sb.append(" at ").append(getTargetAddressName());
+            return sb.append("\n").toString();
         }
 
-        String cmdDesc = getCmdTypeDescription();
-        if (!cmdDesc.isEmpty()) {
-            sb.append(cmdDesc).append(" ");
-        }
-
-        if (action != null && !action.isEmpty()) {
-            sb.append(getFormattedAction()).append(" ");
-        }
-
-        if (inOutId != null && !inOutId.isEmpty()) {
-            sb.append(getFormattedInOutId()).append(" ");
-        }
-
-        if (value != null) {
-            sb.append("= ").append(value).append(" ");
-        }
-
-        if (targetAddress != null) {
-            sb.append("at ").append(getTargetAddressName());
-        }
-
-        sb.append("\n");
-        return sb.toString();
+        if (getCmdTypeDescription() != null) sb.append(getCmdTypeDescription()).append(" ");
+        if (action != null && !action.isEmpty()) sb.append(getFormattedAction()).append(" ");
+        if (inOutId != null && !inOutId.isEmpty()) sb.append(getFormattedInOutId()).append(" ");
+        if (value != null) sb.append("= ").append(value).append(" ");
+        if (targetAddress != null) sb.append("at ").append(getTargetAddressName());
+        return sb.append("\n").toString();
     }
 }
