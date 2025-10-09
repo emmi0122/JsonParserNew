@@ -38,15 +38,15 @@ public class JsonParser {
                 JSONObject cmdType = cmd.getJSONObject("cmd_type");
                 JSONObject params = cmd.getJSONObject("params");
 
-                String cmdTypeName = cmdType.getString("name"); //Får antingen set eller get, måste skrivas om och hitta mönster
-                String action = cmd.getString("action"); //Säger just nu inte så mycket, konfigureras senare från config filen
-                String inOutId = params.optString("InOutId", null); //Säger just nu inte så mycket, konfigureras senare från config filen 
-                Integer value = params.has("Value") ? params.getInt("Value") : null; //Säger hur man ska flytta på lever, ska ändras till procent värden tillslut
+                String cmdTypeName = cmdType.getString("name");
+                String action = cmd.getString("action");
+                String inOutId = params.optString("InOutId", null);
+                Integer value = params.has("Value") ? params.getInt("Value") : null;
 
-                String buttonLabel = params.getString("ButtonLabel");
-                String frameLabel = params.getString("FrameLabel");
+                String buttonLabel = params.optString("ButtonLabel", null);
+                String frameLabel = params.optString("FrameLabel", null);
 
-                Integer targetAddress = null; //Checks if its null
+                Integer targetAddress = null;
                 if (cmd.has("target_address") && !cmd.isNull("target_address")) {
                     targetAddress = cmd.getInt("target_address");
                 }

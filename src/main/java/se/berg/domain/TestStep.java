@@ -11,7 +11,8 @@ public class TestStep {
     private String buttonLabel;
     private String frameLabel;
 
-    public TestStep(String cmdTypeName, String action, String inOutId, Integer value, Integer targetAddress, String buttonLabel, String frameLabel) {
+    public TestStep(String cmdTypeName, String action, String inOutId, Integer value, Integer targetAddress,
+            String buttonLabel, String frameLabel) {
         this.cmdTypeName = cmdTypeName;
         this.action = action;
         this.inOutId = inOutId;
@@ -41,7 +42,7 @@ public class TestStep {
         return targetAddress;
     }
 
-        public String getButtonLabel() {
+    public String getButtonLabel() {
         return buttonLabel;
     }
 
@@ -73,6 +74,25 @@ public class TestStep {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+
+        if ("SelectButton".equals(action)) {
+            sb.append("Press Button");
+
+            if (buttonLabel != null && !buttonLabel.isEmpty()) {
+                sb.append(" ").append(buttonLabel);
+            }
+
+            if (frameLabel != null && !frameLabel.isEmpty()) {
+                sb.append(" in frame ").append(frameLabel);
+            }
+
+            if (targetAddress != null) {
+                sb.append(" at ").append(getTargetAddressName());
+            }
+
+            sb.append("\n");
+            return sb.toString();
+        }
 
         String cmdDesc = getCmdTypeDescription();
         if (!cmdDesc.isEmpty()) {

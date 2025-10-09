@@ -13,13 +13,13 @@ Test Sequence
         Put Digital Input Port Parallel System Power = 1 at Central Unit
         Put Digital Input Port Slowdown = 0 at Central Unit
         Put Digital Input Port Me Governor Healthy = 1 at Central Unit
-        Press Button at ECR
+        Press Button COMB in frame C.RPM at ECR
         Put Button Enter = 1 at ECR
         Put Digital Input Port Ackn = 1 at ECR
         Put Button Take Over = 1 at Bridge Panel 1
         Check Digital Output Port Ctrl Pos Bm1 at Central Unit
         Check Digital Output Port Ctrl Pos Ecr at Central Unit
-        Press Button at Bridge Panel 1
+        Press Button IN in frame PROPULSION at Bridge Panel 1
         Put Button Enter = 1 at Bridge Panel 1
         Check Digital Output Port Main Clutch In at Central Unit
         Put Digital Input Port Main Clutch Engaged = 1 at Central Unit
@@ -33,13 +33,13 @@ Test Sequence
         Check Analog Input Pitch Feedback at Central Unit
 
     Press OVERRIDE (activate)
-        Press Button at Bridge Panel 1
+        Press Button OVER RIDE in frame AUTO LOAD RED. at Bridge Panel 1
         Put Button Enter = 1 at Bridge Panel 1
         Put Button Enter = 1 at Bridge Panel 1
         Check Analog Input Pitch Feedback at Central Unit
 
     Press OVERRIDE (de-activate)
-        Press Button at Bridge Panel 1
+        Press Button OVER RIDE in frame AUTO LOAD RED. at Bridge Panel 1
         Put Button Enter = 1 at Bridge Panel 1
         Check Analog Input Pitch Feedback at Central Unit
 
