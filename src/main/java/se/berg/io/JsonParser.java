@@ -66,8 +66,8 @@ public class JsonParser {
             JSONObject cmdType = cmd.getJSONObject("cmd_type");
             JSONObject params = cmd.optJSONObject("params");
 
-            String cmdTypeName = cmdType.optString("name", "");
-            String action = cmd.optString("action", "");
+            String cmdTypeName = cmdType.optString("name", null);
+            String action = cmd.optString("action", null);
             String inOutId = params != null ? params.optString("InOutId", null) : null;
             Integer value = (params != null && params.has("Value")) ? params.optInt("Value") : null;
             String buttonLabel = params != null ? params.optString("ButtonLabel", null) : null;
@@ -84,12 +84,22 @@ public class JsonParser {
 
             String displayUnit = stepObj.optString("display_unit", null);
             String expectedResultName = null;
+            Integer expectedResultMin = null;
+            Integer expectedResultMax = null;
+
             if (stepObj.has("expected_result") && !stepObj.isNull("expected_result")) {
                 Object expectedResult = stepObj.get("expected_result");
 
                 if (expectedResult instanceof JSONObject) {
                     JSONObject expectedResultObj = (JSONObject) expectedResult;
                     expectedResultName = expectedResultObj.optString("name", null);
+                } else if (expectedResult instanceof JSONArray) {
+                    //Handle array [min, max]
+                    JSONArray expectedResultArray = (JSONArray) expectedResult;
+                    if (expectedResultArray.length() >= 2) {
+                        expectedResultMin = expectedResultArray.getInt(0);
+                        expectedResultMax = expectedResultArray.getInt(1);
+                    }
                 }
             }
 
@@ -105,7 +115,9 @@ public class JsonParser {
                 constantValue, 
                 indicatorLabel, 
                 displayUnit,
-                expectedResultName
+                expectedResultName,
+                expectedResultMin,
+                expectedResultMax
             ));
         }
 

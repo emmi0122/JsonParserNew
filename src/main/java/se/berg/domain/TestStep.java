@@ -19,8 +19,10 @@ public class TestStep {
     private String constantName;
     private Integer constantValue;
     private String indicatorLabel;
-    private String expectedResultName;
     private String displayUnit;
+    private String expectedResultName;
+    private Integer expectedResultMin;
+    private Integer expectedResultMax;
     
     /**
      * Creates a new {@code TestStep} with the specified parameters.
@@ -35,13 +37,16 @@ public class TestStep {
      * @param constantname the name of a constant, if applicable
      * @param constantValue the value of a constant, if applicable
      * @param indicatorLabel the label of an indicator, if applicable
+     * * @param displayUnit the name of unit, if any
      * @param expectedResultName the expected result name, if any
-     * @param displayUnit the name of unit, if any
+     * @param expectedResultMin the minimum expected result, ig any
+     * @param expectedResultMax the maximum expected result, if any
      */
 
     public TestStep(String cmdTypeName, String action, String inOutId, Integer value, Integer targetAddress,
             String buttonLabel, String frameLabel, String constantname, Integer constantValue,
-            String indicatorLabel, String expectedResultName, String displayUnit) {
+            String indicatorLabel, String displayUnit, String expectedResultName, 
+            Integer expectedResultMin, Integer expectedResultMax) {
         this.cmdTypeName = cmdTypeName;
         this.action = action;
         this.inOutId = inOutId;
@@ -52,8 +57,10 @@ public class TestStep {
         this.constantName = constantname;
         this.constantValue = constantValue;
         this.indicatorLabel = indicatorLabel;
-        this.expectedResultName = expectedResultName;
         this.displayUnit = displayUnit;
+        this.expectedResultName = expectedResultName;
+        this.expectedResultMin = expectedResultMin;
+        this.expectedResultMax = expectedResultMax;
     }
 
     //Getters with concise docs
@@ -68,8 +75,10 @@ public class TestStep {
     /** @return the constant name */ public String getConstantName() { return constantName; }
     /** @return the constant value */ public Integer getConstantValue() { return constantValue; }
     /** @return the indicator label */ public String getIndicatorLabel() { return indicatorLabel; }
+    /** @return the display name */ public String getDisplayunit() { return displayUnit; }
     /** @return the expected result name */ public String getExpectedResultName() { return expectedResultName; }
-    /** @return the expected display name */ public String getDIsplayunit() { return displayUnit; }
+    /** @return the minimum expected result */ public Integer getExpectedResultMin() { return expectedResultMin; }
+    /** @return the maximum expected result */ public Integer getExpectedResultMax() { return expectedResultMax; }
 
     /**
      * Returns a human-readable version of the action using {@link MapperClass#mapAction(String)}
@@ -126,6 +135,7 @@ public class TestStep {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
+        //Special case for selecting buttons
         if ("SelectButton".equals(action)) {
             sb.append("Select GUI button");
             if (buttonLabel != null && !buttonLabel.isEmpty()) sb.append(" ").append(buttonLabel);
@@ -134,6 +144,7 @@ public class TestStep {
             return sb.append("\n").toString();
         }
 
+        //Special case for text indicators
         if ("TextIndicatorColor".equals(action)) {
             sb.append("Check that text indicator ");
             if (indicatorLabel != null && !indicatorLabel.isEmpty()) sb.append(indicatorLabel).append(" ");
@@ -144,12 +155,35 @@ public class TestStep {
             return sb.append("\n").toString();
         }
 
+        //General format
         if (constantName != null) sb.append("Set Constant ").append(constantName).append(" ");
         if (constantValue != null) sb.append("== ").append(constantValue).append(" ");
-        if (getCmdTypeDescription() != null) sb.append(getCmdTypeDescription()).append(" ");
-        if (action != null && !action.isEmpty()) sb.append(getFormattedAction()).append(" ");
+        /*if (getCmdTypeDescription() != null) sb.append(getCmdTypeDescription()).append(" ");
+        if (action != null && !action.isEmpty()) sb.append(getFormattedAction()).append(" ");*/
+        if (action != null && !action.isEmpty()) {
+            if (getCmdTypeDescription() != null) sb.append(getCmdTypeDescription()).append(" ");
+            sb.append(getFormattedAction()).append(" ");
+        }
         if (inOutId != null && !inOutId.isEmpty()) sb.append(getFormattedInOutId()).append(" ");
-        if (value != null) sb.append("= ").append(value).append(" ");
+
+        if (expectedResultMin != null && expectedResultMax != null) {
+            sb.append("is between ").append(expectedResultMin);
+            if (displayUnit != null && !displayUnit.isEmpty()) {
+                sb.append(displayUnit);
+            }
+            sb.append(" and ").append(expectedResultMax);
+            if (displayUnit != null && !displayUnit.isEmpty()) {
+                sb.append(displayUnit);
+            }
+            sb.append(" ");
+        } else if (value != null) {
+            sb.append("= ").append(value);
+            if (displayUnit != null && !displayUnit.isEmpty()) {
+                sb.append(displayUnit);
+            }
+            sb.append(" ");
+        }
+
         if (targetAddress != null) sb.append("at ").append(getTargetAddressName());
         return sb.append("\n").toString();
     }
