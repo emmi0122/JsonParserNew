@@ -8,33 +8,8 @@ import java.nio.file.*;
 import java.util.*;
 
 /**
- * Utility class for parsing JSOn files {@link TestSequence} objects
- * <p>
- * The expected JSON structure:
- * <pre>
- * {
- *    "test_cases": [
- *      {
- *        "name": "Example Test",
- *        "steps": [
- *          {
- *            "command": {
- *              "cmd_type": {"name": "Set"};
- *              "action": "DigInPort",
- *              "params": {...},
- *              "target_address": 1
- *            };
- *            "constantname"_ "CONST_NAME",
- *            "value": 123,
- *            "expected_result": {"name": "OK"}
- *          }
- *        ]
- *      }
- *    ]
- * }
- * </pre>
+ * Utility for parsing JSON files to domain objects.
  */
-
 public class JsonParser {
     public static TestSequence parseTestSequence(String filePath) throws Exception {
         String content = Files.readString(Paths.get(filePath));
@@ -47,8 +22,8 @@ public class JsonParser {
             JSONObject testCaseObj = testCasesJson.getJSONObject(i);
             String testName = testCaseObj.getString("name");
             JSONArray stepsJson = testCaseObj.getJSONArray("steps");
-            List<TestStep> steps = parseStepsArray(stepsJson);
 
+            List<TestStep> steps = parseStepsArray(stepsJson);
             testCases.add(new TestCase(testName, steps));
         }
 
@@ -57,68 +32,56 @@ public class JsonParser {
 
     private static List<TestStep> parseStepsArray(JSONArray stepsJson) {
         List<TestStep> steps = new ArrayList<>();
-        if (stepsJson == null) return steps;
+        if (stepsJson == null)
+            return steps;
 
         for (int j = 0; j < stepsJson.length(); j++) {
             JSONObject stepObj = stepsJson.getJSONObject(j);
 
-            JSONObject cmd = stepObj.getJSONObject("command");
-            JSONObject cmdType = cmd.getJSONObject("cmd_type");
-            JSONObject params = cmd.optJSONObject("params");
+            // Parse command part
+            JSONObject cmdObj = stepObj.getJSONObject("command");
+            JSONObject cmdTypeObj = cmdObj.getJSONObject("cmd_type");
+            JSONObject params = cmdObj.optJSONObject("params");
 
-            String cmdTypeName = cmdType.optString("name", null);
-            String action = cmd.optString("action", null);
-            String inOutId = params != null ? params.optString("InOutId", null) : null;
-            Integer value = (params != null && params.has("Value")) ? params.optInt("Value") : null;
-            String buttonLabel = params != null ? params.optString("ButtonLabel", null) : null;
-            String frameLabel = params != null ? params.optString("FrameLabel", null) : null;
-            String indicatorLabel = params != null ? params.optString("IndicatorLabel", null) : null;
+            TestCommand command = new TestCommand(
+                    cmdTypeObj.optString("name", null),
+                    cmdObj.optString("action", null),
+                    params != null ? params.optString("InOutId", null) : null,
+                    (params != null && params.has("Value")) ? params.optInt("Value") : null,
+                    cmdObj.has("target_address") && !cmdObj.isNull("target_address")
+                            ? cmdObj.getInt("target_address")
+                            : null,
+                    params != null ? params.optString("ButtonLabel", null) : null,
+                    params != null ? params.optString("FrameLabel", null) : null,
+                    stepObj.optString("constantname", null),
+                    stepObj.has("value") && !stepObj.isNull("value")
+                            ? stepObj.getInt("value")
+                            : null,
+                    params != null ? params.optString("IndicatorLabel", null) : null,
+                    stepObj.optString("display_unit", null));
 
-            Integer targetAddress = cmd.has("target_address") && !cmd.isNull("target_address")
-                                    ? cmd.getInt("target_address")
-                                    : null;
-            String constantName = stepObj.optString("constantname", null);
-            Integer constantValue = stepObj.has("value") && !stepObj.isNull("value")
-                                    ? stepObj.getInt("value")
-                                    : null;
-
-            String displayUnit = stepObj.optString("display_unit", null);
+            // Parse expected result
             String expectedResultName = null;
             Integer expectedResultMin = null;
             Integer expectedResultMax = null;
 
             if (stepObj.has("expected_result") && !stepObj.isNull("expected_result")) {
-                Object expectedResult = stepObj.get("expected_result");
+                Object ex = stepObj.get("expected_result");
 
-                if (expectedResult instanceof JSONObject) {
-                    JSONObject expectedResultObj = (JSONObject) expectedResult;
-                    expectedResultName = expectedResultObj.optString("name", null);
-                } else if (expectedResult instanceof JSONArray) {
-                    //Handle array [min, max]
-                    JSONArray expectedResultArray = (JSONArray) expectedResult;
-                    if (expectedResultArray.length() >= 2) {
-                        expectedResultMin = expectedResultArray.getInt(0);
-                        expectedResultMax = expectedResultArray.getInt(1);
+                if (ex instanceof JSONObject obj) {
+                    expectedResultName = obj.optString("name", null);
+                } else if (ex instanceof JSONArray arr) {
+                    if (arr.length() >= 2) {
+                        expectedResultMin = arr.getInt(0);
+                        expectedResultMax = arr.getInt(1);
                     }
                 }
             }
 
-            steps.add(new TestStep(                    
-                cmdTypeName,
-                action,
-                inOutId,
-                value,
-                targetAddress,
-                buttonLabel,
-                frameLabel,
-                constantName,
-                constantValue, 
-                indicatorLabel, 
-                displayUnit,
-                expectedResultName,
-                expectedResultMin,
-                expectedResultMax
-            ));
+            ExpectedResult expectedResult = new ExpectedResult(expectedResultName, expectedResultMin,
+                    expectedResultMax);
+
+            steps.add(new TestStep(command, expectedResult));
         }
 
         return steps;

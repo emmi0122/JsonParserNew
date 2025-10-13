@@ -6,6 +6,9 @@ import java.nio.file.Paths;
 import se.berg.domain.TestSequence;
 import se.berg.io.JsonParser;
 
+/**
+ * Main entry for running the test sequence parser.
+ */
 public class Main {
     public static void main(String[] args) {
         try {

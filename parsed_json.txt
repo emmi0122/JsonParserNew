@@ -6,7 +6,7 @@ Test Sequence
    Run linked test sequence 'StartSpeedFeedback.json'
 
    Initial Condition
-      Set Constant WITHIN == 30000 
+      Set constant WITHIN == 30000 
       Put Digital Input Port Hydraulic Pressure Ok = 1 at Central Unit
       Put Digital Input Port Shutdown Me1 = 0 at Central Unit
       Put Digital Input Port Overload = 0 at Central Unit

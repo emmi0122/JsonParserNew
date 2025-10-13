@@ -1,8 +1,12 @@
 package se.berg.util;
 
+/**
+ * Utility class for mapping and converting names/values in the test domain.
+ */
 public class MapperClass {
-        public static String mapTargetAddress(Integer targetAddress) {
-        if (targetAddress == null) return "Unknown";
+    public static String mapTargetAddress(Integer targetAddress) {
+        if (targetAddress == null)
+            return "Unknown";
 
         return switch (targetAddress) {
             case 0 -> "ECR";
