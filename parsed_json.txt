@@ -5,74 +5,65 @@ Test Sequence
 
    Run linked test sequence 'StartSpeedFeedback.json'
 
-   Initial Condition
-      Set constant WITHIN == 30000 
+   Initial
+      Put ESMActivation 
+      Put Analog Input Rpm Lever = 188%V at ECR
+      Put ESMActivation 
       Put Digital Input Port Hydraulic Pressure Ok = 1 at Central Unit
-      Put Digital Input Port Shutdown Me1 = 0 at Central Unit
-      Put Digital Input Port Overload = 0 at Central Unit
-      Put Digital Input Port Parallel System Power = 1 at Central Unit
-      Put Digital Input Port Slowdown = 0 at Central Unit
-      Put Digital Input Port Me Governor Healthy = 1 at Central Unit
-      Select GUI button COMB in frame C.RPM at ECR
+      Check that Digital Output Port Main Clutch Engaged Indication at Central Unit
+      Select GUI button CTRL PAGE in frame PROPULSION at ECR
       Put Button Enter = 1 at ECR
-      Put Digital Input Port Ackn = 1 at ECR
-      Put Button Take Over = 1 at Bridge Panel 1
-      Check that Digital Output Port Ctrl Pos Bm1 at Central Unit
-      Check that Digital Output Port Ctrl Pos Ecr at Central Unit
-      Select GUI button IN in frame PROPULSION at Bridge Panel 1
-      Put Button Enter = 1 at Bridge Panel 1
-      Check that Digital Output Port Main Clutch In at Central Unit
+
+   Move RPM lever to 70%, check blocked
+      Put Analog Input Rpm Lever = 2640%V at ECR
+      Select GUI button IN in frame MAIN CLUTCH at ECR
+      Put Button Enter = 1 at ECR
+      Check that text indicator CLUTCH IN BLOCKED in frame MAIN CLUTCH is red at ECR
+
+   Clutch In, no feedback
+      Put ESMActivation 
+      Put Analog Input Rpm Lever = 188%V at ECR
+      Select GUI button IN in frame MAIN CLUTCH at ECR
+      Put Button Enter = 1 at ECR
+      Check that Digital Output Port System Fault at Central Unit
+      Select GUI button OUT in frame MAIN CLUTCH at ECR
+      Put Button Enter = 1 at ECR
+      Check that Digital Output Port System Fault at Central Unit
+
+   Move Pitch lever to 20%, check blocked
+      Put Analog Input Pitch Lever = 888%V at ECR
+      Select GUI button IN in frame MAIN CLUTCH at ECR
+      Put Button Enter = 1 at ECR
+      Check that text indicator CLUTCH IN BLOCKED in frame MAIN CLUTCH is red at ECR
+
+   Pitch Lever to 0%, Clutch In, with feedback
+      Put ESMActivation 
+      Put Analog Input Pitch Lever = 1940AD at ECR
+      Check that Analog Input Pitch Feedback is between 1840AD and 2040AD at Central Unit
+      Select GUI button IN in frame MAIN CLUTCH at ECR
+      Put Button Enter = 1 at ECR
+      Check that Digital Output Port System Fault at Central Unit
+      Check that Digital Output Port Main Clutch Engaged Indication at Central Unit
+      Check that text indicator CLUTCH OUT BLOCKED in frame MAIN CLUTCH is grey at ECR
+      Select GUI button OUT in frame MAIN CLUTCH at ECR
+      Put Button Enter = 1 at ECR
+      Check that Digital Output Port Main Clutch Engaged Indication at Central Unit
+
+   No Oil Pressure
+      Put Digital Input Port Hydraulic Pressure Ok = 0 at Central Unit
+      Select GUI button IN in frame MAIN CLUTCH at ECR
+      Put Button Enter = 1 at ECR
+      Check that text indicator CLUTCH IN BLOCKED in frame MAIN CLUTCH is red at ECR
+      Put Digital Input Port Hydraulic Pressure Ok = 1 at Central Unit
+
+   Clutch Out blocked by high RPM
+      Select GUI button IN in frame MAIN CLUTCH at ECR
+      Put Button Enter = 1 at ECR
       Put Digital Input Port Main Clutch Engaged = 1 at Central Unit
-
-   Move BM1 Lever to full ahead
-      Put Analog Input Pitch Lever = 3500AD at Bridge Panel 1
-      Check that Analog Input Pitch Feedback is between 3100AD and 3300AD at Central Unit
-
-   Activate SLOWDOWN
-      Put Digital Input Port Slowdown = 1 at Central Unit
-      Check that Analog Input Pitch Feedback is between 2900AD and 3000AD at Central Unit
-
-   Press OVERRIDE (activate)
-      Select GUI button OVER RIDE in frame AUTO LOAD RED. at Bridge Panel 1
-      Put Button Enter = 1 at Bridge Panel 1
-      Put Button Enter = 1 at Bridge Panel 1
-      Check that Analog Input Pitch Feedback is between 3100AD and 3300AD at Central Unit
-
-   Press OVERRIDE (de-activate)
-      Select GUI button OVER RIDE in frame AUTO LOAD RED. at Bridge Panel 1
-      Put Button Enter = 1 at Bridge Panel 1
-      Check that Analog Input Pitch Feedback is between 2900AD and 3000AD at Central Unit
-
-   Release SLOWDOWN
-      Put Digital Input Port Slowdown = 0 at Central Unit
-      Check that Analog Input Pitch Feedback is between 3100AD and 3300AD at Central Unit
-
-   Activate OVERLOAD
-      Put Digital Input Port Overload = 1 at Central Unit
-      Check that Analog Input Pitch Feedback is between 1840AD and 2040AD at Central Unit
-
-   Release OVERLOAD
-      Put Digital Input Port Overload = 0 at Central Unit
-      Check that Analog Input Pitch Feedback is between 3100AD and 3300AD at Central Unit
-
-   Activate SHUTDOWN
-      Put Digital Input Port Shutdown Me1 = 1 at Central Unit
-      Check that Digital Output Port Main Clutch Out at Central Unit
-      Put Digital Input Port Main Clutch Engaged = 0 at Central Unit
-      Check that Analog Input Pitch Feedback is between 1840AD and 2040AD at Central Unit
-
-   Release SHUTDOWN
-      Put Digital Input Port Shutdown Me1 = 0 at Central Unit
-      Check that Analog Input Pitch Feedback is between 3100AD and 3300AD at Central Unit
-
-   ME Governor Healthy
-      Put Analog Input Pitch Lever = 1940%V at Bridge Panel 1
-      Put Digital Input Port Shutdown Me1 = 1 at Central Unit
-      Put Digital Input Port Me Governor Healthy = 0 at Central Unit
-      Check that PWM Speed Demand is between 38AD and 38AD at Central Unit
-      Put Digital Input Port Shutdown Me1 = 0 at Central Unit
-      Check that PWM Speed Demand is between 127AD and 255AD at Central Unit
-      Check that text indicator BACKUP GOVERNOR in frame AUTO LOAD RED. is red at Bridge Panel 1
-      Put Button Enter = 1 at Bridge Panel 1
-      Check that text indicator CLUTCH IN BLOCKED in frame CLUTCH is red at ECR
+      Put Analog Input Rpm Lever = 2640%V at ECR
+      Check that text indicator CLUTCH OUT BLOCKED in frame MAIN CLUTCH is red at ECR
+      Select GUI button OUT in frame MAIN CLUTCH at ECR
+      Put Button Enter = 1 at ECR
+      Put Analog Input Rpm Lever = 188%V at ECR
+      Put Button Enter = 1 at ECR
 

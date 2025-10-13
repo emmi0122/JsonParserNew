@@ -12,7 +12,8 @@ import se.berg.io.JsonParser;
 public class Main {
     public static void main(String[] args) {
         try {
-            TestSequence seq = JsonParser.parseTestSequence("01_ENGINGE_SAFETY_SIGNLE_800M.JSON.json");
+            //TestSequence seq = JsonParser.parseTestSequence("01_ENGINGE_SAFETY_SIGNLE_800M.JSON.json");
+            TestSequence seq = JsonParser.parseTestSequence("01_FIRST_ENGINE_RULES_SINGLE_800M.json");
             Files.writeString(Paths.get("parsed_json.txt"), seq.toString());
         } catch (Exception e) {
             e.printStackTrace();
