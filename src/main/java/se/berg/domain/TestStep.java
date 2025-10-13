@@ -20,6 +20,7 @@ public class TestStep {
     private Integer constantValue;
     private String indicatorLabel;
     private String expectedResultName;
+    private String displayUnit;
     
     /**
      * Creates a new {@code TestStep} with the specified parameters.
@@ -35,11 +36,12 @@ public class TestStep {
      * @param constantValue the value of a constant, if applicable
      * @param indicatorLabel the label of an indicator, if applicable
      * @param expectedResultName the expected result name, if any
+     * @param displayUnit the name of unit, if any
      */
 
     public TestStep(String cmdTypeName, String action, String inOutId, Integer value, Integer targetAddress,
             String buttonLabel, String frameLabel, String constantname, Integer constantValue,
-            String indicatorLabel, String expectedResultName) {
+            String indicatorLabel, String expectedResultName, String displayUnit) {
         this.cmdTypeName = cmdTypeName;
         this.action = action;
         this.inOutId = inOutId;
@@ -51,6 +53,7 @@ public class TestStep {
         this.constantValue = constantValue;
         this.indicatorLabel = indicatorLabel;
         this.expectedResultName = expectedResultName;
+        this.displayUnit = displayUnit;
     }
 
     //Getters with concise docs
@@ -66,6 +69,7 @@ public class TestStep {
     /** @return the constant value */ public Integer getConstantValue() { return constantValue; }
     /** @return the indicator label */ public String getIndicatorLabel() { return indicatorLabel; }
     /** @return the expected result name */ public String getExpectedResultName() { return expectedResultName; }
+    /** @return the expected display name */ public String getDIsplayunit() { return displayUnit; }
 
     /**
      * Returns a human-readable version of the action using {@link MapperClass#mapAction(String)}

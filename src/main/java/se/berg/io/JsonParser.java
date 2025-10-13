@@ -82,6 +82,7 @@ public class JsonParser {
                                     ? stepObj.getInt("value")
                                     : null;
 
+            String displayUnit = stepObj.optString("display_unit", null);
             String expectedResultName = null;
             if (stepObj.has("expected_result") && !stepObj.isNull("expected_result")) {
                 Object expectedResult = stepObj.get("expected_result");
@@ -103,6 +104,7 @@ public class JsonParser {
                 constantName,
                 constantValue, 
                 indicatorLabel, 
+                displayUnit,
                 expectedResultName
             ));
         }
