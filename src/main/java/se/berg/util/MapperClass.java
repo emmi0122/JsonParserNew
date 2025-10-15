@@ -13,6 +13,8 @@ public class MapperClass {
             case 1 -> "Bridge Panel 1";
             case 2 -> "Bridge Panel 2";
             case 3 -> "Bridge Panel 3";
+            case 4 -> "Panel 4";
+            case 5 -> "Panel 5";
             case 14, 15 -> "Central Unit";
             default -> "Unknown (" + targetAddress + ")";
         };

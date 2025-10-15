@@ -1,50 +1,130 @@
 Test Sequence
    Run linked test sequence 'StartApplication.json'
 
-   Run linked test sequence 'StartPitchControl.json'
+   Initial Condition
+      Put Digital Input Port Ackn = 0 at ECR
+      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
 
-   Run linked test sequence 'StartSpeedFeedback.json'
+   At ECR panel set selector switch=BRIDGE
+      Put Digital Input Port Ackn = 1 at ECR
+      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
 
-   Initial
-      Start Engine Load Model
-      Put Digital Input Port Hydraulic Pressure Ok = 1 at Central Unit
-      Put Digital Input Port Me1Remote Control Permitted = 1 at Central Unit
-      Put Digital Input Port Parallel System Power = 1 at Central Unit
-      Put Digital Input Port Ao1Status = 0 at Central Unit
-      Break com bus B
-      Heal com bus B
-      Check that Digital Output Port System Fault = 1 at Central Unit
+   BM1 Accept  Command
+      Put Button Take Over = 1 at Bridge Panel 1
+      Check that Digital Output Port Ctrl Pos Bm1 = 1 at Central Unit
 
-   Bus Fault on A
-      Break com bus A
-      Check that Digital Output Port System Fault = 0 at Central Unit
-      Check that Digital Output Port System Fault = 1 at Central Unit
-      Heal com bus A
-      Check that Digital Output Port System Fault = 1 at Central Unit
+   BM2 Take Over
+      Put Button Take Over = 1 at Bridge Panel 2
+      Check that Digital Output Port Ctrl Pos Bm2 = 1 at Central Unit
 
-   Bus Fault on B
-      Break com bus B
-      Check that Digital Output Port System Fault = 0 at Central Unit
-      Check that Digital Output Port System Fault = 1 at Central Unit
-      Heal com bus B
-      Check that Digital Output Port System Fault = 1 at Central Unit
+   BM3 Take Over
+      Put Button Take Over = 1 at Bridge Panel 3
+      Check that Digital Output Port Ctrl Pos Bm3 = 1 at Central Unit
 
-   Open Speed Reference
-      Put Digital Input Port Ao1Status = 1 at Central Unit
-      Check that Digital Output Port System Fault = 0 at Central Unit
-      Put Digital Input Port Ao1Status = 0 at Central Unit
+   BM 4 Take Over
+      Put Button Take Over = 1 at Panel 4
+      Check that Digital Output Port Ctrl Pos Bmx = 1 at Central Unit
 
-   Open Pitch Feedback
-      Put Digital Input Port Ui1No Fault = 0 at Central Unit
-      Check that Digital Output Port System Fault = 0 at Central Unit
-      Check that Digital Output Port System Fault = 1 at Central Unit
-      Check that text indicator SYSTEM B ACTIVE exists, AND is green, in frame SYSTEM at ECR
-      Put Digital Input Port Ui1No Fault = 1 at Central Unit
+   BM5 Take Over
+      Put Button Take Over = 1 at Panel 5
+      Check that Digital Output Port Ctrl Pos Bmx = 1 at Central Unit
 
-   Propeller Pitch Control Timeout
-      Check that Digital Output Port System Fault = 1 at Central Unit
-      Check that Digital Output Port System Fault = 1 at Central Unit
-      Stop Propeller Pitch Model
-      Put Analog Input Pitch Feedback = 1200AD at Central Unit
-      Check that Digital Output Port System Fault = 0 at Central Unit
+   BM1 Take Over
+      Put Button Take Over = 1 at Bridge Panel 1
+      Check that Digital Output Port Ctrl Pos Bm1 = 1 at Central Unit
+
+   ECR Take Over with Lever Alignment
+      Put Analog Input Pitch Lever = 1064%V at Bridge Panel 1
+      Put Analog Input Pitch Lever = 2816%V at ECR
+      
+      Put Digital Input Port Ackn = 0 at ECR
+      
+      Check that Digital Output Port Ctrl Pos Bm1 = 1 at Central Unit
+      Put Analog Input Pitch Lever = 1940%V at Bridge Panel 1
+      Put Analog Input Pitch Lever = 1940%V at ECR
+      
+      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
+
+   BM1 Acknowledge
+      Put Button Send Ackn = 1 at Bridge Panel 1
+
+   BM1 Request  Transfer
+      Put Button Take Over = 1 at Bridge Panel 1
+      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
+
+   ECR Accept Transfer to BM1
+      Put Digital Input Port Ackn = 1 at ECR
+      Check that Digital Output Port Ctrl Pos Bm1 = 1 at Central Unit
+
+   BM1 Send to ECR
+      Put Button Send Ackn = 1 at Bridge Panel 1
+      Check that Digital Output Port Ctrl Pos Bm1 = 1 at Central Unit
+
+   ECR Accept Transfer from BM1
+      Put Digital Input Port Ackn = 0 at ECR
+      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
+
+   BM2 Request  Transfer
+      Put Button Take Over = 1 at Bridge Panel 2
+      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
+
+   ECR Accept Transfer to BM2
+      Put Digital Input Port Ackn = 1 at ECR
+      Check that Digital Output Port Ctrl Pos Bm2 = 1 at Central Unit
+
+   BM2 Send to ECR
+      Put Button Send Ackn = 1 at Bridge Panel 2
+      Check that Digital Output Port Ctrl Pos Bm2 = 1 at Central Unit
+
+   ECR Accept Transfer from BM2
+      Put Digital Input Port Ackn = 0 at ECR
+      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
+
+   BM3 Request  Transfer
+      Put Button Take Over = 1 at Bridge Panel 3
+      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
+
+   ECR Accept Transfer to BM3
+      Put Digital Input Port Ackn = 1 at ECR
+      Check that Digital Output Port Ctrl Pos Bm3 = 1 at Central Unit
+
+   BM3 Send to ECR
+      Put Button Send Ackn = 1 at Bridge Panel 3
+      Check that Digital Output Port Ctrl Pos Bm3 = 1 at Central Unit
+
+   ECR Accept Transfer from BM3
+      Put Digital Input Port Ackn = 0 at ECR
+      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
+
+   BM4 Request  Transfer
+      Put Button Take Over = 1 at Panel 4
+      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
+
+   ECR Accept Transfer to BM4
+      Put Digital Input Port Ackn = 1 at ECR
+      Check that Digital Output Port Ctrl Pos Bmx = 1 at Central Unit
+
+   BM4 Send to ECR
+      Put Button Send Ackn = 1 at Panel 4
+      Check that Digital Output Port Ctrl Pos Bmx = 1 at Central Unit
+
+   ECR Accept Transfer from BM5
+      Put Digital Input Port Ackn = 0 at ECR
+      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
+
+   BM5 Request  Transfer
+      Put Button Take Over = 1 at Panel 5
+      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
+
+   ECR Accept Transfer to BM5
+      Put Digital Input Port Ackn = 1 at ECR
+      Check that Digital Output Port Ctrl Pos Bmx = 1 at Central Unit
+
+   BM5 Send to ECR
+      Put Button Send Ackn = 1 at Panel 5
+      Check that Digital Output Port Ctrl Pos Bmx = 1 at Central Unit
+
+   ECR Accept Transfer from BM5
+      Put Digital Input Port Ackn = 0 at ECR
+      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
 

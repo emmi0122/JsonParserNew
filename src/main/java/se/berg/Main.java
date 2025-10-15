@@ -14,7 +14,8 @@ public class Main {
         try {
             //TestSequence seq = JsonParser.parseTestSequence("01_ENGINGE_SAFETY_SIGNLE_800M.JSON.json");
             //TestSequence seq = JsonParser.parseTestSequence("01_FIRST_ENGINE_RULES_SINGLE_800M.json");
-            TestSequence seq = JsonParser.parseTestSequence("01_ALARMS_AND_FAILURE_HANDLING_800M.json");
+            //TestSequence seq = JsonParser.parseTestSequence("01_ALARMS_AND_FAILURE_HANDLING_800M.json");
+            TestSequence seq = JsonParser.parseTestSequence("01_COMMAND_TRANSFER_800M.json");
             Files.writeString(Paths.get("parsed_json.txt"), seq.toString());
         } catch (Exception e) {
             e.printStackTrace();

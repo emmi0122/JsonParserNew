@@ -38,6 +38,11 @@ public class JsonParser {
         for (int j = 0; j < stepsJson.length(); j++) {
             JSONObject stepObj = stepsJson.getJSONObject(j);
 
+            //If a step cannot be parsed for some reason
+            if (!stepObj.has("command")) {
+                System.out.println("Missing command in step: " + stepObj);
+                continue;
+            }
             // Parse command part
             JSONObject cmdObj = stepObj.getJSONObject("command");
             JSONObject cmdTypeObj = cmdObj.getJSONObject("cmd_type");
