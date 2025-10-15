@@ -9,6 +9,7 @@ import se.berg.util.MapperClass;
 public class TestStep {
     private TestCommand command;
     private ExpectedResult expectedResult;
+    private CommandParams commandParams;
 
     /**
      * Constructs a TestStep
@@ -16,9 +17,10 @@ public class TestStep {
      * @param command        the command details for this step
      * @param expectedResult the expected result description
      */
-    public TestStep(TestCommand command, ExpectedResult expectedResult) {
+    public TestStep(TestCommand command, ExpectedResult expectedResult, CommandParams commandParams) {
         this.command = command;
         this.expectedResult = expectedResult;
+        this.commandParams = commandParams;
     }
 
     public TestCommand getCommand() {
@@ -27,6 +29,10 @@ public class TestStep {
 
     public ExpectedResult getExpectedResult() {
         return expectedResult;
+    }
+
+    public CommandParams getCommandParams() {
+        return commandParams;
     }
 
     /**
@@ -40,15 +46,15 @@ public class TestStep {
         StringBuilder sb = new StringBuilder();
 
         String action = command.getAction();
-        String buttonLabel = command.getButtonLabel();
-        String frameLabel = command.getFrameLabel();
+        String buttonLabel = commandParams.getButtonLabel();
+        String frameLabel = commandParams.getFrameLabel();
         Integer targetAddress = command.getTargetAddress();
-        String indicatorLabel = command.getIndicatorLabel();
+        String indicatorLabel = commandParams.getIndicatorLabel();
         String constantName = command.getConstantName();
         Integer constantValue = command.getConstantValue();
         String cmdTypeDescription = MapperClass.mapCmdType(command.getCmdTypeName());
-        String inOutId = command.getInOutId();
-        Integer value = command.getValue();
+        String inOutId = commandParams.getInOutId();
+        Integer value = commandParams.getValue();
         String displayUnit = command.getDisplayUnit();
 
         String expectedResultName = expectedResult.getName();
