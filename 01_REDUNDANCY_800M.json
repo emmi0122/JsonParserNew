@@ -1,0 +1,662 @@
+{
+    "__module__": "cattest.utils.testsequence",
+    "__type__": "TestSequence",
+    "name": "01_REDUNDANCY_800M",
+    "test_cases": [
+        {
+            "__module__": "cattest.utils.testsequence",
+            "__type__": "TestCaseLinked",
+            "comment": "",
+            "file_name": "StartApplication.json",
+            "name": "Run linked test sequence 'StartApplication.json'",
+            "steps": []
+        },
+        {
+            "__module__": "cattest.utils.testsequence",
+            "__type__": "TestCaseLinked",
+            "comment": "",
+            "file_name": "StartPitchControl.json",
+            "name": "Run linked test sequence 'StartPitchControl.json'",
+            "steps": []
+        },
+        {
+            "__module__": "cattest.utils.testsequence",
+            "__type__": "TestCase",
+            "comment": "",
+            "name": "Initial setup",
+            "steps": [
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepComBusCableBreak",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "CableBreak",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "set",
+                            "value": 1
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "Address": 14,
+                            "BranchName": "B",
+                            "CableIntactStatus": false
+                        },
+                        "send_header": null,
+                        "target_address": null,
+                        "target_branch": ""
+                    },
+                    "comment": "Force A branch running by setting a fault on branch B\n",
+                    "sub_test_steps": []
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheck",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "DigOutPort",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "get",
+                            "value": 2
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "SystemFault"
+                        },
+                        "send_header": null,
+                        "target_address": 14,
+                        "target_branch": "B"
+                    },
+                    "comment": "",
+                    "display_unit": "",
+                    "expected_result": 0,
+                    "inverted_result": false,
+                    "sub_test_steps": [],
+                    "timeout": 5000
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepComBusCableBreak",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "CableBreak",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "set",
+                            "value": 1
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "Address": 14,
+                            "BranchName": "B",
+                            "CableIntactStatus": true
+                        },
+                        "send_header": null,
+                        "target_address": null,
+                        "target_branch": ""
+                    },
+                    "comment": "\n\n\n",
+                    "sub_test_steps": []
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheck",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "DigOutPort",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "get",
+                            "value": 2
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "SystemFault"
+                        },
+                        "send_header": null,
+                        "target_address": 14,
+                        "target_branch": "B"
+                    },
+                    "comment": "Verify that that we have no errors\n\n",
+                    "display_unit": "",
+                    "expected_result": 1,
+                    "inverted_result": false,
+                    "sub_test_steps": [],
+                    "timeout": 5000
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheck",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "DigOutPort",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "get",
+                            "value": 2
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "SystemFault"
+                        },
+                        "send_header": null,
+                        "target_address": 15,
+                        "target_branch": "A"
+                    },
+                    "comment": "Verify that that we have no errors\n",
+                    "display_unit": "",
+                    "expected_result": 1,
+                    "inverted_result": false,
+                    "sub_test_steps": [],
+                    "timeout": 0
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepStimuli",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "AnalogInput",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "set",
+                            "value": 1
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "PitchLever",
+                            "Value": 2816
+                        },
+                        "send_header": null,
+                        "target_address": 0,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "AD",
+                    "sub_test_steps": []
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheck",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "AnalogInput",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "get",
+                            "value": 2
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "PitchFeedback"
+                        },
+                        "send_header": null,
+                        "target_address": 15,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "AD",
+                    "expected_result": [
+                        2600,
+                        2690
+                    ],
+                    "inverted_result": false,
+                    "sub_test_steps": [],
+                    "timeout": 10000
+                }
+            ]
+        },
+        {
+            "__module__": "cattest.utils.testsequence",
+            "__type__": "TestCase",
+            "comment": "Verify that no major change occures in Set Pitch value.\n\n",
+            "name": "Manual Swap to System B",
+            "steps": [
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheckSelectButton",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "SelectButton",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "subscribe",
+                            "value": 3
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "ButtonLabel": "SWAP",
+                            "ButtonOccurrence": 1,
+                            "Callback": null,
+                            "FrameLabel": "SYSTEM",
+                            "SubscriptionActive": true
+                        },
+                        "send_header": null,
+                        "target_address": 0,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "expected_result": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "ButtonSelectionResult",
+                        "name": "ButtonSelected",
+                        "value": 0
+                    },
+                    "inverted_result": false,
+                    "sub_test_steps": [
+                        {
+                            "__module__": "cattest.utils.testsequence",
+                            "__type__": "TestStepDelay",
+                            "command": {
+                                "__module__": "cattest.ctrl.testsyscmd",
+                                "__type__": "TestControllerCommand",
+                                "action": "",
+                                "array_": null,
+                                "checklist": null,
+                                "cmd_type": {
+                                    "__module__": "cattest.ctrl.testsyscmd",
+                                    "__type__": "CommandType",
+                                    "name": "get",
+                                    "value": 2
+                                },
+                                "modbus_status": false,
+                                "params": {},
+                                "send_header": null,
+                                "target_address": null,
+                                "target_branch": ""
+                            },
+                            "comment": "",
+                            "msec": 1000,
+                            "sub_test_steps": []
+                        }
+                    ],
+                    "timeout": 1000
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepStimuli",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "Button",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "set",
+                            "value": 1
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "Enter",
+                            "Value": 1
+                        },
+                        "send_header": null,
+                        "target_address": 0,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "",
+                    "sub_test_steps": [
+                        {
+                            "__module__": "cattest.utils.testsequence",
+                            "__type__": "TestStepDelay",
+                            "command": {
+                                "__module__": "cattest.ctrl.testsyscmd",
+                                "__type__": "TestControllerCommand",
+                                "action": "",
+                                "array_": null,
+                                "checklist": null,
+                                "cmd_type": {
+                                    "__module__": "cattest.ctrl.testsyscmd",
+                                    "__type__": "CommandType",
+                                    "name": "get",
+                                    "value": 2
+                                },
+                                "modbus_status": false,
+                                "params": {},
+                                "send_header": null,
+                                "target_address": null,
+                                "target_branch": ""
+                            },
+                            "comment": "",
+                            "msec": 500,
+                            "sub_test_steps": []
+                        },
+                        {
+                            "__module__": "cattest.utils.testsequence",
+                            "__type__": "TestStepStimuli",
+                            "command": {
+                                "__module__": "cattest.ctrl.testsyscmd",
+                                "__type__": "TestControllerCommand",
+                                "action": "Button",
+                                "array_": null,
+                                "checklist": null,
+                                "cmd_type": {
+                                    "__module__": "cattest.ctrl.testsyscmd",
+                                    "__type__": "CommandType",
+                                    "name": "set",
+                                    "value": 1
+                                },
+                                "modbus_status": false,
+                                "params": {
+                                    "InOutId": "Enter",
+                                    "Value": 0
+                                },
+                                "send_header": null,
+                                "target_address": 0,
+                                "target_branch": ""
+                            },
+                            "comment": "",
+                            "display_unit": "",
+                            "sub_test_steps": []
+                        },
+                        {
+                            "__module__": "cattest.utils.testsequence",
+                            "__type__": "TestStepDelay",
+                            "command": {
+                                "__module__": "cattest.ctrl.testsyscmd",
+                                "__type__": "TestControllerCommand",
+                                "action": "",
+                                "array_": null,
+                                "checklist": null,
+                                "cmd_type": {
+                                    "__module__": "cattest.ctrl.testsyscmd",
+                                    "__type__": "CommandType",
+                                    "name": "get",
+                                    "value": 2
+                                },
+                                "modbus_status": false,
+                                "params": {},
+                                "send_header": null,
+                                "target_address": null,
+                                "target_branch": ""
+                            },
+                            "comment": "",
+                            "msec": 4000,
+                            "sub_test_steps": []
+                        }
+                    ]
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheck",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "AnalogInput",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "get",
+                            "value": 2
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "PitchFeedback"
+                        },
+                        "send_header": null,
+                        "target_address": 15,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "AD",
+                    "expected_result": [
+                        2600,
+                        2690
+                    ],
+                    "inverted_result": false,
+                    "sub_test_steps": [],
+                    "timeout": 0
+                }
+            ]
+        },
+        {
+            "__module__": "cattest.utils.testsequence",
+            "__type__": "TestCase",
+            "comment": "Verify that no major change occures in Set Pitch value.\n\n",
+            "name": "Manual Swap to System A",
+            "steps": [
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheckSelectButton",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "SelectButton",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "subscribe",
+                            "value": 3
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "ButtonLabel": "SWAP",
+                            "ButtonOccurrence": 1,
+                            "Callback": null,
+                            "FrameLabel": "SYSTEM",
+                            "SubscriptionActive": true
+                        },
+                        "send_header": null,
+                        "target_address": 0,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "expected_result": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "ButtonSelectionResult",
+                        "name": "ButtonSelected",
+                        "value": 0
+                    },
+                    "inverted_result": false,
+                    "sub_test_steps": [
+                        {
+                            "__module__": "cattest.utils.testsequence",
+                            "__type__": "TestStepDelay",
+                            "command": {
+                                "__module__": "cattest.ctrl.testsyscmd",
+                                "__type__": "TestControllerCommand",
+                                "action": "",
+                                "array_": null,
+                                "checklist": null,
+                                "cmd_type": {
+                                    "__module__": "cattest.ctrl.testsyscmd",
+                                    "__type__": "CommandType",
+                                    "name": "get",
+                                    "value": 2
+                                },
+                                "modbus_status": false,
+                                "params": {},
+                                "send_header": null,
+                                "target_address": null,
+                                "target_branch": ""
+                            },
+                            "comment": "",
+                            "msec": 1000,
+                            "sub_test_steps": []
+                        }
+                    ],
+                    "timeout": 1000
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepStimuli",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "Button",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "set",
+                            "value": 1
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "Enter",
+                            "Value": 1
+                        },
+                        "send_header": null,
+                        "target_address": 0,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "",
+                    "sub_test_steps": [
+                        {
+                            "__module__": "cattest.utils.testsequence",
+                            "__type__": "TestStepDelay",
+                            "command": {
+                                "__module__": "cattest.ctrl.testsyscmd",
+                                "__type__": "TestControllerCommand",
+                                "action": "",
+                                "array_": null,
+                                "checklist": null,
+                                "cmd_type": {
+                                    "__module__": "cattest.ctrl.testsyscmd",
+                                    "__type__": "CommandType",
+                                    "name": "get",
+                                    "value": 2
+                                },
+                                "modbus_status": false,
+                                "params": {},
+                                "send_header": null,
+                                "target_address": null,
+                                "target_branch": ""
+                            },
+                            "comment": "",
+                            "msec": 500,
+                            "sub_test_steps": []
+                        },
+                        {
+                            "__module__": "cattest.utils.testsequence",
+                            "__type__": "TestStepStimuli",
+                            "command": {
+                                "__module__": "cattest.ctrl.testsyscmd",
+                                "__type__": "TestControllerCommand",
+                                "action": "Button",
+                                "array_": null,
+                                "checklist": null,
+                                "cmd_type": {
+                                    "__module__": "cattest.ctrl.testsyscmd",
+                                    "__type__": "CommandType",
+                                    "name": "set",
+                                    "value": 1
+                                },
+                                "modbus_status": false,
+                                "params": {
+                                    "InOutId": "Enter",
+                                    "Value": 0
+                                },
+                                "send_header": null,
+                                "target_address": 0,
+                                "target_branch": ""
+                            },
+                            "comment": "",
+                            "display_unit": "",
+                            "sub_test_steps": []
+                        },
+                        {
+                            "__module__": "cattest.utils.testsequence",
+                            "__type__": "TestStepDelay",
+                            "command": {
+                                "__module__": "cattest.ctrl.testsyscmd",
+                                "__type__": "TestControllerCommand",
+                                "action": "",
+                                "array_": null,
+                                "checklist": null,
+                                "cmd_type": {
+                                    "__module__": "cattest.ctrl.testsyscmd",
+                                    "__type__": "CommandType",
+                                    "name": "get",
+                                    "value": 2
+                                },
+                                "modbus_status": false,
+                                "params": {},
+                                "send_header": null,
+                                "target_address": null,
+                                "target_branch": ""
+                            },
+                            "comment": "",
+                            "msec": 4000,
+                            "sub_test_steps": []
+                        }
+                    ]
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheck",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "AnalogInput",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "get",
+                            "value": 2
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "PitchFeedback"
+                        },
+                        "send_header": null,
+                        "target_address": 15,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "AD",
+                    "expected_result": [
+                        2600,
+                        2690
+                    ],
+                    "inverted_result": false,
+                    "sub_test_steps": [],
+                    "timeout": 0
+                }
+            ]
+        }
+    ]
+}

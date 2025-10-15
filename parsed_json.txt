@@ -1,130 +1,94 @@
 Test Sequence
    Run linked test sequence 'StartApplication.json'
 
-   Initial Condition
-      Put Digital Input Port Ackn = 0 at ECR
-      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
+   Start pitch and speed models
+      Put Digital Input Port Hydraulic Pressure Ok = 1 at Central Unit
+      Start Propeller Pitch Model
+      Start Engine Speed Model
 
-   At ECR panel set selector switch=BRIDGE
-      Put Digital Input Port Ackn = 1 at ECR
-      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
+   Run linked test sequence 'BM1_TakeCommand.json'
 
-   BM1 Accept  Command
+   Run linked test sequence 'BM1_MainEngineStart.json'
+
+   Run linked test sequence 'BM1_MainClutchIn.json'
+
+   Run linked test sequence 'BM1_CrpmActivate.json'
+
+   Run linked test sequence 'ECR_GoToSetupPage.json'
+
+   Go to "Adj DP" page
+      Select GUI button SET in frame SETUP PAGES at ECR
+      Put Button Enter = 1 at ECR
+
+   Fulfill required conditions for DP command
+      Put Analog Input Dp Pitch Demand = 1940AD at Bridge Panel 1
+      Check that Digital Output Port Dp Available = 1 at Bridge Panel 1
+
+   DP select toggle
+      Check that Digital Output Port Dp Ready = 0 at Bridge Panel 1
+      Put Digital Input Port Dp Selected = 1 at Bridge Panel 1
+      Check that Digital Output Port Dp Ready = 1 at Bridge Panel 1
+      Put Digital Input Port Dp Selected = 0 at Bridge Panel 1
+      Check that Digital Output Port Dp Ready = 0 at Bridge Panel 1
+
+   DP control
+      Check that Digital Output Port Dp Ready = 0 at Bridge Panel 1
+      Put Digital Input Port Dp Selected = 1 at Bridge Panel 1
+      Check that Digital Output Port Dp Ready = 1 at Bridge Panel 1
+
+   DP full astern
+      Put Analog Input Dp Pitch Demand = 641AD at Bridge Panel 1
+      Check that Analog Input Pitch Feedback is between 630AD and 650AD at Central Unit
+
+   DP zero
+      Put Analog Input Dp Pitch Demand = 1925AD at Bridge Panel 1
+      Check that Analog Input Pitch Feedback is between 1925AD and 1945AD at Central Unit
+
+   DP full ahead
+      Put Analog Input Dp Pitch Demand = 3200AD at Bridge Panel 1
+      Check that Analog Input Pitch Feedback is between 3190AD and 3210AD at Central Unit
+
+   BM1 TakeOver
+      Check that Digital Output Port Dp Ready = 1 at Bridge Panel 1
+      Put Button Take Over = 1 at Bridge Panel 1
+      Check that Digital Output Port Dp Ready = 1 at Bridge Panel 1
+      Put Button Take Over = 1 at Bridge Panel 1
+
+   Align levers
+      Put Analog Input Pitch Lever = 3200AD at Bridge Panel 1
+      Check that Digital Output Port Dp Ready = 0 at Bridge Panel 1
+      Check that Digital Output Port Ctrl Pos Bm1 = 1 at Central Unit
+
+   BM1 give control to DP
+      Put Jog Delta = 1 at Bridge Panel 1
+      Put Button Enter = 1 at Bridge Panel 1
+      Check that Digital Output Port Dp Ready = 1 at Bridge Panel 1
+      Check that Digital Output Port Ctrl Pos Bm1 = 0 at Central Unit
+
+   BM1 TakeOver
+      Check that Digital Output Port Dp Ready = 1 at Bridge Panel 1
+      Put Button Take Over = 1 at Bridge Panel 1
+      Check that Digital Output Port Dp Ready = 1 at Bridge Panel 1
+      Check that Digital Output Port Ctrl Pos Bm1 = 0 at Central Unit
+      Put Button Take Over = 1 at Bridge Panel 1
+      Check that Digital Output Port Dp Ready = 0 at Bridge Panel 1
+      Check that Digital Output Port Ctrl Pos Bm1 = 1 at Central Unit
+
+   DP TakeOver
+      Put Digital Input Port Dp Selected = 0 at Bridge Panel 1
+      Put Digital Input Port Dp Selected = 1 at Bridge Panel 1
+      Check that Digital Output Port Dp Ready = 1 at Bridge Panel 1
+      Check that Digital Output Port Ctrl Pos Bm1 = 0 at Central Unit
+
+   DP control fault
+      Check that Digital Output Port System Fault = 1 at Central Unit
+      Put Analog Input Dp Pitch Demand = 0AD at Bridge Panel 1
+      Check that Digital Output Port System Fault = 0 at Central Unit
+
+   BM1 TakeOver at fault
+      
+      Check that Digital Output Port Dp Ready = 0 at Bridge Panel 1
+      Check that Digital Output Port Ctrl Pos Bm1 = 0 at Central Unit
       Put Button Take Over = 1 at Bridge Panel 1
       Check that Digital Output Port Ctrl Pos Bm1 = 1 at Central Unit
-
-   BM2 Take Over
-      Put Button Take Over = 1 at Bridge Panel 2
-      Check that Digital Output Port Ctrl Pos Bm2 = 1 at Central Unit
-
-   BM3 Take Over
-      Put Button Take Over = 1 at Bridge Panel 3
-      Check that Digital Output Port Ctrl Pos Bm3 = 1 at Central Unit
-
-   BM 4 Take Over
-      Put Button Take Over = 1 at Panel 4
-      Check that Digital Output Port Ctrl Pos Bmx = 1 at Central Unit
-
-   BM5 Take Over
-      Put Button Take Over = 1 at Panel 5
-      Check that Digital Output Port Ctrl Pos Bmx = 1 at Central Unit
-
-   BM1 Take Over
-      Put Button Take Over = 1 at Bridge Panel 1
-      Check that Digital Output Port Ctrl Pos Bm1 = 1 at Central Unit
-
-   ECR Take Over with Lever Alignment
-      Put Analog Input Pitch Lever = 1064%V at Bridge Panel 1
-      Put Analog Input Pitch Lever = 2816%V at ECR
-      
-      Put Digital Input Port Ackn = 0 at ECR
-      
-      Check that Digital Output Port Ctrl Pos Bm1 = 1 at Central Unit
-      Put Analog Input Pitch Lever = 1940%V at Bridge Panel 1
-      Put Analog Input Pitch Lever = 1940%V at ECR
-      
-      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
-
-   BM1 Acknowledge
-      Put Button Send Ackn = 1 at Bridge Panel 1
-
-   BM1 Request  Transfer
-      Put Button Take Over = 1 at Bridge Panel 1
-      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
-
-   ECR Accept Transfer to BM1
-      Put Digital Input Port Ackn = 1 at ECR
-      Check that Digital Output Port Ctrl Pos Bm1 = 1 at Central Unit
-
-   BM1 Send to ECR
-      Put Button Send Ackn = 1 at Bridge Panel 1
-      Check that Digital Output Port Ctrl Pos Bm1 = 1 at Central Unit
-
-   ECR Accept Transfer from BM1
-      Put Digital Input Port Ackn = 0 at ECR
-      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
-
-   BM2 Request  Transfer
-      Put Button Take Over = 1 at Bridge Panel 2
-      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
-
-   ECR Accept Transfer to BM2
-      Put Digital Input Port Ackn = 1 at ECR
-      Check that Digital Output Port Ctrl Pos Bm2 = 1 at Central Unit
-
-   BM2 Send to ECR
-      Put Button Send Ackn = 1 at Bridge Panel 2
-      Check that Digital Output Port Ctrl Pos Bm2 = 1 at Central Unit
-
-   ECR Accept Transfer from BM2
-      Put Digital Input Port Ackn = 0 at ECR
-      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
-
-   BM3 Request  Transfer
-      Put Button Take Over = 1 at Bridge Panel 3
-      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
-
-   ECR Accept Transfer to BM3
-      Put Digital Input Port Ackn = 1 at ECR
-      Check that Digital Output Port Ctrl Pos Bm3 = 1 at Central Unit
-
-   BM3 Send to ECR
-      Put Button Send Ackn = 1 at Bridge Panel 3
-      Check that Digital Output Port Ctrl Pos Bm3 = 1 at Central Unit
-
-   ECR Accept Transfer from BM3
-      Put Digital Input Port Ackn = 0 at ECR
-      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
-
-   BM4 Request  Transfer
-      Put Button Take Over = 1 at Panel 4
-      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
-
-   ECR Accept Transfer to BM4
-      Put Digital Input Port Ackn = 1 at ECR
-      Check that Digital Output Port Ctrl Pos Bmx = 1 at Central Unit
-
-   BM4 Send to ECR
-      Put Button Send Ackn = 1 at Panel 4
-      Check that Digital Output Port Ctrl Pos Bmx = 1 at Central Unit
-
-   ECR Accept Transfer from BM5
-      Put Digital Input Port Ackn = 0 at ECR
-      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
-
-   BM5 Request  Transfer
-      Put Button Take Over = 1 at Panel 5
-      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
-
-   ECR Accept Transfer to BM5
-      Put Digital Input Port Ackn = 1 at ECR
-      Check that Digital Output Port Ctrl Pos Bmx = 1 at Central Unit
-
-   BM5 Send to ECR
-      Put Button Send Ackn = 1 at Panel 5
-      Check that Digital Output Port Ctrl Pos Bmx = 1 at Central Unit
-
-   ECR Accept Transfer from BM5
-      Put Digital Input Port Ackn = 0 at ECR
-      Check that Digital Output Port Ctrl Pos Ecr = 1 at Central Unit
 
