@@ -43,22 +43,41 @@ public class JsonParser {
             JSONObject cmdTypeObj = cmdObj.getJSONObject("cmd_type");
             JSONObject params = cmdObj.optJSONObject("params");
 
+            //Extract all values
+            String cmdTypeName = cmdTypeObj.optString("name", null);
+            String action = cmdObj.optString("action", null);
+            Integer targetAddress = cmdObj.has("target_address") && !cmdObj.isNull("target_address")
+                                    ? cmdObj.getInt("target_address")
+                                    : null;
+            String constantName = stepObj.optString("constantname", null);
+            Integer constantValue = stepObj.has("value") && !stepObj.isNull("value")
+                                    ? stepObj.getInt("value")
+                                    : null;
+            String displayUnit = stepObj.optString("display_unit", null);
+
+            //Create TestCommand (6 parameters)
             TestCommand command = new TestCommand(
-                    cmdTypeObj.optString("name", null),
-                    cmdObj.optString("action", null),
-                    params != null ? params.optString("InOutId", null) : null,
-                    (params != null && params.has("Value")) ? params.optInt("Value") : null,
-                    cmdObj.has("target_address") && !cmdObj.isNull("target_address")
-                            ? cmdObj.getInt("target_address")
-                            : null,
-                    params != null ? params.optString("ButtonLabel", null) : null,
-                    params != null ? params.optString("FrameLabel", null) : null,
-                    stepObj.optString("constantname", null),
-                    stepObj.has("value") && !stepObj.isNull("value")
-                            ? stepObj.getInt("value")
-                            : null,
-                    params != null ? params.optString("IndicatorLabel", null) : null,
-                    stepObj.optString("display_unit", null));
+                cmdTypeName, 
+                action, 
+                targetAddress, 
+                constantName, 
+                constantValue, 
+                displayUnit);
+
+            //Extract parameters for CommandParams
+            String inOutId = params != null ? params.optString("InOutId", null) : null;
+            Integer value = (params != null && params.has("Value")) ? params.optInt("Value") : null;
+            String buttonLabel = params != null ? params.optString("ButtonLabel", null) : null;
+            String frameLabel = params != null ? params.optString("FrameLabel", null) : null;
+            String indicatorLabel = params != null ? params.optString("IndicatorLabel", null) : null;
+
+            //Extract CommandParams (5 parameters)
+            CommandParams commandParams = new CommandParams(
+                inOutId, 
+                value, 
+                buttonLabel, 
+                frameLabel, 
+                indicatorLabel);
 
             // Parse expected result
             String expectedResultName = null;
@@ -78,10 +97,12 @@ public class JsonParser {
                 }
             }
 
-            ExpectedResult expectedResult = new ExpectedResult(expectedResultName, expectedResultMin,
-                    expectedResultMax);
+            ExpectedResult expectedResult = new ExpectedResult(
+                expectedResultName, 
+                expectedResultMin,
+                expectedResultMax);
 
-            steps.add(new TestStep(command, expectedResult));
+            steps.add(new TestStep(command, expectedResult, commandParams));
         }
 
         return steps;

@@ -6,3 +6,4 @@ se\berg\domain\TestSequence.class
 se\berg\domain\TestCase.class
 se\berg\util\MapperClass.class
 se\berg\domain\TestCommand.class
+se\berg\domain\CommandParams.class
