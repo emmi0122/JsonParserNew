@@ -46,20 +46,22 @@ public class TestStep {
         StringBuilder sb = new StringBuilder();
 
         String action = command.getAction();
-        String buttonLabel = commandParams.getButtonLabel();
-        String frameLabel = commandParams.getFrameLabel();
         Integer targetAddress = command.getTargetAddress();
-        String indicatorLabel = commandParams.getIndicatorLabel();
         String constantName = command.getConstantName();
         Integer constantValue = command.getConstantValue();
         String cmdTypeDescription = MapperClass.mapCmdType(command.getCmdTypeName());
-        String inOutId = commandParams.getInOutId();
-        Integer value = commandParams.getValue();
         String displayUnit = command.getDisplayUnit();
 
         String expectedResultName = expectedResult.getName();
         Integer expectedResultMin = expectedResult.getMin();
         Integer expectedResultMax = expectedResult.getMax();
+
+        String inOutId = commandParams.getInOutId();
+        Integer value = commandParams.getValue();
+        String indicatorLabel = commandParams.getIndicatorLabel();
+        String buttonLabel = commandParams.getButtonLabel();
+        String frameLabel = commandParams.getFrameLabel();
+        String esmTypeName = commandParams.getEsmTypeName();
 
         // Special case for selecting buttons
         if ("SelectButton".equals(action)) {
@@ -76,7 +78,7 @@ public class TestStep {
             }
         }
 
-        // Special case for text indivators
+        // Special case for text indicators
         if ("TextIndicatorColor".equals(action)) {
             sb.append("Check that text indicator ");
             if (indicatorLabel != null && !indicatorLabel.isEmpty()) {
@@ -102,6 +104,11 @@ public class TestStep {
         if (constantValue != null) {
             sb.append("== ").append(constantValue).append(" ");
         }
+
+        if (esmTypeName != null && !esmTypeName.isEmpty()) {
+            sb.append("Start ").append(MapperClass.splitCamelCase(esmTypeName)).append(" ");
+        }
+
         if (action != null && !action.isEmpty()) {
             if (cmdTypeDescription != null) {
                 sb.append(cmdTypeDescription).append(" ");

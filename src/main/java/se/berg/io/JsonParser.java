@@ -55,7 +55,7 @@ public class JsonParser {
                                     : null;
             String displayUnit = stepObj.optString("display_unit", null);
 
-            //Create TestCommand (6 parameters)
+            //Create TestCommand
             TestCommand command = new TestCommand(
                 cmdTypeName, 
                 action, 
@@ -70,14 +70,16 @@ public class JsonParser {
             String buttonLabel = params != null ? params.optString("ButtonLabel", null) : null;
             String frameLabel = params != null ? params.optString("FrameLabel", null) : null;
             String indicatorLabel = params != null ? params.optString("IndicatorLabel", null) : null;
+            String esmTypeName = params != null ? params.optString("ESMTypeName", null) : null;
 
-            //Extract CommandParams (5 parameters)
+            //Extract CommandParams
             CommandParams commandParams = new CommandParams(
                 inOutId, 
                 value, 
                 buttonLabel, 
                 frameLabel, 
-                indicatorLabel);
+                indicatorLabel,
+                esmTypeName);
 
             // Parse expected result
             String expectedResultName = null;

@@ -6,9 +6,9 @@ Test Sequence
    Run linked test sequence 'StartSpeedFeedback.json'
 
    Initial
-      Put ESMActivation 
+      Start Gearbox Twin Model Put ESMActivation 
       Put Analog Input Rpm Lever = 188%V at ECR
-      Put ESMActivation 
+      Start Engine Load Model Put ESMActivation 
       Put Digital Input Port Hydraulic Pressure Ok = 1 at Central Unit
       Check that Digital Output Port Main Clutch Engaged Indication at Central Unit
       Select GUI button CTRL PAGE in frame PROPULSION at ECR
@@ -21,7 +21,7 @@ Test Sequence
       Check that text indicator CLUTCH IN BLOCKED in frame MAIN CLUTCH is red at ECR
 
    Clutch In, no feedback
-      Put ESMActivation 
+      Start Gearbox Twin Model Put ESMActivation 
       Put Analog Input Rpm Lever = 188%V at ECR
       Select GUI button IN in frame MAIN CLUTCH at ECR
       Put Button Enter = 1 at ECR
@@ -37,7 +37,7 @@ Test Sequence
       Check that text indicator CLUTCH IN BLOCKED in frame MAIN CLUTCH is red at ECR
 
    Pitch Lever to 0%, Clutch In, with feedback
-      Put ESMActivation 
+      Start Gearbox Twin Model Put ESMActivation 
       Put Analog Input Pitch Lever = 1940AD at ECR
       Check that Analog Input Pitch Feedback is between 1840AD and 2040AD at Central Unit
       Select GUI button IN in frame MAIN CLUTCH at ECR

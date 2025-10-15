@@ -6,13 +6,15 @@ public class CommandParams {
     private String buttonLabel;
     private String frameLabel;
     private String indicatorLabel;
+    private String esmTypeName;
 
-    public CommandParams(String inOutId, Integer value, String buttonLabel, String frameLabel, String indicatorLabel) {
+    public CommandParams(String inOutId, Integer value, String buttonLabel, String frameLabel, String indicatorLabel, String esmTypeName) {
         this.inOutId = inOutId;
         this.value = value;
         this.buttonLabel = buttonLabel;
         this.frameLabel = frameLabel;
         this.indicatorLabel = indicatorLabel;
+        this.esmTypeName = esmTypeName;
     }
 
     public String getInOutId() {
@@ -35,17 +37,7 @@ public class CommandParams {
         return indicatorLabel;
     }
 
-        /**
-     * Returns a formatted version of the I/O identifier, splitting camel case
-     * 
-     * @return a formatted InOutId string
-     */
-    public String getFormattedInOutId() {
-        if (inOutId == null || inOutId.isEmpty()) {
-            return "";
-        }
-
-        String result = inOutId.replaceAll("([a-z])([A-Z])", "$1 $2");
-        return result;
+    public String getEsmTypeName() {
+        return esmTypeName;
     }
 }
