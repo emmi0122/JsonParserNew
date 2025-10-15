@@ -66,8 +66,6 @@ public class JsonParser {
 
             // Extract parameters for CommandParams
             String inOutId = params != null ? params.optString("InOutId", null) : null;
-            // Integer value = (params != null && params.has("Value")) ?
-            // params.optInt("Value") : null;
             Integer value = null;
 
             // Case 1: Read value from params:
