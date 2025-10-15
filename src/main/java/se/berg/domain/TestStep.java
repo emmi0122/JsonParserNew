@@ -69,7 +69,10 @@ public class TestStep {
         if ("ESMActivation".equals(action)) {
             if (esmTypeName != null && !esmTypeName.isEmpty()) {
                 String stateText = commandParams.isEsmState() ? "Start " : "Stop ";
-                sb.append(stateText).append(MapperClass.splitCamelCase(esmTypeName)).append(" (").append(engineType).append(")");
+                sb.append(stateText).append(MapperClass.splitCamelCase(esmTypeName));
+                if (engineType != null && !engineType.isEmpty()) {
+                    sb.append(" (").append(engineType).append(")");
+                }
             }
             return sb.append("\n").toString();
         }

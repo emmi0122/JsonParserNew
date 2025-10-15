@@ -90,7 +90,7 @@ public class JsonParser {
             boolean esmState = params != null ? params.optBoolean("NewESMState") : null;
             boolean cableStatus = params != null ? params.optBoolean("CableIntactStatus") : null;
             String branchName = params != null ? params.optString("BranchName", null) : null;
-            String engineType = esmParams != null ? params.optString("Engine type", null) : null;
+            String engineType = esmParams != null ? esmParams.optString("Engine type", null) : null;
 
             // Extract CommandParams
             CommandParams commandParams = new CommandParams(
