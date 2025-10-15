@@ -47,6 +47,7 @@ public class JsonParser {
             JSONObject cmdObj = stepObj.getJSONObject("command");
             JSONObject cmdTypeObj = cmdObj.getJSONObject("cmd_type");
             JSONObject params = cmdObj.optJSONObject("params");
+            JSONObject esmParams = params.optJSONObject("ESMParams");
 
             // Extract all values
             String cmdTypeName = cmdTypeObj.optString("name", null);
@@ -89,6 +90,7 @@ public class JsonParser {
             boolean esmState = params != null ? params.optBoolean("NewESMState") : null;
             boolean cableStatus = params != null ? params.optBoolean("CableIntactStatus") : null;
             String branchName = params != null ? params.optString("BranchName", null) : null;
+            String engineType = esmParams != null ? params.optString("Engine type", null) : null;
 
             // Extract CommandParams
             CommandParams commandParams = new CommandParams(
@@ -100,7 +102,8 @@ public class JsonParser {
                     esmTypeName,
                     esmState, 
                     cableStatus,
-                    branchName);
+                    branchName,
+                    engineType);
 
             // Parse expected result
             String expectedResultName = null;

@@ -63,12 +63,13 @@ public class TestStep {
         String frameLabel = commandParams.getFrameLabel();
         String esmTypeName = commandParams.getEsmTypeName();
         String branchName = commandParams.getBranchName();
+        String engineType = commandParams.getEngineType();
 
         // Special case for ESMActivation
         if ("ESMActivation".equals(action)) {
             if (esmTypeName != null && !esmTypeName.isEmpty()) {
                 String stateText = commandParams.isEsmState() ? "Start " : "Stop ";
-                sb.append(stateText).append(MapperClass.splitCamelCase(esmTypeName));
+                sb.append(stateText).append(MapperClass.splitCamelCase(esmTypeName)).append(" (").append(engineType).append(")");
             }
             return sb.append("\n").toString();
         }

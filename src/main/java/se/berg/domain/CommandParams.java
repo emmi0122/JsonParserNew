@@ -10,9 +10,10 @@ public class CommandParams {
     private boolean esmState;
     private boolean cableStatus;
     private String branchName;
+    private String engineType;
 
     public CommandParams(String inOutId, Integer value, String buttonLabel, String frameLabel, String indicatorLabel,
-                         String esmTypeName, boolean esmState, boolean cableStatus, String branchname) {
+                         String esmTypeName, boolean esmState, boolean cableStatus, String branchname, String engineType) {
         this.inOutId = inOutId;
         this.value = value;
         this.buttonLabel = buttonLabel;
@@ -22,6 +23,7 @@ public class CommandParams {
         this.esmState = esmState;
         this.cableStatus = cableStatus;
         this.branchName = branchname;
+        this.engineType = engineType;
     }
 
     public String getInOutId() {
@@ -58,5 +60,9 @@ public class CommandParams {
 
     public String getBranchName() {
         return branchName;
+    }
+
+    public String getEngineType() {
+        return engineType;
     }
 }

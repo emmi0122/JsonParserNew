@@ -3,8 +3,8 @@ Test Sequence
 
    Start pitch and speed models
       Put Digital Input Port Hydraulic Pressure Ok = 1 at Central Unit
-      Start Propeller Pitch Model
-      Start Engine Speed Model
+      Start Propeller Pitch Model (null)
+      Start Engine Speed Model (null)
 
    Run linked test sequence 'BM1_TakeCommand.json'
 
