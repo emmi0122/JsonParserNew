@@ -7,14 +7,16 @@ public class CommandParams {
     private String frameLabel;
     private String indicatorLabel;
     private String esmTypeName;
+    private boolean esmState;
 
-    public CommandParams(String inOutId, Integer value, String buttonLabel, String frameLabel, String indicatorLabel, String esmTypeName) {
+    public CommandParams(String inOutId, Integer value, String buttonLabel, String frameLabel, String indicatorLabel, String esmTypeName, boolean esmState) {
         this.inOutId = inOutId;
         this.value = value;
         this.buttonLabel = buttonLabel;
         this.frameLabel = frameLabel;
         this.indicatorLabel = indicatorLabel;
         this.esmTypeName = esmTypeName;
+        this.esmState = esmState;
     }
 
     public String getInOutId() {
@@ -39,5 +41,9 @@ public class CommandParams {
 
     public String getEsmTypeName() {
         return esmTypeName;
+    }
+
+    public boolean getEsmState() {
+        return esmState;
     }
 }

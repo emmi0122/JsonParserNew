@@ -63,6 +63,15 @@ public class TestStep {
         String frameLabel = commandParams.getFrameLabel();
         String esmTypeName = commandParams.getEsmTypeName();
 
+        // Special case for ESMActivation
+        if ("ESMActivation".equals(action)) {
+            if (esmTypeName != null && !esmTypeName.isEmpty()) {
+                String stateText = commandParams.getEsmState() ? "Start " : "Stop ";
+                sb.append(stateText).append(MapperClass.splitCamelCase(esmTypeName));
+            }
+            return sb.append("\n").toString();
+        }
+
         // Special case for selecting buttons
         if ("SelectButton".equals(action)) {
             sb.append("Select GUI button");
@@ -103,10 +112,6 @@ public class TestStep {
         }
         if (constantValue != null) {
             sb.append("== ").append(constantValue).append(" ");
-        }
-
-        if (esmTypeName != null && !esmTypeName.isEmpty()) {
-            sb.append("Start ").append(MapperClass.splitCamelCase(esmTypeName)).append(" ");
         }
 
         if (action != null && !action.isEmpty()) {
