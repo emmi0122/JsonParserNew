@@ -82,6 +82,8 @@ public class JsonParser {
             String indicatorLabel = params != null ? params.optString("IndicatorLabel", null) : null;
             String esmTypeName = params != null ? params.optString("ESMTypeName", null) : null;
             boolean esmState = params != null ? params.optBoolean("NewESMState") : null;
+            boolean cableStatus = params != null ? params.optBoolean("CableIntactStatus") : null;
+            String branchName = params != null ? params.optString("BranchName", null) : null;
 
             // Extract CommandParams
             CommandParams commandParams = new CommandParams(
@@ -91,7 +93,9 @@ public class JsonParser {
                     frameLabel,
                     indicatorLabel,
                     esmTypeName,
-                    esmState);
+                    esmState, 
+                    cableStatus,
+                    branchName);
 
             // Parse expected result
             String expectedResultName = null;

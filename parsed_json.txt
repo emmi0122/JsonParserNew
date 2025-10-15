@@ -11,22 +11,22 @@ Test Sequence
       Put Digital Input Port Me1Remote Control Permitted = 1 at Central Unit
       Put Digital Input Port Parallel System Power = 1 at Central Unit
       Put Digital Input Port Ao1Status = 0 at Central Unit
-      Put Cable Break 
-      Put Cable Break 
+      Break com bus B
+      Heal com bus B
       Check that Digital Output Port System Fault = 1 at Central Unit
 
    Bus Fault on A
-      Put Cable Break 
+      Break com bus A
       Check that Digital Output Port System Fault = 0 at Central Unit
       Check that Digital Output Port System Fault = 1 at Central Unit
-      Put Cable Break 
+      Heal com bus A
       Check that Digital Output Port System Fault = 1 at Central Unit
 
    Bus Fault on B
-      Put Cable Break 
+      Break com bus B
       Check that Digital Output Port System Fault = 0 at Central Unit
       Check that Digital Output Port System Fault = 1 at Central Unit
-      Put Cable Break 
+      Heal com bus B
       Check that Digital Output Port System Fault = 1 at Central Unit
 
    Open Speed Reference
@@ -38,7 +38,7 @@ Test Sequence
       Put Digital Input Port Ui1No Fault = 0 at Central Unit
       Check that Digital Output Port System Fault = 0 at Central Unit
       Check that Digital Output Port System Fault = 1 at Central Unit
-      Check that text indicator SYSTEM B ACTIVE in frame SYSTEM is green at ECR
+      Check that text indicator SYSTEM B ACTIVE exists, AND is green, in frame SYSTEM at ECR
       Put Digital Input Port Ui1No Fault = 1 at Central Unit
 
    Propeller Pitch Control Timeout

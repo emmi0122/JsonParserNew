@@ -62,12 +62,22 @@ public class TestStep {
         String buttonLabel = commandParams.getButtonLabel();
         String frameLabel = commandParams.getFrameLabel();
         String esmTypeName = commandParams.getEsmTypeName();
+        String branchName = commandParams.getBranchName();
 
         // Special case for ESMActivation
         if ("ESMActivation".equals(action)) {
             if (esmTypeName != null && !esmTypeName.isEmpty()) {
-                String stateText = commandParams.getEsmState() ? "Start " : "Stop ";
+                String stateText = commandParams.isEsmState() ? "Start " : "Stop ";
                 sb.append(stateText).append(MapperClass.splitCamelCase(esmTypeName));
+            }
+            return sb.append("\n").toString();
+        }
+
+        //Special case for cable break/heal
+        if ("CableBreak".equals(action)) {
+            if (branchName != null && !branchName.isEmpty()) {
+                String stateText = commandParams.isCableStatus() ? "Heal " : "Break ";
+                sb.append(stateText).append("com bus ").append(branchName);
             }
             return sb.append("\n").toString();
         }
@@ -91,14 +101,13 @@ public class TestStep {
         if ("TextIndicatorColor".equals(action)) {
             sb.append("Check that text indicator ");
             if (indicatorLabel != null && !indicatorLabel.isEmpty()) {
-                sb.append(indicatorLabel).append(" ");
+                sb.append(indicatorLabel).append(" ").append("exists, AND is ");
+            }
+            if (expectedResultName != null && !expectedResultName.isEmpty()) {
+                sb.append(expectedResultName).append(", ");
             }
             if (frameLabel != null && !frameLabel.isEmpty()) {
                 sb.append("in frame ").append(frameLabel).append(" ");
-                sb.append("is ");
-            }
-            if (expectedResultName != null && !expectedResultName.isEmpty()) {
-                sb.append(expectedResultName).append(" ");
             }
             if (targetAddress != null) {
                 sb.append("at ").append(MapperClass.mapTargetAddress(targetAddress));
