@@ -11,9 +11,11 @@ public class CommandParams {
     private boolean cableStatus;
     private String branchName;
     private String engineType;
+    private Integer buttonOccurence;
 
     public CommandParams(String inOutId, Integer value, String buttonLabel, String frameLabel, String indicatorLabel,
-                         String esmTypeName, boolean esmState, boolean cableStatus, String branchname, String engineType) {
+            String esmTypeName, boolean esmState, boolean cableStatus, String branchname, String engineType,
+            Integer buttonOccurence) {
         this.inOutId = inOutId;
         this.value = value;
         this.buttonLabel = buttonLabel;
@@ -24,6 +26,7 @@ public class CommandParams {
         this.cableStatus = cableStatus;
         this.branchName = branchname;
         this.engineType = engineType;
+        this.buttonOccurence = buttonOccurence;
     }
 
     public String getInOutId() {
@@ -64,5 +67,9 @@ public class CommandParams {
 
     public String getEngineType() {
         return engineType;
+    }
+
+    public Integer getButtonOccurence() {
+        return buttonOccurence;
     }
 }

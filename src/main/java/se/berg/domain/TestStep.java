@@ -64,6 +64,7 @@ public class TestStep {
         String esmTypeName = commandParams.getEsmTypeName();
         String branchName = commandParams.getBranchName();
         String engineType = commandParams.getEngineType();
+        Integer buttonOccurence = commandParams.getButtonOccurence();
 
         // Special case for ESMActivation
         if ("ESMActivation".equals(action)) {
@@ -88,12 +89,16 @@ public class TestStep {
 
         // Special case for selecting buttons
         if ("SelectButton".equals(action)) {
-            sb.append("Select GUI button");
+            if (buttonOccurence == null) {
+                sb.append("Select GUI button");
+            } else {
+                sb.append("Select the ").append(buttonOccurence).append("th GUI button");
+            }
             if (buttonLabel != null && !buttonLabel.isEmpty()) {
-                sb.append(" ").append(buttonLabel);
+                sb.append(" ").append("'").append(buttonLabel).append("'");
             }
             if (frameLabel != null && !frameLabel.isEmpty()) {
-                sb.append(" in frame ").append(frameLabel);
+                sb.append(" in frame ").append("'").append(frameLabel).append("'");
             }
             if (targetAddress != null) {
                 sb.append(" at ").append(MapperClass.mapTargetAddress(targetAddress));

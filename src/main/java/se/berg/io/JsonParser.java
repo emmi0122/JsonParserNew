@@ -91,6 +91,9 @@ public class JsonParser {
             boolean cableStatus = params != null ? params.optBoolean("CableIntactStatus") : null;
             String branchName = params != null ? params.optString("BranchName", null) : null;
             String engineType = esmParams != null ? esmParams.optString("Engine type", null) : null;
+            Integer buttonOccurence = params.has("ButtonOccurrence") && !params.isNull("ButtonOccurrence")
+                    ? params.getInt("ButtonOccurrence")
+                    : null;
 
             // Extract CommandParams
             CommandParams commandParams = new CommandParams(
@@ -103,7 +106,8 @@ public class JsonParser {
                     esmState, 
                     cableStatus,
                     branchName,
-                    engineType);
+                    engineType,
+                    buttonOccurence);
 
             // Parse expected result
             String expectedResultName = null;

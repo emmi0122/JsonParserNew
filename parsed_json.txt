@@ -17,7 +17,7 @@ Test Sequence
    Run linked test sequence 'ECR_GoToSetupPage.json'
 
    Go to "Adj DP" page
-      Select GUI button SET in frame SETUP PAGES at ECR
+      Select the 8th GUI button 'SET' in frame 'SETUP PAGES' at ECR
       Put Button Enter = 1 at ECR
 
    Fulfill required conditions for DP command
