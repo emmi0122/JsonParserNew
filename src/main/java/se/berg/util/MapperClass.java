@@ -32,6 +32,23 @@ public class MapperClass {
         };
     }
 
+    public static String mapInOutId(String inOutId) {
+        if (inOutId == null || inOutId.isBlank()) {
+            return "Unknown";
+        }
+
+        return switch (inOutId) {
+            case "OMIndicator1" -> "Operating Mode 1 Indicator";
+            case "OMIndicator2" -> "Operating Mode 2 Indicator";
+            case "OMIndicator3" -> "Operating Mode 3 Indicator";
+            case "OMButton1" -> "Operating Mode 1 Button";
+            case "OMButton2" -> "Operating Mode 2 Button";
+            case "OMButton3" -> "Operating Mode 3 Button";
+
+            default -> splitCamelCase(inOutId);
+        };
+    }
+
     public static String splitCamelCase(String text) {
         return (text == null || text.isEmpty())
                 ? ""

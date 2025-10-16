@@ -321,59 +321,59 @@ Test Sequence
 
    BM1 to BM2
       Put Button Take Over = 1 at Bridge Panel 2
-      Put Button Send Ackn = 1 at Bridge Panel 1
+      Put Button Send Acknowledgement = 1 at Bridge Panel 1
       Check that text indicator 'BM2:' exists, AND is green, in frame 'CONTROL SOURCE' at Bridge Panel 2
 
    Mode selection button - Warm Up - BM2
-      Put Digital Input Port OMButton2 = 1 at Bridge Panel 2
-      Put Digital Input Port OMButton2 = 0 at Bridge Panel 2
+      Put Digital Input Port Operating Mode 2 Button = 1 at Bridge Panel 2
+      Put Digital Input Port Operating Mode 2 Button = 0 at Bridge Panel 2
       Check that text indicator 'Warm Up' exists, AND is in frame 'TEST' at Bridge Panel 1
-      Check that Digital Output Port OMIndicator1 = 0 at Bridge Panel 2
-      Check that Digital Output Port OMIndicator2 = 1 at Bridge Panel 2
-      Check that Digital Output Port OMIndicator3 = 0 at Bridge Panel 2
+      Check that Digital Output Port Operating Mode 1 Indicator = 0 at Bridge Panel 2
+      Check that Digital Output Port Operating Mode 2 Indicator = 1 at Bridge Panel 2
+      Check that Digital Output Port Operating Mode 3 Indicator = 0 at Bridge Panel 2
 
    Mode selection button - Cruise - BM2
-      Put Digital Input Port OMButton3 = 1 at Bridge Panel 2
-      Put Digital Input Port OMButton3 = 0 at Bridge Panel 2
+      Put Digital Input Port Operating Mode 3 Button = 1 at Bridge Panel 2
+      Put Digital Input Port Operating Mode 3 Button = 0 at Bridge Panel 2
       Check that text indicator 'Cruise Neutral' exists, AND is in frame 'TEST' at Bridge Panel 1
-      Check that Digital Output Port OMIndicator1 = 0 at Bridge Panel 2
-      Check that Digital Output Port OMIndicator2 = 0 at Bridge Panel 2
-      Check that Digital Output Port OMIndicator3 = 1 at Bridge Panel 2
+      Check that Digital Output Port Operating Mode 1 Indicator = 0 at Bridge Panel 2
+      Check that Digital Output Port Operating Mode 2 Indicator = 0 at Bridge Panel 2
+      Check that Digital Output Port Operating Mode 3 Indicator = 1 at Bridge Panel 2
 
    Mode selection button - Trolling - BM2
-      Put Digital Input Port OMButton1 = 1 at Bridge Panel 2
-      Put Digital Input Port OMButton1 = 0 at Bridge Panel 2
+      Put Digital Input Port Operating Mode 1 Button = 1 at Bridge Panel 2
+      Put Digital Input Port Operating Mode 1 Button = 0 at Bridge Panel 2
       Check that text indicator 'Trolling Neutral' exists, AND is in frame 'TEST' at Bridge Panel 1
-      Check that Digital Output Port OMIndicator1 = 1 at Bridge Panel 2
-      Check that Digital Output Port OMIndicator2 = 0 at Bridge Panel 2
-      Check that Digital Output Port OMIndicator3 = 0 at Bridge Panel 2
+      Check that Digital Output Port Operating Mode 1 Indicator = 1 at Bridge Panel 2
+      Check that Digital Output Port Operating Mode 2 Indicator = 0 at Bridge Panel 2
+      Check that Digital Output Port Operating Mode 3 Indicator = 0 at Bridge Panel 2
 
    BM2 to BM3
       Put Button Take Over = 1 at Bridge Panel 3
-      Put Button Send Ackn = 1 at Bridge Panel 2
+      Put Button Send Acknowledgement = 1 at Bridge Panel 2
       Check that text indicator 'BM3:' exists, AND is green, in frame 'CONTROL SOURCE' at Bridge Panel 3
 
    Mode selection button - Warm Up - BM3
-      Put Digital Input Port OMButton2 = 1 at Bridge Panel 3
-      Put Digital Input Port OMButton2 = 0 at Bridge Panel 3
+      Put Digital Input Port Operating Mode 2 Button = 1 at Bridge Panel 3
+      Put Digital Input Port Operating Mode 2 Button = 0 at Bridge Panel 3
       Check that text indicator 'Warm Up' exists, AND is in frame 'TEST' at Bridge Panel 1
-      Check that Digital Output Port OMIndicator1 = 0 at Bridge Panel 3
-      Check that Digital Output Port OMIndicator2 = 1 at Bridge Panel 3
-      Check that Digital Output Port OMIndicator3 = 0 at Bridge Panel 3
+      Check that Digital Output Port Operating Mode 1 Indicator = 0 at Bridge Panel 3
+      Check that Digital Output Port Operating Mode 2 Indicator = 1 at Bridge Panel 3
+      Check that Digital Output Port Operating Mode 3 Indicator = 0 at Bridge Panel 3
 
    Mode selection button - Cruise - BM3
-      Put Digital Input Port OMButton3 = 1 at Bridge Panel 3
-      Put Digital Input Port OMButton3 = 0 at Bridge Panel 3
+      Put Digital Input Port Operating Mode 3 Button = 1 at Bridge Panel 3
+      Put Digital Input Port Operating Mode 3 Button = 0 at Bridge Panel 3
       Check that text indicator 'Cruise Neutral' exists, AND is in frame 'TEST' at Bridge Panel 1
-      Check that Digital Output Port OMIndicator1 = 0 at Bridge Panel 3
-      Check that Digital Output Port OMIndicator2 = 0 at Bridge Panel 3
-      Check that Digital Output Port OMIndicator3 = 1 at Bridge Panel 3
+      Check that Digital Output Port Operating Mode 1 Indicator = 0 at Bridge Panel 3
+      Check that Digital Output Port Operating Mode 2 Indicator = 0 at Bridge Panel 3
+      Check that Digital Output Port Operating Mode 3 Indicator = 1 at Bridge Panel 3
 
    Mode selection button - Trolling - BM3
-      Put Digital Input Port OMButton1 = 1 at Bridge Panel 3
-      Put Digital Input Port OMButton1 = 0 at Bridge Panel 3
+      Put Digital Input Port Operating Mode 1 Button = 1 at Bridge Panel 3
+      Put Digital Input Port Operating Mode 1 Button = 0 at Bridge Panel 3
       Check that text indicator 'Trolling Neutral' exists, AND is in frame 'TEST' at Bridge Panel 1
-      Check that Digital Output Port OMIndicator1 = 1 at Bridge Panel 3
-      Check that Digital Output Port OMIndicator2 = 0 at Bridge Panel 3
-      Check that Digital Output Port OMIndicator3 = 0 at Bridge Panel 3
+      Check that Digital Output Port Operating Mode 1 Indicator = 1 at Bridge Panel 3
+      Check that Digital Output Port Operating Mode 2 Indicator = 0 at Bridge Panel 3
+      Check that Digital Output Port Operating Mode 3 Indicator = 0 at Bridge Panel 3
 

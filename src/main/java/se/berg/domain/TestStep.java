@@ -141,7 +141,7 @@ public class TestStep {
             sb.append(MapperClass.mapAction(action)).append(" ");
         }
         if (inOutId != null && !inOutId.isEmpty()) {
-            sb.append(MapperClass.splitCamelCase(inOutId)).append(" ");
+            sb.append(MapperClass.mapInOutId(inOutId)).append(" ");
         }
 
         if (expectedResultMin != null && expectedResultMax != null) {
