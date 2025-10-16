@@ -4,6 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import se.berg.domain.TestSequence;
+import se.berg.html.HtmlRender;
 import se.berg.io.JsonParser;
 
 public class Main {
@@ -16,9 +17,14 @@ public class Main {
         String filePath = args[0];
 
         try {
+            //Get the JSON file from terminal
             TestSequence seq = JsonParser.parseTestSequence(filePath);
             Files.writeString(Paths.get("parsed_json.txt"), seq.toString());
             System.out.println("Parsing done. Result can be seen in parsed_json.txt");
+
+            //HTML render
+            HtmlRender render = new HtmlRender();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
