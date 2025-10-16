@@ -45,6 +45,8 @@ public class MapperClass {
             case "OMButton2" -> "Operating Mode 2 Button";
             case "OMButton3" -> "Operating Mode 3 Button";
 
+            case "Ackn" -> "Acknowledgement";
+            case "CtrlPosEcr" -> "ECR in command";
             default -> splitCamelCase(inOutId);
         };
     }
@@ -65,6 +67,7 @@ public class MapperClass {
             case "DigOutPort" -> "Digital Output Port";
             case "AnalogInput" -> "Analog Input";
             case "TextIndicatorColor" -> "Text Indicator Color";
+            case "StartApplication" -> "Application is starting";
             default -> splitCamelCase(action);
         };
     }

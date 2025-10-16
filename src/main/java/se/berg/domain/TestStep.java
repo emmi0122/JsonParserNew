@@ -112,13 +112,13 @@ public class TestStep {
         if ("TextIndicatorColor".equals(action)) {
             sb.append("Check that text indicator ");
             if (indicatorLabel != null && !indicatorLabel.isEmpty()) {
-                sb.append("'").append(indicatorLabel).append("'") .append(" ").append("exists, AND is ");
+                sb.append("'").append(indicatorLabel).append("'") .append(" ").append("exists");
             }
             if (expectedResultName != null && !expectedResultName.isEmpty()) {
-                sb.append(expectedResultName).append(", ");
+                sb.append(", AND is ") .append(expectedResultName).append(",");
             }
             if (frameLabel != null && !frameLabel.isEmpty()) {
-                sb.append("in frame ").append("'").append(frameLabel).append("'").append(" ");
+                sb.append(" in frame ").append("'").append(frameLabel).append("'").append(" ");
             }
             if (targetAddress != null) {
                 sb.append("at ").append(MapperClass.mapTargetAddress(targetAddress));
