@@ -18,7 +18,11 @@ public class Main {
             //TestSequence seq = JsonParser.parseTestSequence("01_COMMAND_TRANSFER_800M.json");
             //TestSequence seq = JsonParser.parseTestSequence("01_LOAD_CONTROL_SINGLE_800M.json");
             //TestSequence seq = JsonParser.parseTestSequence("01_SHAFT_GENERATOR_OPERATION_SINGLE_800M.json");
-            TestSequence seq = JsonParser.parseTestSequence("01_DP_OPERATION_SINGLE_800M.json");
+            //TestSequence seq = JsonParser.parseTestSequence("01_DP_OPERATION_SINGLE_800M.json");
+            //TestSequence seq = JsonParser.parseTestSequence("15_ENGINE_START_STOP_SINGLE_800M.json");
+            //TestSequence seq = JsonParser.parseTestSequence("01_FIFI_OPERATION_SINGLE_800M.json");
+            //TestSequence seq = JsonParser.parseTestSequence("01_SHAFT_BRAKE_SINGLE_800M.json");
+            TestSequence seq = JsonParser.parseTestSequence("26_OPERATING_MODE_FIX_PITCH_800M.json");
             Files.writeString(Paths.get("parsed_json.txt"), seq.toString());
         } catch (Exception e) {
             e.printStackTrace();

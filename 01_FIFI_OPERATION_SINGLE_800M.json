@@ -1,0 +1,489 @@
+{
+    "__module__": "cattest.utils.testsequence",
+    "__type__": "TestSequence",
+    "name": "01_FIFI_OPERATION_SINGLE_800M",
+    "test_cases": [
+        {
+            "__module__": "cattest.utils.testsequence",
+            "__type__": "TestCaseLinked",
+            "comment": "",
+            "file_name": "StartApplication.json",
+            "name": "Run linked test sequence 'StartApplication.json'",
+            "steps": []
+        },
+        {
+            "__module__": "cattest.utils.testsequence",
+            "__type__": "TestCaseLinked",
+            "comment": "",
+            "file_name": "BM1_AfterStartToClutchedIn.json",
+            "name": "Run linked test sequence 'BM1_AfterStartToClutchedIn.json'",
+            "steps": []
+        },
+        {
+            "__module__": "cattest.utils.testsequence",
+            "__type__": "TestCase",
+            "comment": "",
+            "name": "FiFi setup",
+            "steps": [
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepExtSysModel",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "ESMActivation",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "set",
+                            "value": 1
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "ESMParams": {},
+                            "ESMTypeName": "EngineLoadModel",
+                            "NewESMState": false
+                        },
+                        "send_header": null,
+                        "target_address": null,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "sub_test_steps": [
+                        {
+                            "__module__": "cattest.utils.testsequence",
+                            "__type__": "TestStepDelay",
+                            "command": {
+                                "__module__": "cattest.ctrl.testsyscmd",
+                                "__type__": "TestControllerCommand",
+                                "action": "",
+                                "array_": null,
+                                "checklist": null,
+                                "cmd_type": {
+                                    "__module__": "cattest.ctrl.testsyscmd",
+                                    "__type__": "CommandType",
+                                    "name": "get",
+                                    "value": 2
+                                },
+                                "modbus_status": false,
+                                "params": {},
+                                "send_header": null,
+                                "target_address": null,
+                                "target_branch": ""
+                            },
+                            "comment": "",
+                            "msec": 1000,
+                            "sub_test_steps": []
+                        }
+                    ]
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepStimuli",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "AnalogInput",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "set",
+                            "value": 1
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "EngActLoad",
+                            "Value": 1154
+                        },
+                        "send_header": null,
+                        "target_address": 15,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "%mA",
+                    "sub_test_steps": []
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepStimuli",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "DigInPort",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "set",
+                            "value": 1
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "FireFighting",
+                            "Value": 1
+                        },
+                        "send_header": null,
+                        "target_address": 15,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "",
+                    "sub_test_steps": [
+                        {
+                            "__module__": "cattest.utils.testsequence",
+                            "__type__": "TestStepDelay",
+                            "command": {
+                                "__module__": "cattest.ctrl.testsyscmd",
+                                "__type__": "TestControllerCommand",
+                                "action": "",
+                                "array_": null,
+                                "checklist": null,
+                                "cmd_type": {
+                                    "__module__": "cattest.ctrl.testsyscmd",
+                                    "__type__": "CommandType",
+                                    "name": "get",
+                                    "value": 2
+                                },
+                                "modbus_status": false,
+                                "params": {},
+                                "send_header": null,
+                                "target_address": null,
+                                "target_branch": ""
+                            },
+                            "comment": "",
+                            "msec": 500,
+                            "sub_test_steps": []
+                        }
+                    ]
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheck",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "DigOutPort",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "get",
+                            "value": 2
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "_80PercLoad"
+                        },
+                        "send_header": null,
+                        "target_address": 15,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "",
+                    "expected_result": 0,
+                    "inverted_result": false,
+                    "sub_test_steps": [],
+                    "timeout": 0
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheck",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "DigOutPort",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "get",
+                            "value": 2
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "_100PercLoad"
+                        },
+                        "send_header": null,
+                        "target_address": 15,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "",
+                    "expected_result": 0,
+                    "inverted_result": false,
+                    "sub_test_steps": [],
+                    "timeout": 0
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheckTextIndicator",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "TextIndicatorColor",
+                        "array_": {},
+                        "checklist": [],
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "get",
+                            "value": 2
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "FrameLabel": "",
+                            "IndicatorLabel": "FIFI ACTIVE"
+                        },
+                        "send_header": null,
+                        "target_address": 0,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "expected_result": {
+                        "__module__": "cattest.utils.ioenum",
+                        "__type__": "IndicatorColor",
+                        "name": "yellow",
+                        "value": 11
+                    },
+                    "inverted_result": false,
+                    "sub_test_steps": [],
+                    "timeout": 5000
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheckTextIndicator",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "TextIndicatorColor",
+                        "array_": {},
+                        "checklist": [],
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "get",
+                            "value": 2
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "FrameLabel": "",
+                            "IndicatorLabel": "FIFI ACTIVE"
+                        },
+                        "send_header": null,
+                        "target_address": 1,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "expected_result": {
+                        "__module__": "cattest.utils.ioenum",
+                        "__type__": "IndicatorColor",
+                        "name": "yellow",
+                        "value": 11
+                    },
+                    "inverted_result": false,
+                    "sub_test_steps": [],
+                    "timeout": 5000
+                }
+            ]
+        },
+        {
+            "__module__": "cattest.utils.testsequence",
+            "__type__": "TestCase",
+            "comment": "",
+            "name": "Test FiFi 80% Load alarm output",
+            "steps": [
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepStimuli",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "AnalogInput",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "set",
+                            "value": 1
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "EngActLoad",
+                            "Value": 2900
+                        },
+                        "send_header": null,
+                        "target_address": 15,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "AD",
+                    "sub_test_steps": []
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheck",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "DigOutPort",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "get",
+                            "value": 2
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "_80PercLoad"
+                        },
+                        "send_header": null,
+                        "target_address": 15,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "",
+                    "expected_result": 1,
+                    "inverted_result": false,
+                    "sub_test_steps": [],
+                    "timeout": 1000
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheck",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "DigOutPort",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "get",
+                            "value": 2
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "_100PercLoad"
+                        },
+                        "send_header": null,
+                        "target_address": 15,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "",
+                    "expected_result": 0,
+                    "inverted_result": false,
+                    "sub_test_steps": [],
+                    "timeout": 1000
+                }
+            ]
+        },
+        {
+            "__module__": "cattest.utils.testsequence",
+            "__type__": "TestCase",
+            "comment": "",
+            "name": "Test FiFi 100% Load alarm output",
+            "steps": [
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepStimuli",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "AnalogInput",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "set",
+                            "value": 1
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "EngActLoad",
+                            "Value": 3350
+                        },
+                        "send_header": null,
+                        "target_address": 15,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "AD",
+                    "sub_test_steps": []
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheck",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "DigOutPort",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "get",
+                            "value": 2
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "_80PercLoad"
+                        },
+                        "send_header": null,
+                        "target_address": 15,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "",
+                    "expected_result": 1,
+                    "inverted_result": false,
+                    "sub_test_steps": [],
+                    "timeout": 1000
+                },
+                {
+                    "__module__": "cattest.utils.testsequence",
+                    "__type__": "TestStepCheck",
+                    "command": {
+                        "__module__": "cattest.ctrl.testsyscmd",
+                        "__type__": "TestControllerCommand",
+                        "action": "DigOutPort",
+                        "array_": null,
+                        "checklist": null,
+                        "cmd_type": {
+                            "__module__": "cattest.ctrl.testsyscmd",
+                            "__type__": "CommandType",
+                            "name": "get",
+                            "value": 2
+                        },
+                        "modbus_status": false,
+                        "params": {
+                            "InOutId": "_100PercLoad"
+                        },
+                        "send_header": null,
+                        "target_address": 15,
+                        "target_branch": ""
+                    },
+                    "comment": "",
+                    "display_unit": "",
+                    "expected_result": 1,
+                    "inverted_result": false,
+                    "sub_test_steps": [],
+                    "timeout": 1000
+                }
+            ]
+        }
+    ]
+}

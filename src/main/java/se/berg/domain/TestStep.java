@@ -89,8 +89,10 @@ public class TestStep {
 
         // Special case for selecting buttons
         if ("SelectButton".equals(action)) {
-            if (buttonOccurence == null) {
+            if (buttonOccurence == null || buttonOccurence <= 1) {
                 sb.append("Select GUI button");
+            } else if (buttonOccurence == 2) {
+                sb.append("Select the ").append(buttonOccurence).append("nd GUI button");
             } else {
                 sb.append("Select the ").append(buttonOccurence).append("th GUI button");
             }
@@ -110,13 +112,13 @@ public class TestStep {
         if ("TextIndicatorColor".equals(action)) {
             sb.append("Check that text indicator ");
             if (indicatorLabel != null && !indicatorLabel.isEmpty()) {
-                sb.append(indicatorLabel).append(" ").append("exists, AND is ");
+                sb.append("'").append(indicatorLabel).append("'") .append(" ").append("exists, AND is ");
             }
             if (expectedResultName != null && !expectedResultName.isEmpty()) {
                 sb.append(expectedResultName).append(", ");
             }
             if (frameLabel != null && !frameLabel.isEmpty()) {
-                sb.append("in frame ").append(frameLabel).append(" ");
+                sb.append("in frame ").append("'").append(frameLabel).append("'").append(" ");
             }
             if (targetAddress != null) {
                 sb.append("at ").append(MapperClass.mapTargetAddress(targetAddress));
