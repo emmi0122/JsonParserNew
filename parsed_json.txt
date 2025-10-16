@@ -1,78 +1,379 @@
 Test Sequence
    Run linked test sequence 'StartApplication.json'
 
-   Run linked test sequence 'StartPitchControl.json'
-
-   Run linked test sequence 'StartSpeedFeedback.json'
-
    Initial Condition
       Set constant WITHIN == 30000 
-      Put Digital Input Port Hydraulic Pressure Ok = 1 at Central Unit
       Put Digital Input Port Shutdown Me1 = 0 at Central Unit
-      Put Digital Input Port Overload = 0 at Central Unit
       Put Digital Input Port Parallel System Power = 1 at Central Unit
-      Put Digital Input Port Slowdown = 0 at Central Unit
-      Put Digital Input Port Me Governor Healthy = 1 at Central Unit
-      Select GUI button 'COMB' in frame 'C.RPM' at ECR
-      Put Button Enter = 1 at ECR
-      Put Digital Input Port Acknowledgement = 1 at ECR
+      Put Digital Input Port Me1Remote Control Permitted = 1 at Central Unit
       Put Button Take Over = 1 at Bridge Panel 1
-      Check that Digital Output Port Ctrl Pos Bm1 = 1 at Central Unit
-      Check that Digital Output Port ECR in command = 0 at Central Unit
-      Select GUI button 'IN' in frame 'PROPULSION' at Bridge Panel 1
+
+   Warm Up - Check clutch neutral
+      Select GUI button 'WARM UP' in frame 'TEST' at Bridge Panel 1
       Put Button Enter = 1 at Bridge Panel 1
-      Check that Digital Output Port Main Clutch In = 1 at Central Unit
-      Put Digital Input Port Main Clutch Engaged = 1 at Central Unit
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 1 at Central Unit
+      Put Digital Input Port Shaft Brake Disengaged = 0 at Central Unit
+      Check that text indicator 'NEUTRAL' exists, AND is green, in frame 'TEST' at Bridge Panel 1
 
-   Move BM1 Lever to full ahead
-      Put Analog Input Pitch Lever = 3500AD at Bridge Panel 1
-      Check that Analog Input Pitch Feedback is between 3100AD and 3300AD at Central Unit
+   Warm Up - Full throttle ahead
+      Put Analog Input Pitch Lever = 3496AD at Bridge Panel 1
+      Check that PWM Speed Demand is between 198%mA and 201%mA at Central Unit
 
-   Activate SLOWDOWN
-      Put Digital Input Port Slowdown = 1 at Central Unit
-      Check that Analog Input Pitch Feedback is between 2900AD and 3000AD at Central Unit
+   Warm Up - Throttle to idle
+      Put Analog Input Pitch Lever = 1940AD at Bridge Panel 1
+      Check that PWM Speed Demand is between 36%mA and 39%mA at Central Unit
 
-   Press OVERRIDE (activate)
-      Select GUI button 'OVER RIDE' in frame 'AUTO LOAD RED.' at Bridge Panel 1
+   Warm Up - Full throttle astern
+      Put Analog Input Pitch Lever = 384AD at Bridge Panel 1
+      Check that PWM Speed Demand is between 198%mA and 201%mA at Central Unit
+
+   Warm Up - Throttle idle
+      Put Analog Input Pitch Lever = 1940AD at Bridge Panel 1
+      Check that PWM Speed Demand is between 36%mA and 39%mA at Central Unit
+
+   Warm-up to Cruise Neutral
+      Select GUI button 'CRU ISE' in frame 'TEST' at Bridge Panel 1
       Put Button Enter = 1 at Bridge Panel 1
-      Put Button Enter = 1 at Bridge Panel 1
-      Check that Analog Input Pitch Feedback is between 3100AD and 3300AD at Central Unit
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 1 at Central Unit
+      Check that text indicator 'Cruise Neutral' exists in frame 'TEST' at Bridge Panel 1
+      Check that text indicator 'NEUTRAL' exists, AND is green, in frame 'TEST' at Bridge Panel 1
 
-   Press OVERRIDE (de-activate)
-      Select GUI button 'OVER RIDE' in frame 'AUTO LOAD RED.' at Bridge Panel 1
-      Put Button Enter = 1 at Bridge Panel 1
-      Check that Analog Input Pitch Feedback is between 2900AD and 3000AD at Central Unit
+   Cruise - Shaft Lock Engaged
+      Put Digital Input Port Shaft Lock Engaged = 1 at Central Unit
+      Put Analog Input Pitch Lever = 3496AD at Bridge Panel 1
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Check that Digital Output Port Clutch Ahead Order = 0 at Central Unit
+      Check that Digital Output Port Clutch Astern Order = 0 at Central Unit
+      Put Analog Input Pitch Lever = 384AD at Bridge Panel 1
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Check that Digital Output Port Clutch Ahead Order = 0 at Central Unit
+      Check that Digital Output Port Clutch Astern Order = 0 at Central Unit
+      Put Analog Input Pitch Lever = 1940AD at Bridge Panel 1
+      Put Digital Input Port Shaft Lock Engaged = 0 at Central Unit
 
-   Release SLOWDOWN
-      Put Digital Input Port Slowdown = 0 at Central Unit
-      Check that Analog Input Pitch Feedback is between 3100AD and 3300AD at Central Unit
+   Cruise - Full throttle ahead
+      Put Analog Input Pitch Lever = 3496AD at Bridge Panel 1
+      Check that Digital Output Port Clutch Neutral Order = 0 at Central Unit
+      Check that text indicator 'Disengage Shaft Brake' exists in frame 'TEST' at Bridge Panel 1
+      Put Digital Input Port Shaft Brake Disengaged = 1 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 0 at Central Unit
+      Check that text indicator 'Cruise Ahead' exists in frame 'TEST' at Bridge Panel 1
+      Check that Digital Output Port Clutch Ahead Order = 1 at Central Unit
+      Put Digital Input Port Clutch Engaged Ahead = 1 at Central Unit
+      Check that text indicator 'AHEAD' exists, AND is green, in frame 'TEST' at Bridge Panel 1
+      Put Digital Input Port Clutch Pressure Ok = 1 at Central Unit
+      Check that PWM Speed Demand is between 198%mA and 201%mA at Central Unit
+      Put Analog Input Eng Act Speed = 3208%mA at Central Unit
 
-   Activate OVERLOAD
-      Put Digital Input Port Overload = 1 at Central Unit
-      Check that Analog Input Pitch Feedback is between 1840AD and 2040AD at Central Unit
+   Cruise - Shaft brake signal fault ahead
+      Put Digital Input Port Shaft Brake Disengaged = 0 at Central Unit
+      Check that text indicator 'ALARM ACTIVE SYSTEM' exists, AND is red, in frame 'ALERTS' at Bridge Panel 1
+      Check that Digital Output Port System Fault = 0 at Central Unit
+      Put Digital Input Port Shaft Brake Disengaged = 1 at Central Unit
+      Check that text indicator 'ALARM ACTIVE SYSTEM' exists, AND is grey, in frame 'ALERTS' at Bridge Panel 1
+      Check that Digital Output Port System Fault = 1 at Central Unit
 
-   Release OVERLOAD
-      Put Digital Input Port Overload = 0 at Central Unit
-      Check that Analog Input Pitch Feedback is between 3100AD and 3300AD at Central Unit
+   Cruise - Clutch ahead signal fault
+      Put Digital Input Port Clutch Engaged Ahead = 0 at Central Unit
+      Check that text indicator 'ALARM ACTIVE SYSTEM' exists, AND is red, in frame 'ALERTS' at Bridge Panel 1
+      Put Digital Input Port Clutch Engaged Ahead = 1 at Central Unit
 
-   Activate SHUTDOWN
+   Cruise - Full throttle astern
+      Put Analog Input Pitch Lever = 384AD at Bridge Panel 1
+      Check that PWM Speed Demand is between 34%mA and 41%mA at Central Unit
+      Check that text indicator 'ME RPM Idle' exists in frame 'TEST' at Bridge Panel 1
+      Put Analog Input Eng Act Speed = 1668%mA at Central Unit
+      Check that text indicator 'Clutch to Neutral' exists in frame 'TEST' at Bridge Panel 1
+      Check that PWM Speed Demand is between 36%mA and 39%mA at Central Unit
+      Check that Digital Output Port Clutch Ahead Order = 0 at Central Unit
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Put Digital Input Port Shaft Brake Disengaged = 0 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 1 at Central Unit
+      Put Digital Input Port Clutch Engaged Ahead = 0 at Central Unit
+      Check that Digital Output Port Clutch Neutral Order = 0 at Central Unit
+      Check that text indicator 'Disengage Shaft Brake' exists in frame 'TEST' at Bridge Panel 1
+      Check that PWM Speed Demand is between 38%mA and 60%mA at Central Unit
+      Put Digital Input Port Shaft Brake Disengaged = 1 at Central Unit
+      Check that Digital Output Port Clutch Astern Order = 1 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 0 at Central Unit
+      Put Digital Input Port Clutch Engaged Astern = 1 at Central Unit
+      Check that text indicator 'Cruise Astern' exists in frame 'TEST' at Bridge Panel 1
+      Check that text indicator 'ASTERN' exists, AND is green, in frame 'TEST' at Bridge Panel 1
+      Put Analog Input Eng Act Speed = 3208%mA at Central Unit
+
+   Cruise - Shaft brake signal fault astern
+      Put Digital Input Port Shaft Brake Disengaged = 0 at Central Unit
+      Check that text indicator 'ALARM ACTIVE SYSTEM' exists, AND is red, in frame 'ALERTS' at Bridge Panel 1
+      Check that Digital Output Port System Fault = 0 at Central Unit
+      Put Digital Input Port Shaft Brake Disengaged = 1 at Central Unit
+      Check that text indicator 'ALARM ACTIVE SYSTEM' exists, AND is grey, in frame 'ALERTS' at Bridge Panel 1
+      Check that Digital Output Port System Fault = 1 at Central Unit
+
+   Cruise - Clutch astern signal fault
+      Put Digital Input Port Clutch Engaged Astern = 0 at Central Unit
+      Check that text indicator 'ALARM ACTIVE SYSTEM' exists, AND is red, in frame 'ALERTS' at Bridge Panel 1
+      Put Digital Input Port Clutch Engaged Astern = 1 at Central Unit
+
+   Cruise - Full throttle ahead
+      Put Analog Input Pitch Lever = 3496AD at Bridge Panel 1
+      Check that PWM Speed Demand is between 34%mA and 41%mA at Central Unit
+      Check that text indicator 'ME RPM Idle' exists in frame 'TEST' at Bridge Panel 1
+      Put Analog Input Eng Act Speed = 1668%mA at Central Unit
+      Check that text indicator 'Clutch to Neutral' exists in frame 'TEST' at Bridge Panel 1
+      Check that PWM Speed Demand is between 34%mA and 41%mA at Central Unit
+      Put Digital Input Port Shaft Brake Disengaged = 0 at Central Unit
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Put Digital Input Port Clutch Engaged Astern = 0 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 1 at Central Unit
+      Check that text indicator 'Disengage Shaft Brake' exists in frame 'TEST' at Bridge Panel 1
+      Check that PWM Speed Demand is between 38%mA and 62%mA at Central Unit
+      Check that Digital Output Port Clutch Neutral Order = 0 at Central Unit
+      Put Digital Input Port Shaft Brake Disengaged = 1 at Central Unit
+      Check that Digital Output Port Clutch Neutral Order = 0 at Central Unit
+      Check that Digital Output Port Clutch Ahead Order = 1 at Central Unit
+      Check that text indicator 'Cruise Ahead' exists in frame 'TEST' at Bridge Panel 1
+
+   Cruise - shutdown
       Put Digital Input Port Shutdown Me1 = 1 at Central Unit
-      Check that Digital Output Port Main Clutch Out = 1 at Central Unit
-      Put Digital Input Port Main Clutch Engaged = 0 at Central Unit
-      Check that Analog Input Pitch Feedback is between 1840AD and 2040AD at Central Unit
-
-   Release SHUTDOWN
+      Check that Digital Output Port Clutch Ahead Order = 0 at Central Unit
+      Check that Digital Output Port Clutch Astern Order = 0 at Central Unit
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Check that text indicator 'Warm Up' exists in frame 'TEST' at Bridge Panel 1
+      Check that PWM Speed Demand is between 34%mA and 41%mA at Central Unit
       Put Digital Input Port Shutdown Me1 = 0 at Central Unit
-      Check that Analog Input Pitch Feedback is between 3100AD and 3300AD at Central Unit
+      Put Digital Input Port Clutch Engaged Ahead = 0 at Central Unit
+      Put Digital Input Port Clutch Engaged Astern = 0 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 1 at Central Unit
+      Put Digital Input Port Shaft Brake Disengaged = 0 at Central Unit
+      Put Analog Input Pitch Lever = 1940AD at Bridge Panel 1
 
-   ME Governor Healthy
-      Put Analog Input Pitch Lever = 1940%V at Bridge Panel 1
-      Put Digital Input Port Shutdown Me1 = 1 at Central Unit
-      Put Digital Input Port Me Governor Healthy = 0 at Central Unit
-      Check that PWM Speed Demand is between 38AD and 38AD at Central Unit
-      Put Digital Input Port Shutdown Me1 = 0 at Central Unit
-      Check that PWM Speed Demand is between 127AD and 255AD at Central Unit
-      Check that text indicator 'BACKUP GOVERNOR' exists, AND is red, in frame 'AUTO LOAD RED.' at Bridge Panel 1
+   Cruise - Shaft brake timeout ahead
+      Select GUI button 'CRU ISE' in frame 'TEST' at Bridge Panel 1
       Put Button Enter = 1 at Bridge Panel 1
-      Check that text indicator 'CLUTCH IN BLOCKED' exists, AND is red, in frame 'CLUTCH' at ECR
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 1 at Central Unit
+      Put Digital Input Port Clutch Pressure Ok = 0 at Central Unit
+      Put Analog Input Pitch Lever = 3496AD at Bridge Panel 1
+      Check that text indicator 'Disengage Shaft Brake' exists in frame 'TEST' at Bridge Panel 1
+      Check that text indicator 'Shaft Brake Timeout' exists in frame 'TEST' at Bridge Panel 1
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Check that Digital Output Port System Fault = 0 at Central Unit
+
+   Cruise - Shaft brake timeout astern
+      Put Analog Input Pitch Lever = 384AD at Bridge Panel 1
+      Check that text indicator 'Disengage Shaft Brake' exists in frame 'TEST' at Bridge Panel 1
+      Check that text indicator 'Shaft Brake Timeout' exists in frame 'TEST' at Bridge Panel 1
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Check that Digital Output Port System Fault = 0 at Central Unit
+
+   Cruise - Throttle to idle
+      Put Analog Input Pitch Lever = 1940AD at Bridge Panel 1
+      Put Digital Input Port Clutch Engaged Ahead = 0 at Central Unit
+      Put Digital Input Port Clutch Engaged Astern = 0 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 1 at Central Unit
+      Check that text indicator 'Cruise Neutral' exists in frame 'TEST' at Bridge Panel 1
+
+   Cruise  to Trolling Neutral
+      Select GUI button 'TROLL' in frame 'TEST' at Bridge Panel 1
+      Put Button Enter = 1 at Bridge Panel 1
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 1 at Central Unit
+      Check that text indicator 'Trolling Neutral' exists in frame 'TEST' at Bridge Panel 1
+      Check that text indicator 'NEUTRAL' exists, AND is green, in frame 'TEST' at Bridge Panel 1
+      Check that Digital Output Port Trolling Command = 1 at Central Unit
+
+   Trolling - Shaft Lock Engaged
+      Put Digital Input Port Shaft Lock Engaged = 1 at Central Unit
+      Put Analog Input Pitch Lever = 3496AD at Bridge Panel 1
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Check that Digital Output Port Clutch Ahead Order = 0 at Central Unit
+      Check that Digital Output Port Clutch Astern Order = 0 at Central Unit
+      Put Analog Input Pitch Lever = 384AD at Bridge Panel 1
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Check that Digital Output Port Clutch Ahead Order = 0 at Central Unit
+      Check that Digital Output Port Clutch Astern Order = 0 at Central Unit
+      Put Analog Input Pitch Lever = 1940AD at Bridge Panel 1
+      Put Digital Input Port Shaft Lock Engaged = 0 at Central Unit
+
+   Trolling - Full throttle ahead
+      Put Analog Input Pitch Lever = 3496AD at Bridge Panel 1
+      Check that Digital Output Port Clutch Neutral Order = 0 at Central Unit
+      Check that text indicator 'Disengage Shaft Brake' exists in frame 'TEST' at Bridge Panel 1
+      Put Digital Input Port Shaft Brake Disengaged = 1 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 0 at Central Unit
+      Check that text indicator 'Trolling Ahead' exists in frame 'TEST' at Bridge Panel 1
+      Check that Digital Output Port Clutch Ahead Order = 1 at Central Unit
+      Check that Digital Output Port Trolling Command = 0 at Central Unit
+      Put Digital Input Port Clutch Engaged Ahead = 1 at Central Unit
+      Check that text indicator 'AHEAD' exists, AND is green, in frame 'TEST' at Bridge Panel 1
+      Put Digital Input Port Clutch Pressure Ok = 1 at Central Unit
+      Check that PWM Speed Demand is between 198%mA and 201%mA at Central Unit
+      Put Analog Input Eng Act Speed = 3208%mA at Central Unit
+
+   Trolling - Shaft brake signal fault ahead
+      Put Digital Input Port Shaft Brake Disengaged = 0 at Central Unit
+      Check that text indicator 'ALARM ACTIVE SYSTEM' exists, AND is red, in frame 'ALERTS' at Bridge Panel 1
+      Put Digital Input Port Shaft Brake Disengaged = 1 at Central Unit
+      Check that text indicator 'ALARM ACTIVE SYSTEM' exists, AND is grey, in frame 'ALERTS' at Bridge Panel 1
+
+   Trolling - Clutch ahead signal fault
+      Put Digital Input Port Clutch Engaged Ahead = 0 at Central Unit
+      Check that text indicator 'ALARM ACTIVE SYSTEM' exists, AND is red, in frame 'ALERTS' at Bridge Panel 1
+      Put Digital Input Port Clutch Engaged Ahead = 1 at Central Unit
+
+   Trolling - Full throttle astern
+      Put Analog Input Pitch Lever = 384AD at Bridge Panel 1
+      Check that PWM Speed Demand is between 34%mA and 41%mA at Central Unit
+      Check that text indicator 'ME RPM Idle' exists in frame 'TEST' at Bridge Panel 1
+      Put Analog Input Eng Act Speed = 1668%mA at Central Unit
+      Check that text indicator 'Clutch to Neutral' exists in frame 'TEST' at Bridge Panel 1
+      Check that PWM Speed Demand is between 36%mA and 39%mA at Central Unit
+      Check that Digital Output Port Clutch Ahead Order = 0 at Central Unit
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Put Digital Input Port Shaft Brake Disengaged = 0 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 1 at Central Unit
+      Put Digital Input Port Clutch Engaged Ahead = 0 at Central Unit
+      Check that Digital Output Port Clutch Neutral Order = 0 at Central Unit
+      Check that text indicator 'Disengage Shaft Brake' exists in frame 'TEST' at Bridge Panel 1
+      Check that PWM Speed Demand is between 38%mA and 60%mA at Central Unit
+      Put Digital Input Port Shaft Brake Disengaged = 1 at Central Unit
+      Check that Digital Output Port Clutch Astern Order = 1 at Central Unit
+      Check that Digital Output Port Trolling Command = 0 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 0 at Central Unit
+      Put Digital Input Port Clutch Engaged Astern = 1 at Central Unit
+      Check that text indicator 'Trolling Astern' exists in frame 'TEST' at Bridge Panel 1
+      Check that text indicator 'ASTERN' exists, AND is green, in frame 'TEST' at Bridge Panel 1
+      Put Analog Input Eng Act Speed = 3208%mA at Central Unit
+
+   Trolling - Shaft brake signal fault astern
+      Put Digital Input Port Shaft Brake Disengaged = 0 at Central Unit
+      Check that text indicator 'ALARM ACTIVE SYSTEM' exists, AND is red, in frame 'ALERTS' at Bridge Panel 1
+      Put Digital Input Port Shaft Brake Disengaged = 1 at Central Unit
+      Check that text indicator 'ALARM ACTIVE SYSTEM' exists, AND is grey, in frame 'ALERTS' at Bridge Panel 1
+
+   Trolling - Clutch astern signal fault
+      Put Digital Input Port Clutch Engaged Astern = 0 at Central Unit
+      Check that text indicator 'ALARM ACTIVE SYSTEM' exists, AND is red, in frame 'ALERTS' at Bridge Panel 1
+      Put Digital Input Port Clutch Engaged Astern = 1 at Central Unit
+
+   Trolling - Full throttle ahead
+      Put Analog Input Pitch Lever = 3496AD at Bridge Panel 1
+      Check that PWM Speed Demand is between 34%mA and 41%mA at Central Unit
+      Check that text indicator 'ME RPM Idle' exists in frame 'TEST' at Bridge Panel 1
+      Put Analog Input Eng Act Speed = 1668%mA at Central Unit
+      Check that text indicator 'Clutch to Neutral' exists in frame 'TEST' at Bridge Panel 1
+      Check that PWM Speed Demand is between 34%mA and 41%mA at Central Unit
+      Put Digital Input Port Shaft Brake Disengaged = 0 at Central Unit
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Put Digital Input Port Clutch Engaged Astern = 0 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 1 at Central Unit
+      Check that text indicator 'Disengage Shaft Brake' exists in frame 'TEST' at Bridge Panel 1
+      Check that PWM Speed Demand is between 38%mA and 62%mA at Central Unit
+      Check that Digital Output Port Clutch Neutral Order = 0 at Central Unit
+      Put Digital Input Port Shaft Brake Disengaged = 1 at Central Unit
+      Check that Digital Output Port Clutch Neutral Order = 0 at Central Unit
+      Check that Digital Output Port Clutch Ahead Order = 1 at Central Unit
+      Check that text indicator 'Trolling Ahead' exists in frame 'TEST' at Bridge Panel 1
+
+   Trolling - shutdown
+      Put Digital Input Port Shutdown Me1 = 1 at Central Unit
+      Check that Digital Output Port Clutch Ahead Order = 0 at Central Unit
+      Check that Digital Output Port Clutch Astern Order = 0 at Central Unit
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Check that text indicator 'Warm Up' exists in frame 'TEST' at Bridge Panel 1
+      Check that PWM Speed Demand is between 34%mA and 41%mA at Central Unit
+      Put Digital Input Port Shutdown Me1 = 0 at Central Unit
+      Put Digital Input Port Clutch Engaged Ahead = 0 at Central Unit
+      Put Digital Input Port Clutch Engaged Astern = 0 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 1 at Central Unit
+      Put Digital Input Port Shaft Brake Disengaged = 0 at Central Unit
+      Put Analog Input Pitch Lever = 1940AD at Bridge Panel 1
+
+   Trolling - Shaft brake timeout ahead
+      Select GUI button 'TROLL' in frame 'TEST' at Bridge Panel 1
+      Put Button Enter = 1 at Bridge Panel 1
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+      Put Digital Input Port Clutch Engaged Neutral = 1 at Central Unit
+      Put Digital Input Port Clutch Pressure Ok = 0 at Central Unit
+      Put Analog Input Pitch Lever = 3496AD at Bridge Panel 1
+      Check that text indicator 'Disengage Shaft Brake' exists in frame 'TEST' at Bridge Panel 1
+      Check that text indicator 'Shaft Brake Timeout' exists in frame 'TEST' at Bridge Panel 1
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+
+   Trolling - Shaft brake timeout astern
+      Put Analog Input Pitch Lever = 384AD at Bridge Panel 1
+      Check that text indicator 'Disengage Shaft Brake' exists in frame 'TEST' at Bridge Panel 1
+      Check that text indicator 'Shaft Brake Timeout' exists in frame 'TEST' at Bridge Panel 1
+      Check that Digital Output Port Clutch Neutral Order = 1 at Central Unit
+
+   Trolling Ahead
+      Put Analog Input Pitch Lever = 2171AD at Bridge Panel 1
+      Check that Digital Output Port Trolling Command = 1 at Central Unit
+
+   Trolling Astern
+      Put Analog Input Pitch Lever = 1710AD at Bridge Panel 1
+      Check that Digital Output Port Trolling Command = 1 at Central Unit
+
+   Trolling - Neutral
+      Put Analog Input Pitch Lever = 1940AD at Bridge Panel 1
+
+   BM1 to BM2
+      Put Button Take Over = 1 at Bridge Panel 2
+      Put Button Send Ackn = 1 at Bridge Panel 1
+      Check that text indicator 'BM2:' exists, AND is green, in frame 'CONTROL SOURCE' at Bridge Panel 2
+
+   Mode selection button - Warm Up - BM2
+      Put Digital Input Port Operating Mode 2 Button = 1 at Bridge Panel 2
+      Put Digital Input Port Operating Mode 2 Button = 0 at Bridge Panel 2
+      Check that text indicator 'Warm Up' exists in frame 'TEST' at Bridge Panel 1
+      Check that Digital Output Port Operating Mode 1 Indicator = 0 at Bridge Panel 2
+      Check that Digital Output Port Operating Mode 2 Indicator = 1 at Bridge Panel 2
+      Check that Digital Output Port Operating Mode 3 Indicator = 0 at Bridge Panel 2
+
+   Mode selection button - Cruise - BM2
+      Put Digital Input Port Operating Mode 3 Button = 1 at Bridge Panel 2
+      Put Digital Input Port Operating Mode 3 Button = 0 at Bridge Panel 2
+      Check that text indicator 'Cruise Neutral' exists in frame 'TEST' at Bridge Panel 1
+      Check that Digital Output Port Operating Mode 1 Indicator = 0 at Bridge Panel 2
+      Check that Digital Output Port Operating Mode 2 Indicator = 0 at Bridge Panel 2
+      Check that Digital Output Port Operating Mode 3 Indicator = 1 at Bridge Panel 2
+
+   Mode selection button - Trolling - BM2
+      Put Digital Input Port Operating Mode 1 Button = 1 at Bridge Panel 2
+      Put Digital Input Port Operating Mode 1 Button = 0 at Bridge Panel 2
+      Check that text indicator 'Trolling Neutral' exists in frame 'TEST' at Bridge Panel 1
+      Check that Digital Output Port Operating Mode 1 Indicator = 1 at Bridge Panel 2
+      Check that Digital Output Port Operating Mode 2 Indicator = 0 at Bridge Panel 2
+      Check that Digital Output Port Operating Mode 3 Indicator = 0 at Bridge Panel 2
+
+   BM2 to BM3
+      Put Button Take Over = 1 at Bridge Panel 3
+      Put Button Send Ackn = 1 at Bridge Panel 2
+      Check that text indicator 'BM3:' exists, AND is green, in frame 'CONTROL SOURCE' at Bridge Panel 3
+
+   Mode selection button - Warm Up - BM3
+      Put Digital Input Port Operating Mode 2 Button = 1 at Bridge Panel 3
+      Put Digital Input Port Operating Mode 2 Button = 0 at Bridge Panel 3
+      Check that text indicator 'Warm Up' exists in frame 'TEST' at Bridge Panel 1
+      Check that Digital Output Port Operating Mode 1 Indicator = 0 at Bridge Panel 3
+      Check that Digital Output Port Operating Mode 2 Indicator = 1 at Bridge Panel 3
+      Check that Digital Output Port Operating Mode 3 Indicator = 0 at Bridge Panel 3
+
+   Mode selection button - Cruise - BM3
+      Put Digital Input Port Operating Mode 3 Button = 1 at Bridge Panel 3
+      Put Digital Input Port Operating Mode 3 Button = 0 at Bridge Panel 3
+      Check that text indicator 'Cruise Neutral' exists in frame 'TEST' at Bridge Panel 1
+      Check that Digital Output Port Operating Mode 1 Indicator = 0 at Bridge Panel 3
+      Check that Digital Output Port Operating Mode 2 Indicator = 0 at Bridge Panel 3
+      Check that Digital Output Port Operating Mode 3 Indicator = 1 at Bridge Panel 3
+
+   Mode selection button - Trolling - BM3
+      Put Digital Input Port Operating Mode 1 Button = 1 at Bridge Panel 3
+      Put Digital Input Port Operating Mode 1 Button = 0 at Bridge Panel 3
+      Check that text indicator 'Trolling Neutral' exists in frame 'TEST' at Bridge Panel 1
+      Check that Digital Output Port Operating Mode 1 Indicator = 1 at Bridge Panel 3
+      Check that Digital Output Port Operating Mode 2 Indicator = 0 at Bridge Panel 3
+      Check that Digital Output Port Operating Mode 3 Indicator = 0 at Bridge Panel 3
 
