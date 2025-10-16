@@ -2,21 +2,11 @@ package se.berg.domain;
 
 import se.berg.util.MapperClass;
 
-/**
- * Represents a single step in a test case.
- * A TestStep contains a command and an expected result.
- */
 public class TestStep {
     private TestCommand command;
     private ExpectedResult expectedResult;
     private CommandParams commandParams;
 
-    /**
-     * Constructs a TestStep
-     * 
-     * @param command        the command details for this step
-     * @param expectedResult the expected result description
-     */
     public TestStep(TestCommand command, ExpectedResult expectedResult, CommandParams commandParams) {
         this.command = command;
         this.expectedResult = expectedResult;
@@ -35,12 +25,6 @@ public class TestStep {
         return commandParams;
     }
 
-    /**
-     * Returns a formatted string representation describing this test step and its
-     * parameters.
-     * 
-     * @return a human-readable representation of the test step
-     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

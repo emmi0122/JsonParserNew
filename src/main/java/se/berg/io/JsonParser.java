@@ -7,9 +7,6 @@ import se.berg.domain.*;
 import java.nio.file.*;
 import java.util.*;
 
-/**
- * Utility for parsing JSON files to domain objects.
- */
 public class JsonParser {
     public static TestSequence parseTestSequence(String filePath) throws Exception {
         String content = Files.readString(Paths.get(filePath));

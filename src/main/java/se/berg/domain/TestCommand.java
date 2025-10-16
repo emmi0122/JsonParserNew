@@ -2,9 +2,6 @@ package se.berg.domain;
 
 import se.berg.util.MapperClass;
 
-/**
- * Represents a command with all relevant parameters for a test step.
- */
 public class TestCommand {
     private String cmdTypeName;
     private String action;
@@ -47,32 +44,14 @@ public class TestCommand {
         return displayUnit;
     }
 
-    /**
-     * Returns a human-readable version of the action using
-     * {@link MapperClass#mapAction(String)}
-     * 
-     * @return a formatted action name
-     */
     public String getFormattedAction() {
         return MapperClass.mapAction(action);
     }
 
-    /**
-     * Returns a readable name for the target address using
-     * {@link MapperClass#mapTargetAddress(Integer)}
-     * 
-     * @return a mapped target address name
-     */
     public String getTargetAddressName() {
         return MapperClass.mapTargetAddress(targetAddress);
     }
 
-    /**
-     * Returns a human-readable description of the command type using
-     * {@link MapperClass#mapCmdType(String)}
-     * 
-     * @return a mapped command type description
-     */
     public String getCmdTypeDescription() {
         return MapperClass.mapCmdType(cmdTypeName);
     }
